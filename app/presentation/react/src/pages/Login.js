@@ -107,13 +107,13 @@ function Login(props) {
                     <Col>
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
-                                <Form.Label>Account</Form.Label>
-                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="Enter username" />
+                                <Form.Label>Account (Enter your student ID, e.g. 109062584)</Form.Label>
+                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="student ID" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
+                                <Form.Label>Password (Enter your birthday, e.g. 20010717)</Form.Label>
+                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="birthday" />
                             </Form.Group>
                             <div align="center">
                                 <Button className="w-100" variant="primary" type="submit">
