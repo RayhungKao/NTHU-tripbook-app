@@ -21,10 +21,18 @@ function Home(props) {
     const { user, setUser } = useContext(AuthContext);
 
     function toLoginPage(){
-        props.alertSuccessFunction("let's login")
-        setTimeout(() => {
-            history.push('/login')
-        }, 3000)
+        if(user === null){
+            props.alertSuccessFunction("let's login")
+            setTimeout(() => {
+                history.push('/login')
+            }, 3000)
+        }
+        else{
+            props.alertSuccessFunction("enjoy your tripbook")
+            setTimeout(() => {
+                history.push('/poi')
+            }, 3000)
+        }
     }
 
     return (

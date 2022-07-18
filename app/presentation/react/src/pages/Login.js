@@ -43,7 +43,7 @@ function Login(props) {
                     console.log(account)
                     setUser(result.account.username)
                     setTimeout(() => {
-                        history.push('/Account')
+                        history.push('/PoI')
                     }, 3000)
                 }
                 else {

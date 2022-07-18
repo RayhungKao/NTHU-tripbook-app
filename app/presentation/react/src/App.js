@@ -13,7 +13,10 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import Calendar from "./pages/Calendar";
 import RegisterAccount from './pages/Register'
+import PoI from './pages/PoI'
+
 import { baseUrl } from './config'
+
 import './App.css';
 function App() {
   const history = useHistory();
@@ -204,6 +207,9 @@ function App() {
             <Switch>
               <Route path="/calendar">
                 <Calendar setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+              </Route>
+              <Route path="/poi">
+                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
               <Route path="/register">
                 <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
