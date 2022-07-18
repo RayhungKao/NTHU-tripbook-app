@@ -21,7 +21,7 @@ function Home(props) {
     const { user, setUser } = useContext(AuthContext);
 
     function toLoginPage(){
-        if(user === null){
+        if(user === ""){
             props.alertSuccessFunction("let's login")
             setTimeout(() => {
                 history.push('/login')

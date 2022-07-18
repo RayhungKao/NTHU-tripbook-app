@@ -11,7 +11,6 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker } from 're
 import {Icon} from 'leaflet'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import userIconPng from "../user.png"
-import { v4 as uuidv4 } from 'uuid';
 
 const baseUrl = "http://localhost:9292"
 
@@ -25,7 +24,6 @@ function PoI(props) {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
       setUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
-      console.log(uuidv4());
     });  
     let id = navigator.geolocation.watchPosition(success, error, options);
     console.log("======================" + id + "=========================");
@@ -204,7 +202,7 @@ function PoI(props) {
       renderTabBar={() => <ScrollableInkTabBar />}
       renderTabContent={() => <TabContent />}
     >
-      <TabPane tab="tab 1" key="1">
+      <TabPane tab="清華八景" key="1">
         <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height: "90vh" }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {
@@ -260,7 +258,7 @@ function PoI(props) {
           <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={blueOptions} radius={radius} />
         </MapContainer>
       </TabPane>
-      <TabPane tab="tab 2" key="2">
+      <TabPane tab="你的卡池" key="2">
         second
       </TabPane>
       <TabPane tab="tab 3" key="3">

@@ -11,7 +11,6 @@ import logo from './logo2.png';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Account from './pages/Account'
-import Calendar from "./pages/Calendar";
 import RegisterAccount from './pages/Register'
 import PoI from './pages/PoI'
 
@@ -30,8 +29,9 @@ function App() {
   useEffect(() => {
     if (!user) account()
     if (!userInfo) accountInfo()
-    if (!calendars) displayCalendars()
-  }, [user, userInfo, calendars]);
+    // if (!calendars) displayCalendars()
+
+  }, [user, userInfo]);
 
   async function account() {
     if (user) {
@@ -73,7 +73,7 @@ function App() {
         let result = await response.json()
         if (response.status === 200) {
           setUserInfo(result)
-          console.log("first fetch account info")
+          console.log("fetch account info")
         }
         else {
           console.log(`${result.message}`)
@@ -84,33 +84,33 @@ function App() {
       })
   }
 
-  async function displayCalendars() {
-    // todo:  call get calendars api
-    const auth_token = 'Bearer ' + user.auth_token
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': auth_token
-      },
-      credentials: 'include'
-    };
-    fetch(baseUrl + '/api/v1/calendars', requestOptions)
-      .then(async response => {
-        let result = await response.json()
+  // async function displayCalendars() {
+  //   // todo:  call get calendars api
+  //   const auth_token = 'Bearer ' + user.auth_token
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': auth_token
+  //     },
+  //     credentials: 'include'
+  //   };
+  //   fetch(baseUrl + '/api/v1/calendars', requestOptions)
+  //     .then(async response => {
+  //       let result = await response.json()
 
-        if (response.status === 200) {
-          alertSuccessFunction(result.message)
-          setCalendars(result.calendars)
-        }
-        else {
-          alertFunction(`${result.message}`)
-        }
-      })
-      .catch(error => {
-        alertFunction(error.message)
-      })
-  }
+  //       if (response.status === 200) {
+  //         alertSuccessFunction(result.message)
+  //         setCalendars(result.calendars)
+  //       }
+  //       else {
+  //         alertFunction(`${result.message}`)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       alertFunction(error.message)
+  //     })
+  // }
 
   function logout() {
     const requestOptions = {
@@ -205,20 +205,17 @@ function App() {
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
             <Switch>
-              <Route path="/calendar">
-                <Calendar setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
-              </Route>
-              <Route path="/poi">
-                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
-              </Route>
               <Route path="/register">
                 <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+              </Route>
+              <Route path="/account">
+                <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
               <Route path="/login">
                 <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
-              <Route path="/account">
-                <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+              <Route path="/poi">
+                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
               <Route path="/">
                 <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />

@@ -39,11 +39,11 @@ function Login(props) {
                 let result = await response.json()
                 if (response.status == 200) {
                     props.alertSuccessFunction(`Welcome, ${result.account.username}`)
+                    console.log(result.account.username)
                     // const account = {username: result.account.username, email:result.account.email}
-                    console.log(account)
                     setUser(result.account.username)
                     setTimeout(() => {
-                        history.push('/PoI')
+                        history.push('/poi')
                     }, 3000)
                 }
                 else {
