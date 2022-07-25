@@ -3,3 +3,4 @@ config/secrets.yml
 .bundle/
 coverage/*
 !coverage/.resultset.json
+.DS_Store
