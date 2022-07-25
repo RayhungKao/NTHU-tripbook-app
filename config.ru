@@ -3,4 +3,4 @@
 require './require_app'
 require_app
 
-run Tripbook::App.app
+run Tripbook::App.app.freeze

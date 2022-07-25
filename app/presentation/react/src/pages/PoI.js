@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "rc-tabs/assets/index.css";
 import "leaflet/dist/leaflet.css";
 import "../styles.css";
+
+import { baseUrl } from '../config'
+import { AuthContext } from "../contexts";
 
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/TabContent";
@@ -12,11 +15,10 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker } from 're
 import {Icon} from 'leaflet'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 
-const baseUrl = "http://localhost:9292"
-
 function PoI(props) {
   var callback = function(key) {};
 
+  const { user, setUser } = useContext(AuthContext);
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
   const [map, setMap] = useState();
@@ -167,42 +169,45 @@ function PoI(props) {
 
   //post location and timestamp info to backend db storage for user entering or exiting some PoI's geofence
   function postToDB(inside, PoI){
+    if (inside == false) return
+    if (!user) return
+
     const timestamp = new Date().toLocaleString('en-US', {hour12:false});
     console.log(timestamp);
-    const uuid      = (22).toString()
-    const latitude  = userLocation.latitude.toString()
-    const longitude = userLocation.longitude.toString()
+    // const latitude  = userLocation.latitude.toString()
+    // const longitude = userLocation.longitude.toString()
     const targetID  = PoI.toString()
-    const entryOrExit  = inside.toString()
 
     const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ uuid: uuid, latitude: latitude, longitude: longitude, targetID: targetID, entryOrExit: entryOrExit })
+        credentials: 'include',
+        body: JSON.stringify({ "username": user, "poiId": targetID,  "entered": true, "entryTime": timestamp})
     };
-    fetch(baseUrl+'/api/v1/geoinfos', requestOptions)
+    fetch(baseUrl+`/api/v1/geoinfos/${user}`, requestOptions)
     .then(async response =>{
         let result = await response.json()
-        if (response.status === 201){
+        if (response.status === 200){
           console.log(result)
         }
         else{
-            props.alertFunction(`${result.message}`)
+            // props.alertFunction(`${result.message}`)
             setTimeout(()=>{
                 window.location.reload()
             },3000)
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown error")
+        props.alertFunction("unknown errorrrrrrr")
     })
   //   const requestOptions = {
   //     method: 'GET',
   //     headers: {
   //         'Content-Type': 'application/json'
   //     },
+  //     credentials: 'include'
   //   };
   //   fetch(baseUrl+'/api/v1/geoinfos', requestOptions)
   //   .then(async response =>{
@@ -226,7 +231,7 @@ function PoI(props) {
   }
 
   const blueOptions = { fillColor: 'blue' }
-  const radius = 50
+  const radius = 750
   return (
     <>
       <Tabs
