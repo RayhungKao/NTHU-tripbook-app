@@ -22,6 +22,7 @@ function PoI(props) {
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
   const [map, setMap] = useState();
+  const [geoinfo, setGeoinfo] = useState();
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -42,7 +43,7 @@ function PoI(props) {
   }, [userLocation])
 
   useEffect(() => {
-    // postToDB(userInsidePoI.inside, userInsidePoI.PoI)
+    // postGeoinfo(userInsidePoI.inside, userInsidePoI.PoI)
     return () => {
       // console.log('userInsidePoI.inside?: ' + userInsidePoI.inside + ', userInsidePoI.PoI: ' + userInsidePoI.PoI); 
     }
@@ -54,6 +55,13 @@ function PoI(props) {
       // console.log("get map"); 
     }
   }, [map])
+
+  useEffect(() => {
+    if(!geoinfo) getGeoinfo();
+    return () => {
+      // console.log("get map"); 
+    }
+  }, [geoinfo])
 
   function getMap() {
     const requestOptions = {
@@ -96,14 +104,14 @@ function PoI(props) {
         else {
           props.alertSuccessFunction('Congratulations, you reached one of the PoI: ' + target[i].name);
           setUserInsidePoI( {inside: true, PoI: i} );
-          postToDB(true, i);
+          postGeoinfo(true, i);
         }
       }
       else {
         if (userInsidePoI.inside && userInsidePoI.PoI === i) {
           props.alertSuccessFunction('You are leaving one of the PoI: ' + target[i].name);
           setUserInsidePoI( {inside: false, PoI: 0} );
-          postToDB(false, i);
+          postGeoinfo(false, i);
         }
         else {
           // console.log("-------outside---------");
@@ -167,8 +175,39 @@ function PoI(props) {
     maximumAge: 1000
   };
 
+  //get location and timestamp info from backend db storage for user entering or exiting some PoI's geofence
+  function getGeoinfo(inside, PoI){
+    if (!user) return
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    };
+    fetch(baseUrl+`/api/v1/geoinfos/${user}`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status === 200){
+          console.log(result.geoinfo_list)
+          setGeoinfo(result)
+          // props.alertSuccessFunction(`${result.message}`)
+        }
+        else{
+            props.alertFunction(`${result.message}`)
+            setTimeout(()=>{
+                window.location.reload()
+            },3000)
+        }
+    })
+    .catch(error =>{
+        props.alertFunction("unknown error to get geoinfo")
+    })
+  }
+
   //post location and timestamp info to backend db storage for user entering or exiting some PoI's geofence
-  function postToDB(inside, PoI){
+  function postGeoinfo(inside, PoI){
     if (inside == false) return
     if (!user) return
 
@@ -189,45 +228,20 @@ function PoI(props) {
     fetch(baseUrl+`/api/v1/geoinfos/${user}`, requestOptions)
     .then(async response =>{
         let result = await response.json()
-        if (response.status === 200){
+        if (response.status === 200 || response.status === 201){
           console.log(result)
+          // props.alertSuccessFunction(`${result.message}`)
         }
         else{
-            // props.alertFunction(`${result.message}`)
+            props.alertFunction(`${result.message}`)
             setTimeout(()=>{
                 window.location.reload()
             },3000)
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown errorrrrrrr")
+        props.alertFunction("unknown error to post geoinfo")
     })
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     },
-  //     credentials: 'include'
-  //   };
-  //   fetch(baseUrl+'/api/v1/geoinfos', requestOptions)
-  //   .then(async response =>{
-  //     console.log("++++++++++++++++++++++")
-
-  //     let result = await response.json()
-  //     console.log("-------------------------")
-  //     if (response.status === 200){
-  //       console.log(result)
-  //     }
-  //     else{
-  //         props.alertFunction(`${result.message}`)
-  //         setTimeout(()=>{
-  //             window.location.reload()
-  //         },3000)
-  //     }
-  //   })
-  //   .catch(error =>{
-  //     props.alertFunction("unknown error")
-  //   })
   }
 
   const blueOptions = { fillColor: 'blue' }

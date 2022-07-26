@@ -9,9 +9,9 @@ module Tripbook
       @config = config
     end
 
-    def call(user)
-      response = HTTP.auth("Bearer #{user.auth_token}")
-                     .get("#{@config.API_URL}/geoinfos/#{user.username}")
+    def call(current_account:)
+      response = HTTP.auth("Bearer #{current_account.auth_token}")
+                     .get("#{@config.API_URL}/geoinfos/#{current_account.username}")
 
       response.code == 200 ? JSON.parse(response.body.to_s)['data'] : nil
     end

@@ -11,9 +11,8 @@ module Tripbook
         routing.on String do |username|
           # GET /geoinfos/[username]
           routing.get do
-            puts @current_account.auth_token
             geoinfo_list = GetGeoinfo.new(App.config)
-                                     .call(@current_account)
+                                     .call(current_account: @current_account)
 
             return { geoinfo_list: geoinfo_list}.to_json
           rescue StandardError
@@ -23,11 +22,9 @@ module Tripbook
           # POST /geoinfos/[username]
           routing.post do
             params = JSON.parse(routing.body.read)
-            puts params
             geoinfo_data = CreateNewGeoinfo.new(App.config)
                                            .call(current_account: @current_account, username: username, geoinfo_data: params)
 
-            puts geoinfo_data['data']
             return { current_user: @current_account.username, message: geoinfo_data['message'],
                      data: geoinfo_data['data'] }.to_json
           rescue StandardError

@@ -18,7 +18,7 @@ module Tripbook
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                      .post(config_url, json: geoinfo_data)
       
-      response.code == 201 ? JSON.parse(response.body.to_s) : raise
+      (response.code == 201 || response.code == 200) ? JSON.parse(response.body.to_s) : raise
     end
   end
 end
