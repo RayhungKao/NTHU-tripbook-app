@@ -10,7 +10,7 @@ import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 // import { Map as LeafMap, TileLayer, Marker, Popup } from "react-leaflet";
-import { Container, Row, Col, Button, Card, CardGroup, Carousel} from "react-bootstrap";
+import { Container, Row, Col, Button, Card, CardGroup, Carousel, Table, Modal} from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker } from 'react-leaflet'
 import {Icon} from 'leaflet'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
@@ -23,7 +23,23 @@ function PoI(props) {
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
   const [map, setMap] = useState();
   const [geoinfo, setGeoinfo] = useState();
+  const [cards, setCards] = useState();
   
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+  const [poi1State, setPoi1State] = useState();
+  const [poi2State, setPoi2State] = useState();
+  const [poi3State, setPoi3State] = useState();
+  const [poi4State, setPoi4State] = useState();
+  const [poi5State, setPoi5State] = useState();
+  const [poi6State, setPoi6State] = useState();
+  const [poi7State, setPoi7State] = useState();
+  const [poi8State, setPoi8State] = useState();
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
       setUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
@@ -59,9 +75,16 @@ function PoI(props) {
   useEffect(() => {
     if(!geoinfo) getGeoinfo();
     return () => {
-      // console.log("get map"); 
+      // console.log("get geoinfo"); 
     }
   }, [geoinfo])
+
+  useEffect(() => {
+    if(!cards) getCards();
+    return () => {
+      // console.log("get cards"); 
+    }
+  }, [cards])
 
   function getMap() {
     const requestOptions = {
@@ -176,7 +199,7 @@ function PoI(props) {
   };
 
   //get location and timestamp info from backend db storage for user entering or exiting some PoI's geofence
-  function getGeoinfo(inside, PoI){
+  function getGeoinfo(){
     if (!user) return
 
     const requestOptions = {
@@ -190,9 +213,53 @@ function PoI(props) {
     .then(async response =>{
         let result = await response.json()
         if (response.status === 200){
-          console.log(result.geoinfo_list)
+          // console.log(result.geoinfo_list)
           setGeoinfo(result)
+          let geoinfo_list = result.geoinfo_list
+
+          for(var i=0; i < geoinfo_list.length; i++){
+            if(geoinfo_list[i].attributes.entered === true){
+              switch (geoinfo_list[i].attributes.poiId){
+                case '1':
+                  setPoi1State(true)
+                  console.log("set poi 1 state true")
+                  break;  
+                case '2':
+                  setPoi2State(true)
+                  console.log("set poi 2 state true")
+                  break;
+                case '3':
+                  setPoi3State(true)
+                  console.log("set poi 3 state true")
+                  break;
+                case '4':
+                  setPoi4State(true)
+                  console.log("set poi 4 state true")
+                  break;
+                case '5':
+                  setPoi5State(true)
+                  console.log("set poi 5 state true")
+                  break;
+                case '6':
+                  setPoi6State(true)
+                  console.log("set poi 6 state true")
+                  break;
+                case '7':
+                  setPoi7State(true)
+                  console.log("set poi 7 state true")
+                  break;
+                case '8':
+                  setPoi8State(true)
+                  console.log("set poi 8 state true")
+                  break;
+                default:
+                  console.log("error poi color setting")
+              }
+            }
+          }
+
           // props.alertSuccessFunction(`${result.message}`)
+          // result.geoinfo_list[0]['attributes']['poiId']
         }
         else{
             props.alertFunction(`${result.message}`)
@@ -230,6 +297,7 @@ function PoI(props) {
         let result = await response.json()
         if (response.status === 200 || response.status === 201){
           console.log(result)
+          getGeoinfo()
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{
@@ -244,8 +312,74 @@ function PoI(props) {
     })
   }
 
-  const blueOptions = { fillColor: 'blue' }
-  const radius = 750
+  //get cards
+  function getCards(){
+    if (!user) return
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    };
+    fetch(baseUrl+`/api/v1/cards/${user}`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status === 200){
+          // console.log(result.card_list)
+          setCards(result.card_list)
+
+          // props.alertSuccessFunction(`${result.message}`)
+        }
+        else{
+            props.alertFunction(`${result.message}`)
+            setTimeout(()=>{
+                window.location.reload()
+            },3000)
+        }
+    })
+    .catch(error =>{
+        props.alertFunction("unknown error to get cards")
+    })
+  }
+
+  //draw a card
+  function drawCard(){
+    if (!user) return
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ "card_code": "456789"})
+    };
+    fetch(baseUrl+`/api/v1/cards/${user}`, requestOptions)
+    .then(async response =>{
+        let result = await response.json()
+        if (response.status === 200){
+          console.log(result)
+          getCards()
+          // props.alertSuccessFunction(`${result.message}`)
+        }
+        else{
+            props.alertFunction(`${result.message}`)
+            setTimeout(()=>{
+                window.location.reload()
+            },3000)
+        }
+    })
+    .catch(error =>{
+        props.alertFunction("unknown error to draw card")
+    })
+  }
+
+  const color_blue = { fillColor: '#0093FF', color: '#0093FF'}
+  const color_red = { fillColor: '#F75E5E', color: '#F75E5E'}
+  const radius = 50
+
   return (
     <>
       <Tabs
@@ -260,6 +394,7 @@ function PoI(props) {
             {
               (userLocation.latitude)?<Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}><Popup>User現在位置. <br /> Easily customizable.</Popup></Marker>:""
             }
+            <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
             <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
@@ -276,7 +411,7 @@ function PoI(props) {
                 </Card>
               </Popup>
             </Marker>
-            <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={ poi2State === true ? color_blue : color_red} radius={radius} />
             <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
@@ -293,65 +428,94 @@ function PoI(props) {
                 </Card>
               </Popup>
             </Marker>
-            <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
             <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[3].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
             <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[4].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
             <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[5].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
             <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[6].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
             <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[7].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={blueOptions} radius={radius} />
+            <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
             <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 {target[8].name} <br /> Easily customizable.
               </Popup>
             </Marker>
-            <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={blueOptions} radius={radius} />
           </MapContainer>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
-          <Row xs={1} md={3} className="g-4">
-            {Array.from({ length: 8 }).map((_, idx) => (
-              <Col>
-                <Card className="card">
-                  <Card.Img variant="top" src={require('../sampleCard.png')} />
-                  {/* <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in
-                      to additional content. This content is a little bit longer.
-                    </Card.Text>
-                  </Card.Body> */}
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <>
+            <Button variant="dark" onClick={handleShow} >
+              點擊抽卡
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+              <Modal.Footer>
+                <Button variant="primary" onClick={drawCard}>
+                  Yes
+                </Button>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+          <Container>
+            {
+              (cards) ?
+                  <>
+                    {cards.map((card, id) => {
+                        let c = card.data.attributes
+                        return (
+                            <Row xs={1} md={3} className="g-4">
+                              <Col>
+                                <Card className="card">
+                                  <Card.Img variant="top" src={require(`../${c.card_code}.png`)} />
+                                  <Card.Body>
+                                    <Card.Title>Card title</Card.Title>
+                                    <Card.Text>
+                                      course code: {(c.card_code)}
+                                    </Card.Text>
+                                  </Card.Body>
+                                  <Card.Footer>
+                                    <small className="text-muted">Last updated 3 mins ago</small>
+                                  </Card.Footer>
+                                </Card>
+                              </Col>
+                            </Row>
+                            )
+                    })}
+                  </>
+                : "empty cards"
+            }
+          </Container>
         </TabPane>
         <TabPane tab="操作介紹" key="3">
           <Carousel>
@@ -376,12 +540,32 @@ function PoI(props) {
         </TabPane>
       </Tabs>
       <div className="fixed-content">
-        <Container style={{color:"white", textAlign:"center"}}>未走地點
-          <Row xs={1} md={1}>
-            {Array.from({ length: 2 }).map((_, idx) => (
-              <Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{target[2].name}
-              </Col>
-            ))}
+        <Container style={{color:"white", textAlign:"center"}} width="1" height="30">未走地點
+          <Row xs={1} md={1}> 
+            {
+              (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
+            }
+            {
+              (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
+            }
+            {
+              (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
+            }
+            {
+              (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
+            }
+            {
+              (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
+            }
+            {
+              (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
+            }
+            {
+              (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
+            }
+            {
+              (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
+            }
           </Row>
         </Container>
       </div>
