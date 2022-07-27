@@ -188,7 +188,6 @@ function App() {
                 </Nav.Item>
               </Nav>
             </Navbar>
-            <br />
             {alertMessage ?
               <Alert variant={'danger'} style={{ marginLeft: "20%", marginRight: "20%" }}>
                 {alertMessage}
