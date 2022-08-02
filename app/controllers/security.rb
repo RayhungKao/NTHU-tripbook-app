@@ -15,6 +15,8 @@ module Tripbook
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com].freeze
     GOOGLE_SSO_SRC = %w[https://accounts.google.com/o/oauth2/v2/auth].freeze
+    OPENSTRRETMAP_SRC = %w[https://a.tile.openstreetmap.org/ https://b.tile.openstreetmap.org/ https://c.tile.openstreetmap.org/].freeze
+    LOCAL_IMAGE_SRC = %w[data:].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
@@ -47,7 +49,7 @@ module Tripbook
         default_src: %w['self'],
         child_src: %w['self'],
         connect_src: %w['self'],
-        img_src: %w['self'],
+        img_src: %w['self'] + OPENSTRRETMAP_SRC + LOCAL_IMAGE_SRC,
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
         style_src: %w['self'] + STYLE_SRC,

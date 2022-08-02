@@ -1,16 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.0cd3e98a.css",
-    "main.js": "/static/js/main.b4a3c8a8.js",
+    "main.css": "/static/css/main.e69f42c7.css",
+    "main.js": "/static/js/main.16aa3233.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
-    "static/media/logo2.png": "/static/media/logo2.b53456da1015ea77dae2.png",
+    "static/media/456789.png": "/static/media/456789.8076142683fa08a00e36.png",
+    "static/media/sampleCard.png": "/static/media/sampleCard.8076142683fa08a00e36.png",
+    "static/media/123456.png": "/static/media/123456.8c26cfaa27bb9e7c8007.png",
+    "static/media/delta.png": "/static/media/delta.d45856d4edb51ffb8175.png",
+    "static/media/giphy.gif": "/static/media/giphy.dd451d332c06a0a8bea4.gif",
+    "static/media/logo2.png": "/static/media/logo2.10fd7183c34ecec5730d.png",
+    "static/media/user.png": "/static/media/user.d54b5cea3dabfb92c990.png",
+    "static/media/card-heart.png": "/static/media/card-heart.4dabba7bad7ff5aaf177.png",
+    "static/media/card-spade.png": "/static/media/card-spade.742b7bd89af9a7f87ad3.png",
     "index.html": "/index.html",
-    "main.0cd3e98a.css.map": "/static/css/main.0cd3e98a.css.map",
-    "main.b4a3c8a8.js.map": "/static/js/main.b4a3c8a8.js.map",
+    "main.e69f42c7.css.map": "/static/css/main.e69f42c7.css.map",
+    "main.16aa3233.js.map": "/static/js/main.16aa3233.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0cd3e98a.css",
-    "static/js/main.b4a3c8a8.js"
+    "static/css/main.e69f42c7.css",
+    "static/js/main.16aa3233.js"
   ]
 }
