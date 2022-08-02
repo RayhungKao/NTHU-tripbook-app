@@ -497,12 +497,12 @@ function PoI(props) {
                             <Row xs={1} md={3} className="g-4">
                               <Col>
                                 <Card className="card">
-                                  <Card.Img variant="top" src={require(`../${c.card_code}.png`)} />
                                   <Card.Body>
                                     <Card.Title>Card title</Card.Title>
                                     <Card.Text>
                                       course code: {(c.card_code)}
                                     </Card.Text>
+                                    <Card.Img variant="top" src={require(`../${c.card_code}.png`)} />
                                   </Card.Body>
                                   <Card.Footer>
                                     <small className="text-muted">Last updated 3 mins ago</small>
@@ -540,7 +540,7 @@ function PoI(props) {
         </TabPane>
       </Tabs>
       <div className="fixed-content">
-        <Container style={{color:"white", textAlign:"center"}} width="1" height="30">未走地點
+        <Container style={{color:"white", textAlign:"center"}} width="30" height="30">未走地點
           <Row xs={1} md={1}> 
             {
               (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""

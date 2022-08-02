@@ -32,11 +32,3 @@ body {
   max-width: 100%;
   height: auto;
 }
-
-.unreached-poi {
-  background-color:#ff4747;
-}
-
-.reached-poi {
-  background-color:#1ca721ee;
-}

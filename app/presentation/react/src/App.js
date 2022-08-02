@@ -13,10 +13,9 @@ import Login from './pages/Login'
 import Account from './pages/Account'
 import RegisterAccount from './pages/Register'
 import PoI from './pages/PoI'
-
 import { baseUrl } from './config'
-
 import './App.css';
+
 function App() {
   const history = useHistory();
   const [loading, setLoading] = useState(false)
@@ -24,12 +23,10 @@ function App() {
   const [successMessage, setSuccessMessage] = useState(false)
   const [user, setUser] = useState("");
   const [userInfo, setUserInfo] = useState("");
-  const [calendars, setCalendars] = useState(null)
 
   useEffect(() => {
     if (!user) account()
     if (!userInfo) accountInfo()
-    // if (!calendars) displayCalendars()
 
   }, [user, userInfo]);
 
@@ -84,34 +81,6 @@ function App() {
       })
   }
 
-  // async function displayCalendars() {
-  //   // todo:  call get calendars api
-  //   const auth_token = 'Bearer ' + user.auth_token
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': auth_token
-  //     },
-  //     credentials: 'include'
-  //   };
-  //   fetch(baseUrl + '/api/v1/calendars', requestOptions)
-  //     .then(async response => {
-  //       let result = await response.json()
-
-  //       if (response.status === 200) {
-  //         alertSuccessFunction(result.message)
-  //         setCalendars(result.calendars)
-  //       }
-  //       else {
-  //         alertFunction(`${result.message}`)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       alertFunction(error.message)
-  //     })
-  // }
-
   function logout() {
     const requestOptions = {
       method: 'GET',
@@ -157,7 +126,7 @@ function App() {
   return (
     <>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous" />
-      <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo, calendars, setCalendars }}>
+      <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo }}>
         <Router>
           <div style={{ height: "100vh" }}>
             <Navbar bg="dark" variant="dark">
@@ -204,6 +173,9 @@ function App() {
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
             <Switch>
+              <Route path="/poi">
+                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+              </Route>
               <Route path="/register">
                 <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
@@ -212,9 +184,6 @@ function App() {
               </Route>
               <Route path="/login">
                 <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
-              </Route>
-              <Route path="/poi">
-                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
               </Route>
               <Route path="/">
                 <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
