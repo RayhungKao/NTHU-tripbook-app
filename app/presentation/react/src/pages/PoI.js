@@ -42,6 +42,16 @@ function PoI(props) {
   const [poi7State, setPoi7State] = useState();
   const [poi8State, setPoi8State] = useState();
 
+  const [poi1_timeState, setPoi1_timeState] = useState();
+  const [poi2_timeState, setPoi2_timeState] = useState();
+  const [poi3_timeState, setPoi3_timeState] = useState();
+  const [poi4_timeState, setPoi4_timeState] = useState();
+  const [poi5_timeState, setPoi5_timeState] = useState();
+  const [poi6_timeState, setPoi6_timeState] = useState();
+  const [poi7_timeState, setPoi7_timeState] = useState();
+  const [poi8_timeState, setPoi8_timeState] = useState();
+
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
       setUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
@@ -224,34 +234,42 @@ function PoI(props) {
               switch (geoinfo_list[i].attributes.poiId){
                 case '1':
                   setPoi1State(true)
+                  setPoi1_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 1 state true")
                   break;  
                 case '2':
                   setPoi2State(true)
+                  setPoi2_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 2 state true")
                   break;
                 case '3':
                   setPoi3State(true)
+                  setPoi3_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 3 state true")
                   break;
                 case '4':
                   setPoi4State(true)
+                  setPoi4_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 4 state true")
                   break;
                 case '5':
                   setPoi5State(true)
+                  setPoi5_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 5 state true")
                   break;
                 case '6':
                   setPoi6State(true)
+                  setPoi6_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 6 state true")
                   break;
                 case '7':
                   setPoi7State(true)
+                  setPoi7_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 7 state true")
                   break;
                 case '8':
                   setPoi8State(true)
+                  setPoi8_timeState(geoinfo_list[i].attributes.entryTime)
                   console.log("set poi 8 state true")
                   break;
                 default:
@@ -396,7 +414,11 @@ function PoI(props) {
           <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height:"89.5vh", width:"100vw"}} >
             <ReactLeafletGoogleLayer apiKey='AIzaSyCBDYUfX-oBo9YodWLV1WrEctOW2wBZpUU' minZoom={14} maxZoom={19} />
             {
-              (userLocation.latitude)?<Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}><Popup>User現在位置. <br /> Easily customizable.</Popup></Marker>:""
+              (userLocation.latitude)?
+                <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
+                  <Popup>用戶現在位置.</Popup>
+                </Marker>
+              :""
             }
             <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
             <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
@@ -410,7 +432,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi1_timeState)?`進入時間:${poi1_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -427,7 +449,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi2_timeState)?`進入時間:${poi2_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -444,7 +466,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi3_timeState)?`進入時間:${poi3_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -455,13 +477,13 @@ function PoI(props) {
                 <Card>
                   <Card.Img variant="top" className="photo" src={require('../images/pois/guest-house.jpg')} />
                   <Card.Body>
-                    <Card.Title>{target[3].name}</Card.Title>
+                    <Card.Title>{target[4].name}</Card.Title>
                     <Card.Text>
                       外賓和教授住處、二招有咖哩
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi4_timeState)?`進入時間:${poi4_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -478,7 +500,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi5_timeState)?`進入時間:${poi5_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -495,7 +517,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi6_timeState)?`進入時間:${poi6_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -512,7 +534,7 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi7_timeState)?`進入時間:${poi7_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -529,19 +551,11 @@ function PoI(props) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                    <small className="text-muted">{(poi8_timeState)?`進入時間:${poi8_timeState}`:"尚未抵達"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
             </Marker>
-            {/* <Rectangle bounds={[
-                        [51.49, -0.08],
-                        [51.5, -0.06],
-                      ]} pathOptions={{ color: 'black' }}>
-              <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
-                permanent Tooltip for Rectangle
-              </Tooltip>erterterter
-            </Rectangle> */}
           </MapContainer>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
