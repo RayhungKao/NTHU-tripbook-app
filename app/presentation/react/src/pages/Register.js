@@ -90,9 +90,9 @@ function RegisterAccount(props) {
 
     return (
         <>
-
+            <br></br>
             <div className="App">
-                { (urlparams.token)?<h1>Almost complete</h1>:<h1>Create Account</h1>}
+                { (urlparams.token)?<h4>Almost complete</h4>:<h4>Create Account</h4>}
             </div>
             <br />
             <Container>
@@ -112,7 +112,7 @@ function RegisterAccount(props) {
                                 <Form.Control type="password" value={password2} onChange={(e)=>{setPassword2(e.target.value)}} placeholder="Password" />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
+                            <Button variant="dark" type="submit">
                                 Set Password
                             </Button>
                         </Form>
@@ -131,7 +131,7 @@ function RegisterAccount(props) {
                                 </Form.Text>
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
+                            <Button variant="dark" type="submit">
                                 Create Account
                             </Button>
                         </Form>

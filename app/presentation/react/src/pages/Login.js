@@ -58,47 +58,11 @@ function Login(props) {
             })
     }
 
-    function oauth2SignIn() {
-        console.log("oauthSignIn");
-        // Google's OAuth 2.0 endpoint for requesting an access token
-        var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
-
-        // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-        var form = document.createElement('form');
-        form.setAttribute('method', 'GET'); // Send as a GET request.
-        form.setAttribute('action', oauth2Endpoint);
-
-        // Parameters to pass to OAuth 2.0 endpoint.
-        var params = {
-            'client_id': '45920062800-kpq0r0q0djo2de0ic0960ail28dj0jdg.apps.googleusercontent.com',
-            'redirect_uri': `${baseUrl}/api/v1/auth/sso_callback`,
-            'response_type': 'code',
-            'scope': 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly',
-            'include_granted_scopes': 'true',
-            'prompt': 'consent'
-            // 'access_type': 'offline'
-            //   'state': 'pass-through value'
-        };
-
-        // Add form parameters as hidden input values.
-        for (var p in params) {
-            var input = document.createElement('input');
-              input.setAttribute('type', 'hidden');
-            input.setAttribute('name', p);
-            input.setAttribute('value', params[p]);
-            form.appendChild(input);
-        }
-
-        // Add form to page and submit it to open the OAuth 2.0 endpoint.
-        document.body.appendChild(form);
-        form.submit();
-    }
-
     return (
         <>
             <br></br>
             <div className="App">
-                <h4>Tripbook</h4>
+                <h4>Login</h4>
             </div>
             <br />
             <Container>
@@ -107,7 +71,7 @@ function Login(props) {
                     <Col>
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
-                                <Form.Label>Account (Enter your student ID, e.g. 109062584)</Form.Label>
+                                <Form.Label>Username (Enter your student ID, e.g. 109062584)</Form.Label>
                                 <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="student ID" />
                             </Form.Group>
 
@@ -116,20 +80,11 @@ function Login(props) {
                                 <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="birthday" />
                             </Form.Group>
                             <div align="center">
-                                <Button className="w-100" variant="primary" type="submit">
+                                <Button className="w-100" variant="dark" type="submit">
                                     Submit
                                 </Button>
                             </div>
                         </Form>
-                    </Col>
-                    <Col></Col>
-                </Row>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Button className="w-100" variant="info" onClick={() => oauth2SignIn()}>
-                            Login with Google
-                        </Button>
                     </Col>
                     <Col></Col>
                 </Row>

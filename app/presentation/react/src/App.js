@@ -146,7 +146,7 @@ function App() {
                     (user) ? <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> : <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                   }
                   {
-                    (user) ? <NavDropdown.Item href="/account">setting</NavDropdown.Item> : <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
+                    (user) ? "" : <NavDropdown.Item href="/register">Create Account</NavDropdown.Item>
                   }
 
                 </NavDropdown>

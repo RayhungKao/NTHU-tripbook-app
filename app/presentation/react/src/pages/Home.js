@@ -49,7 +49,7 @@ function Home(props) {
                 <Row>
                     <Col></Col>
                     <Col>
-                        <Button className="w-100" variant="info" onClick={() => toLoginPage()}>
+                        <Button className="w-100" variant="dark" onClick={() => toLoginPage()}>
                             click to start
                         </Button>
                     </Col>
