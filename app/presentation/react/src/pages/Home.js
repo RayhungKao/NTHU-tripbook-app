@@ -37,13 +37,14 @@ function Home(props) {
 
     return (
         <>
-
+            <br></br>
             <div className="App">
                 {
-                    (user)?<h1>Hello, {user}</h1>:<h1>Welcome, nthu noobs</h1>
+                    (user)?<h4>Welcome back!, {user}</h4>:<h4>Welcome to NTHU campus</h4>
                 }
             </div>
-            <br />
+            <h6 className="App">ready to explore?</h6>
+            <br></br>
             <Container>
                 <Row>
                     <Col></Col>

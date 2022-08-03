@@ -9,9 +9,11 @@ import { AuthContext } from "../contexts";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
-// import { Map as LeafMap, TileLayer, Marker, Popup } from "react-leaflet";
 import { Container, Row, Col, Button, Card, CardGroup, Carousel, Table, Modal} from "react-bootstrap";
-import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker } from 'react-leaflet'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker, Rectangle } from 'react-leaflet'
+import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import {Icon} from 'leaflet'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 
@@ -170,7 +172,7 @@ function PoI(props) {
   target = {
     1: {latitude: 24.795766621401005, longitude: 120.9919832462873, name: "台達館"},
     2: {latitude: 24.795332380711834, longitude: 120.99471792945154, name: "旺宏館"},
-    3: {latitude: 24.794339028676507, longitude: 120.99331733144486, name: "綜二"}, 
+    3: {latitude: 24.794339028676507, longitude: 120.99331733144486, name: "綜合二館"}, 
     4: {latitude: 24.79811232481267, longitude: 120.9910483527293, name: "清華會館"},  
     5: {latitude: 24.792459765107758, longitude: 120.99004427985564, name: "梅園"}, 
     6: {latitude: 24.78792834315937, longitude: 120.99083261427393, name: "弈園"},  
@@ -380,29 +382,31 @@ function PoI(props) {
   const color_red = { fillColor: '#F75E5E', color: '#F75E5E'}
   const radius = 50
 
+
   return (
     <>
       <Tabs
+        style={{ height:"94vh", width:"100vw"}}
         defaultActiveKey="1"
         onChange={callback}
         renderTabBar={() => <ScrollableInkTabBar />}
         renderTabContent={() => <TabContent />}
       >
         <TabPane tab="清華八景" key="1">
-          <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height: "90vh" }}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height:"89.5vh", width:"100vw"}} >
+            <ReactLeafletGoogleLayer apiKey='AIzaSyCBDYUfX-oBo9YodWLV1WrEctOW2wBZpUU' minZoom={14} maxZoom={19} />
             {
-              (userLocation.latitude)?<Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}><Popup>User現在位置. <br /> Easily customizable.</Popup></Marker>:""
+              (userLocation.latitude)?<Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}><Popup>User現在位置. <br /> Easily customizable.</Popup></Marker>:""
             }
             <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
             <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../delta.png')} />
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/delta-building.png')} />
                   <Card.Body>
                     <Card.Title>{target[1].name}</Card.Title>
                     <Card.Text>
-                      資工系館
+                      資工系館、教室、實驗室
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
@@ -415,11 +419,11 @@ function PoI(props) {
             <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../giphy.gif')} />
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/library.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[2].name}</Card.Title>
                     <Card.Text>
-                      圖書館
+                      唸書開會好去處、夜讀區沒有24hr
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
@@ -431,143 +435,242 @@ function PoI(props) {
             <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
             <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[3].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/general-buildingII.jpeg')} />
+                  <Card.Body>
+                    <Card.Title>{target[3].name}</Card.Title>
+                    <Card.Text>
+                      前有貓底、後有鴿子廣場
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
             <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
             <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[4].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/guest-house.jpg')} />
+                  <Card.Body>
+                    <Card.Title>{target[3].name}</Card.Title>
+                    <Card.Text>
+                      外賓和教授住處、二招有咖哩
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
             <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
             <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[5].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/plum-park.jpg')} />
+                  <Card.Body>
+                    <Card.Title>{target[5].name}</Card.Title>
+                    <Card.Text>
+                      梅校長紀念亭座落於沒緣上方
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
             <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
             <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[6].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/go-park.jpg')} />
+                  <Card.Body>
+                    <Card.Title>{target[6].name}</Card.Title>
+                    <Card.Text>
+                      奕庭座落於奕園下方深處
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
             <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
             <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[7].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/chengkung-lake.jpg')} />
+                  <Card.Body>
+                    <Card.Title>{target[7].name}</Card.Title>
+                    <Card.Text>
+                      划船、慶生、腳踏車傳說之地
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
             <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
             <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
-                {target[8].name} <br /> Easily customizable.
+                <Card>
+                  <Card.Img variant="top" className="photo" src={require('../images/pois/nthu-nctu-route.jpg')} />
+                  <Card.Body>
+                    <Card.Title>{target[8].name}</Card.Title>
+                    <Card.Text>
+                      住宿舍，去隔壁校的運動場更近
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">進入時間:2022.07.19-12:35PM</small>
+                  </Card.Footer>
+                </Card>
               </Popup>
             </Marker>
+            {/* <Rectangle bounds={[
+                        [51.49, -0.08],
+                        [51.5, -0.06],
+                      ]} pathOptions={{ color: 'black' }}>
+              <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
+                permanent Tooltip for Rectangle
+              </Tooltip>erterterter
+            </Rectangle> */}
           </MapContainer>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
           <>
-            <Button variant="dark" onClick={handleShow} >
-              點擊抽卡
-            </Button>
-
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={drawCard}>
-                  Yes
-                </Button>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
+            <br></br>
+            <div className="App">剩餘抽卡次數:
+              <Button variant="dark" onClick={handleShow} >
+                點擊抽卡
+              </Button>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={drawCard}>
+                    Yes
+                  </Button>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
+            <br></br>
           </>
-          <Container>
+          <Container style={{ height:"80vh", width:"100vw"}} >
             {
               (cards) ?
                   <>
+                    <Row xs={3} md={3} className="g-4">
                     {cards.map((card, id) => {
                         let c = card.data.attributes
                         return (
-                            <Row xs={1} md={3} className="g-4">
-                              <Col>
-                                <Card className="card">
-                                  <Card.Body>
-                                    <Card.Title>Card title</Card.Title>
-                                    <Card.Text>
-                                      course code: {(c.card_code)}
-                                    </Card.Text>
-                                    <Card.Img variant="top" src={require(`../${c.card_code}.png`)} />
-                                  </Card.Body>
-                                  <Card.Footer>
-                                    <small className="text-muted">Last updated 3 mins ago</small>
-                                  </Card.Footer>
-                                </Card>
+                              <Col >
+                                <OverlayTrigger trigger="click" placement="bottom" overlay={
+                                  <Popover id="popover-basic">
+                                    <Card >
+                                        <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
+                                    </Card>
+                                </Popover>
+                                }>
+                                  <Card className="card" variant="success" style={{ height:"20vh", width:"30vw"}}>
+                                      <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
+                                  </Card>
+                                </OverlayTrigger>
+                                {/* <Card className="card" style={{ height:"20vh", width:"30vw"}}>
+                                    <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
+                                </Card> */}
                               </Col>
-                            </Row>
-                            )
+                          )
                     })}
+                    </Row>
+
                   </>
-                : "empty cards"
+                : "尚未取得卡片"
             }
           </Container>
         </TabPane>
-        <TabPane tab="操作介紹" key="3">
+        <TabPane tab="幕後介紹" key="3">
           <Carousel>
-            {Array.from({ length: 8 }).map((_, idx) => (
-              <Carousel.Item>
-                <Card className="card">
-                  <Card.Img variant="top" src={require('../sampleCard.png')} />
-                  {/* <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in
-                      to additional content. This content is a little bit longer.
-                    </Card.Text>
-                  </Card.Body> */}
-                  {/* <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer> */}
-                </Card>
-              </Carousel.Item>
-            ))}
+            <Carousel.Item>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                </Card.Body>
+              </Card>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                </Card.Body>
+              </Card>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                </Card.Body>
+              </Card>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/github-logo.jpg`)} />
+                  <Card.Title>This web app is designed non-profit and for education-purpose</Card.Title>
+                  <Card.Text>
+                    source code: <a href="https://github.com/RayhungKao">rayhungkao@github.com</a>
+                    <br></br>
+                    contact author: rayhungkao@gmail.com
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 2022.08.03. All rights reserved. </small>
+                </Card.Footer>
+              </Card>
+            </Carousel.Item>
           </Carousel>
         </TabPane>
       </Tabs>
       <div className="fixed-content">
-        <Container style={{color:"white", textAlign:"center"}} width="30" height="30">未走地點
-          <Row xs={1} md={1}> 
-            {
-              (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
-            }
-            {
-              (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
-            }
-            {
-              (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
-            }
-            {
-              (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
-            }
-            {
-              (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
-            }
-            {
-              (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
-            }
-            {
-              (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
-            }
-            {
-              (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
-            }
-          </Row>
-        </Container>
+        { (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
+          <Container style={{ color:"white", textAlign:"center", height:"15vh", width:"30vw" }} >未走地點
+            <Row xs={1} md={1}> 
+              {
+                (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
+              }
+              {
+                (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
+              }
+              {
+                (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
+              }
+              {
+                (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
+              }
+              {
+                (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
+              }
+              {
+                (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
+              }
+              {
+                (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
+              }
+              {
+                (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
+              }
+            </Row>
+          </Container>
+          : ""
+        }
       </div>
     </>
   );

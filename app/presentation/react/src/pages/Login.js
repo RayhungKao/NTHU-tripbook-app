@@ -96,9 +96,9 @@ function Login(props) {
 
     return (
         <>
-
+            <br></br>
             <div className="App">
-                <h1>Tripbook</h1>
+                <h4>Tripbook</h4>
             </div>
             <br />
             <Container>
