@@ -25,7 +25,11 @@ function PoI(props) {
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
   const [map, setMap] = useState();
   const [geoinfo, setGeoinfo] = useState();
+  const [geoinfoAmount, setGeoinfoAmount] = useState();
+
   const [cards, setCards] = useState();
+  const [cardsAmount, setCardsAmount] = useState();
+  
   
   const [show, setShow] = useState(false);
 
@@ -227,6 +231,7 @@ function PoI(props) {
         if (response.status === 200){
           // console.log(result.geoinfo_list)
           setGeoinfo(result)
+          setGeoinfoAmount(result.geoinfo_list.length)
           let geoinfo_list = result.geoinfo_list
 
           for(var i=0; i < geoinfo_list.length; i++){
@@ -349,7 +354,7 @@ function PoI(props) {
         if (response.status === 200){
           // console.log(result.card_list)
           setCards(result.card_list)
-
+          setCardsAmount(result.card_list.length)
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{
@@ -364,9 +369,44 @@ function PoI(props) {
     })
   }
 
+  function card_code_random_generator(){
+    var table = [
+      {abbreviation: "C",  number: 10},
+      {abbreviation: "G",  number: 20},
+      {abbreviation: "CS", number: 40}, 
+      {abbreviation: "L",  number: 20},  
+      {abbreviation: "A",  number: 10}, 
+    ];
+
+    let index = Math.floor(Math.random() * 5)
+    let card_number = Math.floor(Math.random() * table[index].number) + 1
+
+    let new_card_code = "" + table[index].abbreviation + card_number
+    
+    cards.map((card, id) => {
+      let c = card.data.attributes
+      if (new_card_code === c.card_code){
+        return ""
+      }
+    })
+
+    return new_card_code
+  }
+
+  function card_code_generator(){
+    let new_card_code = card_code_random_generator()
+
+    while(new_card_code === ""){
+      new_card_code = card_code_random_generator()
+    }
+    
+    return new_card_code
+  }
+
   //draw a card
   function drawCard(){
     if (!user) return
+    if (geoinfoAmount - cardsAmount === 0 ) return
 
     const requestOptions = {
         method: 'POST',
@@ -374,7 +414,7 @@ function PoI(props) {
             'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ "card_code": "456789"})
+        body: JSON.stringify({ "card_code": card_code_generator()})
     };
     fetch(baseUrl+`/api/v1/cards/${user}`, requestOptions)
     .then(async response =>{
@@ -561,17 +601,17 @@ function PoI(props) {
         <TabPane tab="卡片倉庫" key="2">
           <>
             <br></br>
-            <div className="App">剩餘抽卡次數:
+            <div className="App">可抽卡次數:{`${geoinfoAmount - cardsAmount} `}
               <Button variant="dark" onClick={handleShow} >
                 點擊抽卡
               </Button>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                  <Modal.Title>Modal heading</Modal.Title>
+                  <Modal.Title>抽卡提醒</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>卡片出現機率:亂數，確定使用？</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" onClick={drawCard}>
+                  <Button variant="dark" onClick={drawCard}>
                     Yes
                   </Button>
                   <Button variant="secondary" onClick={handleClose}>
@@ -618,6 +658,8 @@ function PoI(props) {
         <TabPane tab="幕後介紹" key="3">
           <Carousel>
             <Carousel.Item>
+              <br></br>
+              <Card.Text className="App" >Sponsorship</Card.Text>
               <Card className="card">
                 <Card.Body>
                   <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
@@ -637,8 +679,8 @@ function PoI(props) {
             <Carousel.Item>
               <Card className="card">
                 <Card.Body>
+                  <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
                   <Card.Img variant="top" src={require(`../images/others/github-logo.jpg`)} />
-                  <Card.Title>This web app is designed non-profit and for education-purpose</Card.Title>
                   <Card.Text>
                     source code: <a href="https://github.com/RayhungKao">rayhungkao@github.com</a>
                     <br></br>
