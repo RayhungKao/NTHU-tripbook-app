@@ -1,24 +1,33 @@
 {
   "files": {
-    "main.css": "/static/css/main.e69f42c7.css",
-    "main.js": "/static/js/main.16aa3233.js",
+    "main.css": "/static/css/main.c332ecc4.css",
+    "main.js": "/static/js/main.36115702.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
+    "static/media/general-buildingII.jpeg": "/static/media/general-buildingII.9c6eedc84b2bc3a6a206.jpeg",
     "static/media/456789.png": "/static/media/456789.8076142683fa08a00e36.png",
     "static/media/sampleCard.png": "/static/media/sampleCard.8076142683fa08a00e36.png",
     "static/media/123456.png": "/static/media/123456.8c26cfaa27bb9e7c8007.png",
-    "static/media/delta.png": "/static/media/delta.d45856d4edb51ffb8175.png",
-    "static/media/giphy.gif": "/static/media/giphy.dd451d332c06a0a8bea4.gif",
+    "static/media/delta-building.png": "/static/media/delta-building.d45856d4edb51ffb8175.png",
+    "static/media/chengkung-lake.jpg": "/static/media/chengkung-lake.897608cf561bd6d562d1.jpg",
+    "static/media/C2.png": "/static/media/C2.02f54e8e6d155d5ee8c8.png",
+    "static/media/CS37.png": "/static/media/CS37.02f54e8e6d155d5ee8c8.png",
+    "static/media/L1.png": "/static/media/L1.02f54e8e6d155d5ee8c8.png",
+    "static/media/nthu-nctu-route.jpg": "/static/media/nthu-nctu-route.0a6cbfb1536d00027593.jpg",
+    "static/media/go-park.jpg": "/static/media/go-park.5a08bd9fdec6bf51aeac.jpg",
+    "static/media/guest-house.jpg": "/static/media/guest-house.5639afa544becaabbf3e.jpg",
+    "static/media/library.jpg": "/static/media/library.78333d5e3e59c84ed013.jpg",
+    "static/media/nthu-cs.png": "/static/media/nthu-cs.47c18e22efbe7c5deced.png",
+    "static/media/github-logo.jpg": "/static/media/github-logo.ae7a1f24534935c46e85.jpg",
+    "static/media/plum-park.jpg": "/static/media/plum-park.ec79b713f42db3407ca8.jpg",
     "static/media/logo2.png": "/static/media/logo2.10fd7183c34ecec5730d.png",
     "static/media/user.png": "/static/media/user.d54b5cea3dabfb92c990.png",
-    "static/media/card-heart.png": "/static/media/card-heart.4dabba7bad7ff5aaf177.png",
-    "static/media/card-spade.png": "/static/media/card-spade.742b7bd89af9a7f87ad3.png",
     "index.html": "/index.html",
-    "main.e69f42c7.css.map": "/static/css/main.e69f42c7.css.map",
-    "main.16aa3233.js.map": "/static/js/main.16aa3233.js.map",
+    "main.c332ecc4.css.map": "/static/css/main.c332ecc4.css.map",
+    "main.36115702.js.map": "/static/js/main.36115702.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e69f42c7.css",
-    "static/js/main.16aa3233.js"
+    "static/css/main.c332ecc4.css",
+    "static/js/main.36115702.js"
   ]
 }
