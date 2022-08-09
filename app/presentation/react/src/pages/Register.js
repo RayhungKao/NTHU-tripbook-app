@@ -97,7 +97,6 @@ function RegisterAccount(props) {
             <br />
             <Container>
                 <Row>
-                    <Col></Col>
                     <Col>
                     {
                         (urlparams.token)?
@@ -111,15 +110,17 @@ function RegisterAccount(props) {
                                 <Form.Label>Re-send Password</Form.Label>
                                 <Form.Control type="password" value={password2} onChange={(e)=>{setPassword2(e.target.value)}} placeholder="Password" />
                             </Form.Group>
-
-                            <Button variant="dark" type="submit">
-                                Set Password
-                            </Button>
+                            
+                            <div align="center">
+                                <Button variant="dark" type="submit">
+                                    Set Password
+                                </Button>
+                            </div>
                         </Form>
                         :
                         <Form onSubmit={(e)=>{createAccount(e)}}>
                             <Form.Group className="mb-3" controlId="formBasicAccount">
-                                <Form.Label>Account</Form.Label>
+                                <Form.Label>Username</Form.Label>
                                 <Form.Control type="text" value={account} onChange={(e)=>{setAccount(e.target.value)}} placeholder="Enter username" />
                             </Form.Group>
 
@@ -131,13 +132,14 @@ function RegisterAccount(props) {
                                 </Form.Text>
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">
-                                Create Account
-                            </Button>
+                            <div align="center">
+                                <Button variant="dark" type="submit">
+                                    Create Account
+                                </Button>
+                            </div>
                         </Form>
                     }
                     </Col>
-                    <Col></Col>
                 </Row>
             </Container>
 

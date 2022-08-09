@@ -8,7 +8,7 @@ import {
     useHistory,
     Link
 } from "react-router-dom";
-import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
+import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 
@@ -49,8 +49,11 @@ function Home(props) {
                 <Row>
                     <Col></Col>
                     <Col>
-                        <Button className="w-100" variant="dark" onClick={() => toLoginPage()}>
-                            click to start
+                        <Button className="w-100" 
+                            style={{backgroundColor:'transparent', borderColor:'transparent'}}
+                            onClick={() => toLoginPage()}
+                        >
+                            <Image variant="top" src={require(`../images/uis/main_button.png`)} style={{ height:"100%", width:"100%"}}/>
                         </Button>
                     </Col>
                     <Col></Col>

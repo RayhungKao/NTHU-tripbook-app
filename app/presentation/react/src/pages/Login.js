@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
+import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
 function Login(props) {
@@ -58,6 +58,10 @@ function Login(props) {
             })
     }
 
+    function handleShow(){
+
+    }
+    
     return (
         <>
             <br></br>
@@ -67,17 +71,16 @@ function Login(props) {
             <br />
             <Container>
                 <Row className="pb-2">
-                    <Col></Col>
                     <Col>
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
-                                <Form.Label>Username (Enter your student ID, e.g. 109062584)</Form.Label>
-                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="student ID" />
+                                <Form.Label>Username (e.g. 109062584)</Form.Label>
+                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="Enter username" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password (Enter your birthday, e.g. 20010717)</Form.Label>
-                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="birthday" />
+                                <Form.Label>Password (e.g. 20010717)</Form.Label>
+                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter password" />
                             </Form.Group>
                             <div align="center">
                                 <Button className="w-100" variant="dark" type="submit">
@@ -86,7 +89,6 @@ function Login(props) {
                             </div>
                         </Form>
                     </Col>
-                    <Col></Col>
                 </Row>
             </Container>
 

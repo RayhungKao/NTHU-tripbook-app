@@ -31,7 +31,15 @@ function PoI(props) {
   const [cardsAmount, setCardsAmount] = useState();
   
   
+  const [showCard, setShowCard] = useState(false);
   const [show, setShow] = useState(false);
+  const [cardCode, setCardCode] = useState();
+
+  const handleCloseCard = () => setShowCard(false);
+  function handleShowCard (card_code){
+    setShowCard(true);
+    setCardCode(card_code);
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -141,14 +149,14 @@ function PoI(props) {
           continue;
         }
         else {
-          props.alertSuccessFunction('Congratulations, you reached one of the PoI: ' + target[i].name);
+          props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name);
           setUserInsidePoI( {inside: true, PoI: i} );
           postGeoinfo(true, i);
         }
       }
       else {
         if (userInsidePoI.inside && userInsidePoI.PoI === i) {
-          props.alertSuccessFunction('You are leaving one of the PoI: ' + target[i].name);
+          props.alertSuccessFunction('You are leaving: ' + target[i].name);
           setUserInsidePoI( {inside: false, PoI: 0} );
           postGeoinfo(false, i);
         }
@@ -622,7 +630,7 @@ function PoI(props) {
             </div>
             <br></br>
           </>
-          <Container style={{ height:"80vh", width:"100vw"}} >
+          <Container style={{ height:"100vh", width:"100vw"}} >
             {
               (cards) ?
                   <>
@@ -630,26 +638,42 @@ function PoI(props) {
                     {cards.map((card, id) => {
                         let c = card.data.attributes
                         return (
-                              <Col >
-                                <OverlayTrigger trigger="click" placement="bottom" overlay={
+                              <Col>
+                                {/* <OverlayTrigger trigger="click" placement="bottom" overlay={
                                   <Popover id="popover-basic">
                                     <Card >
                                         <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
                                     </Card>
-                                </Popover>
+                                  </Popover>
                                 }>
                                   <Card className="card" variant="success" style={{ height:"20vh", width:"30vw"}}>
                                       <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
                                   </Card>
-                                </OverlayTrigger>
-                                {/* <Card className="card" style={{ height:"20vh", width:"30vw"}}>
+                                </OverlayTrigger> */}
+                                <Button variant="outline-light" onClick={() => handleShowCard(c.card_code)}>
+                                  <Card>
                                     <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
-                                </Card> */}
+                                  </Card>
+                                </Button>
                               </Col>
                           )
                     })}
+                    {
+                    (cardCode)?
+                      <Modal 
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                        style={{ marginLeft: "7%", marginRight: "7%", height:"100%", width:"86%"}}
+                        show={showCard} 
+                        onHide={handleCloseCard}
+                      >
+                        <Modal.Header closeButton> 點擊x或點擊外側關閉
+                        </Modal.Header>
+                        <Card.Img variant="top" src={require(`../images/cards/${cardCode}.png`)} style={{ height:"100%", width:"100%"}}/>
+                      </Modal>
+                      :""
+                    }
                     </Row>
-
                   </>
                 : "尚未取得卡片"
             }
