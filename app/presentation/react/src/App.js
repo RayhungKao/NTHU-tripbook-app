@@ -6,8 +6,8 @@ import {
   Route,
   useHistory
 } from "react-router-dom";
-import { Alert, Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import logo from './logo2.png';
+import { Alert, Navbar, Nav, NavDropdown, Image } from 'react-bootstrap'
+import logo from './images/others/tripbook-logo.png';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Account from './pages/Account'
@@ -131,13 +131,7 @@ function App() {
           <div style={{ height: "100vh" }}>
             <Navbar bg="dark" variant="dark">
               <Navbar.Brand href="/">
-                <img
-                  alt=""
-                  src={logo}
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                />{' '}
+                <Image alt="" variant="top" src={logo} style={{ height:"30px", width:"30px"}}/>{' '}
                 Tripbook
               </Navbar.Brand>
               <Nav className="container-fluid">

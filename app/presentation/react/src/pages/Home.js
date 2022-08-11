@@ -37,14 +37,25 @@ function Home(props) {
 
     return (
         <>
+            {/* <Image className="bg-image" variant="top" src={require(`../images/others/nthu-campus.jpg`)} /> */}
             <br></br>
-            <div className="App">
+            <div className="App" style={{ height:"10%", width:"100%"}}>
                 {
-                    (user)?<h4>Welcome back!, {user}</h4>:<h4>Welcome to NTHU campus</h4>
+                    (user)?<h4>Welcome back! {user}</h4>:<h4>Welcome to Tripbook!</h4>
                 }
+                <h6 className="App">ready to explore?</h6>
+                <br></br>
             </div>
-            <h6 className="App">ready to explore?</h6>
-            <br></br>
+            <Card  style={{ borderColor:"white", opacity:"0.9"}}>
+                <Card.Img variant="top" className="photo" src={require('../images/others/nthu-gate.jpg')} style={{ height:"100%", width:"100%"}} />
+                <Card.Body>
+                    <Card.Text>
+                        Several historic sites @nthu campus ...<br></br>
+                        Navigate with map.<br></br>
+                        Open cards everytime you get to these spots.
+                    </Card.Text>
+                </Card.Body>
+            </Card>
             <Container>
                 <Row>
                     <Col></Col>

@@ -379,11 +379,11 @@ function PoI(props) {
 
   function card_code_random_generator(){
     var table = [
-      {abbreviation: "C",  number: 10},
-      {abbreviation: "G",  number: 20},
-      {abbreviation: "CS", number: 40}, 
-      {abbreviation: "L",  number: 20},  
-      {abbreviation: "A",  number: 10}, 
+      {abbreviation: "C",  number: 1},
+      {abbreviation: "G",  number: 1},
+      {abbreviation: "CS", number: 30}, 
+      {abbreviation: "L",  number: 1},  
+      {abbreviation: "A",  number: 1}, 
     ];
 
     let index = Math.floor(Math.random() * 5)
@@ -452,7 +452,7 @@ function PoI(props) {
   return (
     <>
       <Tabs
-        style={{ height:"94vh", width:"100vw"}}
+        style={{ height:"94vh", width:"100vw", backgroundColor: "white"}}
         defaultActiveKey="1"
         onChange={callback}
         renderTabBar={() => <ScrollableInkTabBar />}
