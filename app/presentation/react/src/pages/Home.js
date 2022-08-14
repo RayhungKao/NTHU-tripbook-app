@@ -28,7 +28,7 @@ function Home(props) {
             }, 3000)
         }
         else{
-            props.alertSuccessFunction("enjoy your tripbook")
+            props.alertSuccessFunction("enjoy your tripbook!")
             setTimeout(() => {
                 history.push('/poi')
             }, 3000)

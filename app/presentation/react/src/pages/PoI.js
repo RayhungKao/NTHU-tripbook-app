@@ -149,14 +149,14 @@ function PoI(props) {
           continue;
         }
         else {
-          props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name);
+          props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');
           setUserInsidePoI( {inside: true, PoI: i} );
           postGeoinfo(true, i);
         }
       }
       else {
         if (userInsidePoI.inside && userInsidePoI.PoI === i) {
-          props.alertSuccessFunction('You are leaving: ' + target[i].name);
+          props.alertSuccessFunction('you left: ' + target[i].name + '. Go explore other spots~');
           setUserInsidePoI( {inside: false, PoI: 0} );
           postGeoinfo(false, i);
         }
@@ -413,9 +413,12 @@ function PoI(props) {
 
   //draw a card
   function drawCard(){
+    handleClose()
     if (!user) return
-    if (geoinfoAmount - cardsAmount === 0 ) return
-
+    if (geoinfoAmount - cardsAmount <= 0 ) {
+      props.alertFunction("Error! No quota for cards!")
+      return
+    }
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -430,7 +433,7 @@ function PoI(props) {
         if (response.status === 200){
           console.log(result)
           getCards()
-          // props.alertSuccessFunction(`${result.message}`)
+          props.alertSuccessFunction("Please check your new card!")
         }
         else{
             props.alertFunction(`${result.message}`)

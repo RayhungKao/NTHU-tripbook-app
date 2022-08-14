@@ -121,7 +121,7 @@ function App() {
     setSuccessMessage(data)
     setTimeout(() => {
       setSuccessMessage(null)
-    }, 3000)
+    }, 4000)
   }
   return (
     <>
