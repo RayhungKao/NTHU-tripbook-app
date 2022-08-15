@@ -704,11 +704,20 @@ function PoI(props) {
               <Card className="card">
                 <Card.Body>
                   <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
-                  <Card.Img variant="top" src={require(`../images/others/github-logo.jpg`)} />
+                  <Row>
+                    <Col></Col>
+                    <Col>
+                      <Card.Img variant="top" src={require(`../images/others/github-logo.png`)} />
+                    </Col>
+                    <Col></Col>
+                  </Row>
                   <Card.Text>
+                    <br></br>
                     source code: <a href="https://github.com/RayhungKao">rayhungkao@github.com</a>
                     <br></br>
                     contact author: rayhungkao@gmail.com
+                    <br></br>
+                    issue report: <a href="https://forms.gle/eH6QpDkTKaGoxyS49">google form</a>
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
