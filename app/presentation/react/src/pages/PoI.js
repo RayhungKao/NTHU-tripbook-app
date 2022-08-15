@@ -9,7 +9,7 @@ import { AuthContext } from "../contexts";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
-import { Container, Row, Col, Button, Card, CardGroup, Carousel, Table, Modal} from "react-bootstrap";
+import { Container, Row, Col, Button, Card, CardGroup, Carousel, Table, Modal, Image} from "react-bootstrap";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker, Rectangle } from 'react-leaflet'
@@ -487,15 +487,15 @@ function PoI(props) {
             <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/delta-building.png')} />
+                  <Card.Img variant="top" className="photo" src={(poi1State)?require('../images/pois/delta-building.png'):require('../images/pois/greyscale-delta-building.png')} />
                   <Card.Body>
                     <Card.Title>{target[1].name}</Card.Title>
                     <Card.Text>
-                      資工系館、教室、實驗室
+                      {(poi1State)?`資工系館、教室、實驗室`:"?????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi1_timeState)?`進入時間:${poi1_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi1_timeState)?`抵達時間:${poi1_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -504,15 +504,15 @@ function PoI(props) {
             <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/library.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi2State)?require('../images/pois/library.jpg'):require('../images/pois/greyscale-library.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[2].name}</Card.Title>
                     <Card.Text>
-                      唸書開會好去處、夜讀區沒有24hr
+                      {(poi2State)?`唸書開會好去處、夜讀區沒有24hr`:"???????????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi2_timeState)?`進入時間:${poi2_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi2_timeState)?`抵達時間:${poi2_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -521,15 +521,15 @@ function PoI(props) {
             <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/general-buildingII.jpeg')} />
+                  <Card.Img variant="top" className="photo" src={(poi3State)?require('../images/pois/general-buildingII.jpeg'):require('../images/pois/greyscale-general-buildingII.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[3].name}</Card.Title>
                     <Card.Text>
-                      前有貓底、後有鴿子廣場
+                      {(poi3State)?`前有貓底、後有鴿子廣場`:"?????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi3_timeState)?`進入時間:${poi3_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi3_timeState)?`抵達時間:${poi3_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -538,15 +538,15 @@ function PoI(props) {
             <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/guest-house.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi4State)?require('../images/pois/guest-house.jpg'):require('../images/pois/greyscale-guest-house.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[4].name}</Card.Title>
                     <Card.Text>
-                      外賓和教授住處、二招有咖哩
+                      {(poi4State)?`外賓和教授住處、二招有咖哩`:"????????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi4_timeState)?`進入時間:${poi4_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi4_timeState)?`抵達時間:${poi4_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -555,15 +555,15 @@ function PoI(props) {
             <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/plum-park.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi5State)?require('../images/pois/plum-park.jpg'):require('../images/pois/greyscale-plum-park.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[5].name}</Card.Title>
                     <Card.Text>
-                      梅校長紀念亭座落於沒緣上方
+                      {(poi5State)?`梅校長紀念亭座落於沒緣上方`:"????????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi5_timeState)?`進入時間:${poi5_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi5_timeState)?`抵達時間:${poi5_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -572,15 +572,15 @@ function PoI(props) {
             <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/go-park.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi6State)?require('../images/pois/go-park.jpg'):require('../images/pois/greyscale-go-park.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[6].name}</Card.Title>
                     <Card.Text>
-                      奕庭座落於奕園下方深處
+                      {(poi6State)?`奕庭座落於奕園下方深處`:"??????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi6_timeState)?`進入時間:${poi6_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi6_timeState)?`抵達時間:${poi6_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -589,15 +589,15 @@ function PoI(props) {
             <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/chengkung-lake.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi7State)?require('../images/pois/chengkung-lake.jpg'):require('../images/pois/greyscale-chengkung-lake.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[7].name}</Card.Title>
                     <Card.Text>
-                      划船、慶生、腳踏車傳說之地
+                      {(poi7State)?`划船、慶生、腳踏車傳說之地`:"????????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi7_timeState)?`進入時間:${poi7_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi7_timeState)?`抵達時間:${poi7_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
@@ -606,15 +606,15 @@ function PoI(props) {
             <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
               <Popup>
                 <Card>
-                  <Card.Img variant="top" className="photo" src={require('../images/pois/nthu-nctu-route.jpg')} />
+                  <Card.Img variant="top" className="photo" src={(poi8State)?require('../images/pois/nthu-nctu-route.jpg'):require('../images/pois/greyscale-nthu-nctu-route.jpg')} />
                   <Card.Body>
                     <Card.Title>{target[8].name}</Card.Title>
                     <Card.Text>
-                      住宿舍，去隔壁校的運動場更近
+                    {(poi8State)?`住宿舍，去隔壁校的運動場更近`:"?????????????????????????"}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <small className="text-muted">{(poi8_timeState)?`進入時間:${poi8_timeState}`:"尚未抵達"}</small>
+                    <small className="text-muted">{(poi8_timeState)?`抵達時間:${poi8_timeState}`:"尚未抵達，無法查看"}</small>
                   </Card.Footer>
                 </Card>
               </Popup>
