@@ -45,14 +45,14 @@ function PoI(props) {
   const handleShow = () => setShow(true);
 
 
-  const [poi1State, setPoi1State] = useState();
-  const [poi2State, setPoi2State] = useState();
-  const [poi3State, setPoi3State] = useState();
-  const [poi4State, setPoi4State] = useState();
-  const [poi5State, setPoi5State] = useState();
-  const [poi6State, setPoi6State] = useState();
-  const [poi7State, setPoi7State] = useState();
-  const [poi8State, setPoi8State] = useState();
+  const [poi1State, setPoi1State] = useState(false);
+  const [poi2State, setPoi2State] = useState(false);
+  const [poi3State, setPoi3State] = useState(false);
+  const [poi4State, setPoi4State] = useState(false);
+  const [poi5State, setPoi5State] = useState(false);
+  const [poi6State, setPoi6State] = useState(false);
+  const [poi7State, setPoi7State] = useState(false);
+  const [poi8State, setPoi8State] = useState(false);
 
   const [poi1_timeState, setPoi1_timeState] = useState();
   const [poi2_timeState, setPoi2_timeState] = useState();
@@ -149,14 +149,22 @@ function PoI(props) {
           continue;
         }
         else {
-          props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');
+          if (i === 1 && !poi1State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 2 && !poi2State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 3 && !poi3State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 4 && !poi4State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 5 && !poi5State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 6 && !poi6State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 7 && !poi7State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 8 && !poi8State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          console.log('進入i=' + i + ', ' + target[i].name )
           setUserInsidePoI( {inside: true, PoI: i} );
           postGeoinfo(true, i);
         }
       }
       else {
         if (userInsidePoI.inside && userInsidePoI.PoI === i) {
-          props.alertSuccessFunction('you left: ' + target[i].name + '. Go explore other spots~');
+          // props.alertSuccessFunction('you left: ' + target[i].name + '. Go explore other spots~');
           setUserInsidePoI( {inside: false, PoI: 0} );
           postGeoinfo(false, i);
         }
@@ -308,9 +316,9 @@ function PoI(props) {
 
   //post location and timestamp info to backend db storage for user entering or exiting some PoI's geofence
   function postGeoinfo(inside, PoI){
-    if (inside == false) return
+    if (inside === false) return
     if (!user) return
-
+    console.log(PoI)
     const timestamp = new Date().toLocaleString('en-US', {hour12:false});
     console.log(timestamp);
     // const latitude  = userLocation.latitude.toString()
@@ -413,10 +421,14 @@ function PoI(props) {
 
   //draw a card
   function drawCard(){
-    handleClose()
-    if (!user) return
+    if (!user) {
+      props.alertFunction("Error! Please login!")
+      handleClose()
+      return
+    }
     if (geoinfoAmount - cardsAmount <= 0 ) {
       props.alertFunction("Error! No quota for cards!")
+      handleClose()
       return
     }
     const requestOptions = {
@@ -434,16 +446,16 @@ function PoI(props) {
           console.log(result)
           getCards()
           props.alertSuccessFunction("Please check your new card!")
+          handleClose()
         }
         else{
-            props.alertFunction(`${result.message}`)
-            setTimeout(()=>{
-                window.location.reload()
-            },3000)
+          props.alertFunction(`${result.message}`)
+          handleClose()
         }
     })
     .catch(error =>{
         props.alertFunction("unknown error to draw card")
+        handleClose()
     })
   }
 
@@ -612,6 +624,7 @@ function PoI(props) {
         <TabPane tab="卡片倉庫" key="2">
           <>
             <br></br>
+            <h6 className="App">卡池有99張卡片，和朋友們分享自己的卡片吧！</h6>
             <div className="App">可抽卡次數:{`${geoinfoAmount - cardsAmount} `}
               <Button variant="dark" onClick={handleShow} >
                 點擊抽卡
@@ -642,17 +655,6 @@ function PoI(props) {
                         let c = card.data.attributes
                         return (
                               <Col>
-                                {/* <OverlayTrigger trigger="click" placement="bottom" overlay={
-                                  <Popover id="popover-basic">
-                                    <Card >
-                                        <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
-                                    </Card>
-                                  </Popover>
-                                }>
-                                  <Card className="card" variant="success" style={{ height:"20vh", width:"30vw"}}>
-                                      <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
-                                  </Card>
-                                </OverlayTrigger> */}
                                 <Button variant="outline-light" onClick={() => handleShowCard(c.card_code)}>
                                   <Card>
                                     <Card.Img variant="top" src={require(`../images/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
@@ -687,11 +689,6 @@ function PoI(props) {
             <Carousel.Item>
               <br></br>
               <Card.Text className="App" >Sponsorship</Card.Text>
-              <Card className="card">
-                <Card.Body>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
-                </Card.Body>
-              </Card>
               <Card className="card">
                 <Card.Body>
                   <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
