@@ -651,6 +651,22 @@ function PoI(props) {
               (cards) ?
                   <>
                     <Row xs={3} md={3} className="g-4">
+                    {(geoinfoAmount >= 8)?
+                    <Col>
+                      <Button variant="outline-light" onClick={() => handleShowCard('golden-card')}>
+                        <Card>
+                          <Card.Img variant="top" src={require(`../images/cards/golden-card.png`)} style={{ height:"100%", width:"100%"}}/>
+                        </Card>
+                      </Button>
+                    </Col>
+                    :<Col>
+                      <Button variant="outline-light" onClick={() => handleShowCard('graysacle-golden-card')}>
+                        <Card>
+                        <Card.Img variant="top" src={require(`../images/cards/graysacle-golden-card.png`)} style={{ height:"100%", width:"100%"}}/>
+                        </Card>
+                      </Button>
+                    </Col>
+                    }
                     {cards.map((card, id) => {
                         let c = card.data.attributes
                         return (
