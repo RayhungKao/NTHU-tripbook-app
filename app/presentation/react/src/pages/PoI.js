@@ -703,20 +703,6 @@ function PoI(props) {
         <TabPane tab="幕後介紹" key="3">
           <Carousel>
             <Carousel.Item>
-              <br></br>
-              <Card.Text className="App" >Sponsorship</Card.Text>
-              <Card className="card">
-                <Card.Body>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
-                </Card.Body>
-              </Card>
-              <Card className="card">
-                <Card.Body>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
-                </Card.Body>
-              </Card>
-            </Carousel.Item>
-            <Carousel.Item>
               <Card className="card">
                 <Card.Body>
                   <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
@@ -729,16 +715,25 @@ function PoI(props) {
                   </Row>
                   <Card.Text>
                     <br></br>
+                    report issue: <a href="https://forms.gle/eH6QpDkTKaGoxyS49">google form</a>
+                    <br></br>
                     source code: <a href="https://github.com/RayhungKao">rayhungkao@github.com</a>
                     <br></br>
                     contact author: rayhungkao@gmail.com
-                    <br></br>
-                    issue report: <a href="https://forms.gle/eH6QpDkTKaGoxyS49">google form</a>
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <small className="text-muted">Last updated 2022.08.03. All rights reserved. </small>
+                  <small className="text-muted">Last updated 2022.08.16. All rights reserved. </small>
                 </Card.Footer>
+              </Card>
+            </Carousel.Item>
+            <Carousel.Item>
+              <br></br>
+              <Card.Text className="App" >Sponsorship</Card.Text>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                </Card.Body>
               </Card>
             </Carousel.Item>
           </Carousel>
