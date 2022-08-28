@@ -42,7 +42,7 @@ function RegisterAccount(props) {
             let result = await response.json()
             console.log(result)
             if (response.status == 200){
-                toast(`${result.message}`, {
+                toast.info(`${result.message}`, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -97,7 +97,7 @@ function RegisterAccount(props) {
             let result = await response.json()
             console.log(result)
             if (response.status == 200){
-                toast(`${result.message}`, {
+                toast.info(`${result.message}`, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
