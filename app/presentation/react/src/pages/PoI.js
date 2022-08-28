@@ -45,7 +45,10 @@ function PoI(props) {
   }
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  function handleShow () {
+    if (drawCardFlag === true)
+      setShow(true);
+  }
 
   function handleDrawCard (){
     setDrawCardFlag(false)
@@ -177,7 +180,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -189,7 +192,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -201,7 +204,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -213,7 +216,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -225,7 +228,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -237,7 +240,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -249,7 +252,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -261,7 +264,7 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -515,6 +518,7 @@ function PoI(props) {
           // console.log(result.card_list)
           setCards(result.card_list)
           setCardsAmount(result.card_list.length)
+          setDrawCardFlag(true)
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{
@@ -582,6 +586,15 @@ function PoI(props) {
   //draw a card
   function drawCard(){
     if (drawCardFlag === false) {
+      toast.warn("Error! Please wait for seconds!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
       handleClose()
       setDrawCardFlag(true)
       return
@@ -636,18 +649,17 @@ function PoI(props) {
             draggable: false,
             progress: undefined,
           });
-          getCards()
           toast.info("Loading new card...", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
           });
+          getCards()
           handleClose()
-          setDrawCardFlag(true)
         }
         else{
           toast.warn(`${result.message}`, {
