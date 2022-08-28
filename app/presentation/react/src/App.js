@@ -15,6 +15,8 @@ import RegisterAccount from './pages/Register'
 import PoI from './pages/PoI'
 import { baseUrl } from './config'
 import './App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const history = useHistory();
@@ -23,6 +25,7 @@ function App() {
   const [successMessage, setSuccessMessage] = useState(false)
   const [user, setUser] = useState("");
   const [userInfo, setUserInfo] = useState("");
+  const notify = () => toast("Wow so easy !");
 
   useEffect(() => {
     if (!user) account()
@@ -93,40 +96,64 @@ function App() {
       .then(async response => {
         let result = await response.json()
         if (response.status == 200) {
-          alertSuccessFunction(`log out successfully`)
+          toast.success("Log out successfully", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
           setUser(null)
           setTimeout(() => {
             window.location.replace("/login");
           }, 3000)
         }
         else {
-          alertFunction(`${result.message}`)
+          toast.warn(`${result.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
           setTimeout(() => {
             window.location.reload()
           }, 3000)
         }
       })
       .catch(error => {
-        alertFunction("unknown error")
+        toast.error("unknown error", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        });
       })
   }
 
-  function alertFunction(data) {
-    setAlertMessage(data)
-    setTimeout(() => {
-      setAlertMessage(null)
-    }, 3000)
-  }
-  function alertSuccessFunction(data) {
-    setSuccessMessage(data)
-    setTimeout(() => {
-      setSuccessMessage(null)
-    }, 4000)
-  }
   return (
     <>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous" />
       <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo }}>
+        <div>
+          <ToastContainer 
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover/>
+        </div>
         <Router>
           <div style={{ height: "100vh" }}>
             <Navbar bg="dark" variant="dark">
@@ -168,19 +195,19 @@ function App() {
             renders the first one that matches the current URL. */}
             <Switch>
               <Route path="/poi">
-                <PoI setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+                <PoI setLoading={setLoading} />
               </Route>
               <Route path="/register">
-                <RegisterAccount setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+                <RegisterAccount setLoading={setLoading} />
               </Route>
               <Route path="/account">
-                <Account setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+                <Account setLoading={setLoading} />
               </Route>
               <Route path="/login">
-                <Login setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+                <Login setLoading={setLoading} />
               </Route>
               <Route path="/">
-                <Home setLoading={setLoading} alertFunction={alertFunction} alertSuccessFunction={alertSuccessFunction} />
+                <Home setLoading={setLoading} />
               </Route>
             </Switch>
           </div>

@@ -11,6 +11,7 @@ import {
 import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
+import { toast } from 'react-toastify';
 
 function Home(props) {
     const { search } = useLocation()
@@ -22,13 +23,29 @@ function Home(props) {
 
     function toLoginPage(){
         if(user === ""){
-            props.alertSuccessFunction("let's login")
+            toast("🦄 let's login!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
             setTimeout(() => {
                 history.push('/login')
             }, 3000)
         }
         else{
-            props.alertSuccessFunction("enjoy your tripbook!")
+            toast("🦄 enjoy your tripbook!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
             setTimeout(() => {
                 history.push('/poi')
             }, 3000)

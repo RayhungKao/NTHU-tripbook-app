@@ -10,6 +10,8 @@ import {
 import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
+import { toast } from 'react-toastify';
+
 function Login(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
@@ -38,7 +40,15 @@ function Login(props) {
             .then(async response => {
                 let result = await response.json()
                 if (response.status == 200) {
-                    props.alertSuccessFunction(`Welcome, ${result.account.username}`)
+                    toast.success(`Log in successfully. Welcome, ${result.account.username}`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                    });
                     console.log(result.account.username)
                     // const account = {username: result.account.username, email:result.account.email}
                     setUser(result.account.username)
@@ -47,14 +57,30 @@ function Login(props) {
                     }, 3000)
                 }
                 else {
-                    props.alertFunction(`${result.message}`)
+                    toast.warn(`${result.message}`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined,
+                    });
                     setTimeout(() => {
                         window.location.reload()
                     }, 3000)
                 }
             })
             .catch(error => {
-                props.alertFunction("unknown error")
+                toast.error("unknown error", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
             })
     }
 

@@ -16,6 +16,7 @@ import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker, Rectangle
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import {Icon} from 'leaflet'
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
+import { toast } from 'react-toastify';
 
 function PoI(props) {
   var callback = function(key) {};
@@ -35,6 +36,8 @@ function PoI(props) {
   const [show, setShow] = useState(false);
   const [cardCode, setCardCode] = useState();
 
+  const [drawCardFlag, setDrawCardFlag] = useState(true);
+
   const handleCloseCard = () => setShowCard(false);
   function handleShowCard (card_code){
     setShowCard(true);
@@ -43,6 +46,11 @@ function PoI(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function handleDrawCard (){
+    setDrawCardFlag(false)
+    drawCard();
+  }
 
 
   const [poi1State, setPoi1State] = useState(false);
@@ -126,14 +134,30 @@ function PoI(props) {
             setMap(result.pois)
         }
         else {
-            props.alertFunction(`${result.message}`)
+            toast.warn(`${result.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
             setTimeout(() => {
                 window.location.reload()
             }, 3000)
         }
     })
     .catch(error => {
-        props.alertFunction("unknown error")
+        toast.warn("unknown error", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        }); 
     })
   }
 
@@ -149,14 +173,102 @@ function PoI(props) {
           continue;
         }
         else {
-          if (i === 1 && !poi1State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 2 && !poi2State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 3 && !poi3State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 4 && !poi4State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 5 && !poi5State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 6 && !poi6State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 7 && !poi7State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
-          if (i === 8 && !poi8State) {props.alertSuccessFunction('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!');}
+          if (i === 1 && !poi1State) 
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 2 && !poi2State) 
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 3 && !poi3State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 4 && !poi4State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 5 && !poi5State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 6 && !poi6State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 7 && !poi7State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
+          if (i === 8 && !poi8State)
+            {
+              toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+              });
+            }
           console.log('進入i=' + i + ', ' + target[i].name )
           setUserInsidePoI( {inside: true, PoI: i} );
           postGeoinfo(true, i);
@@ -303,14 +415,30 @@ function PoI(props) {
           // result.geoinfo_list[0]['attributes']['poiId']
         }
         else{
-            props.alertFunction(`${result.message}`)
+            toast.warn(`${result.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
             setTimeout(()=>{
                 window.location.reload()
             },3000)
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown error to get geoinfo")
+      toast.warn("unknown error to get geoinfo", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
     })
   }
 
@@ -342,14 +470,30 @@ function PoI(props) {
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{
-            props.alertFunction(`${result.message}`)
+            toast.warn(`${result.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
             setTimeout(()=>{
                 window.location.reload()
             },3000)
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown error to post geoinfo")
+      toast.warn("unknown error to post geoinfo", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
     })
   }
 
@@ -374,14 +518,30 @@ function PoI(props) {
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{
-            props.alertFunction(`${result.message}`)
+            toast.warn(`${result.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+            });
             setTimeout(()=>{
                 window.location.reload()
             },3000)
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown error to get cards")
+      toast.warn("unknown error to get cards", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
     })
   }
 
@@ -421,14 +581,37 @@ function PoI(props) {
 
   //draw a card
   function drawCard(){
-    if (!user) {
-      props.alertFunction("Error! Please login!")
+    if (drawCardFlag === false) {
       handleClose()
+      setDrawCardFlag(true)
+      return
+    }
+    if (!user) {
+      toast.warn("Error! Please login!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
+      handleClose()
+      setDrawCardFlag(true)
       return
     }
     if (geoinfoAmount - cardsAmount <= 0 ) {
-      props.alertFunction("Error! No quota for cards!")
+      toast.warn("Error! No quota for cards!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }); 
       handleClose()
+      setDrawCardFlag(true)
       return
     }
     const requestOptions = {
@@ -444,17 +627,51 @@ function PoI(props) {
         let result = await response.json()
         if (response.status === 200){
           console.log(result)
+          toast.success("Successfully draw a new card", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
           getCards()
-          props.alertSuccessFunction("Please check your new card!")
+          toast.info("Loading new card...", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
           handleClose()
+          setDrawCardFlag(true)
         }
         else{
-          props.alertFunction(`${result.message}`)
+          toast.warn(`${result.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+          });
           handleClose()
         }
     })
     .catch(error =>{
-        props.alertFunction("unknown error to draw card")
+        toast.warn("unknown error to draw card", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        }); 
         handleClose()
     })
   }
@@ -635,7 +852,7 @@ function PoI(props) {
                 </Modal.Header>
                 <Modal.Body>卡片出現機率:亂數，確定使用？</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="dark" onClick={drawCard}>
+                  <Button variant="dark" onClick={handleDrawCard}>
                     Yes
                   </Button>
                   <Button variant="secondary" onClick={handleClose}>
@@ -709,17 +926,13 @@ function PoI(props) {
                   <Row>
                     <Col></Col>
                     <Col>
-                      <Card.Img variant="top" src={require(`../images/others/github-logo.png`)} />
+                      <Card.Img variant="top" src={require(`../images/others/nthu-mascot.png`)} />
                     </Col>
                     <Col></Col>
                   </Row>
                   <Card.Text>
                     <br></br>
                     report issue: <a href="https://forms.gle/eH6QpDkTKaGoxyS49">google form</a>
-                    <br></br>
-                    source code: <a href="https://github.com/RayhungKao">rayhungkao@github.com</a>
-                    <br></br>
-                    contact author: rayhungkao@gmail.com
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>

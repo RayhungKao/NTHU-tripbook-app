@@ -10,6 +10,8 @@ import {
 import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
+import { toast } from 'react-toastify';
+
 function RegisterAccount(props) {
     const { search } = useLocation()
     const urlparams = queryString.parse(search)
@@ -40,20 +42,44 @@ function RegisterAccount(props) {
             let result = await response.json()
             console.log(result)
             if (response.status == 200){
-                props.alertSuccessFunction(result.message)
+                toast(`${result.message}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
                 // setTimeout(()=>{
                 //     history.push('/login')
                 // },3000)
             }
             else{
-                props.alertFunction(`${result.message}`)
+                toast.warn(`${result.message}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
                 // setTimeout(()=>{
                 //     window.location.reload()
                 // },3000)
             }
         })
         .catch(error =>{
-            props.alertFunction(error.message)
+            toast.error(`${error.message}`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
         })
     }
 
@@ -71,20 +97,44 @@ function RegisterAccount(props) {
             let result = await response.json()
             console.log(result)
             if (response.status == 200){
-                props.alertSuccessFunction(result.message)
+                toast(`${result.message}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
                 setTimeout(()=>{
                     history.push('/login')
                 },3000)
             }
             else{
-                props.alertFunction(`${result.message}`)
+                toast.warn(`${result.message}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined,
+                });
                 // setTimeout(()=>{
                 //     window.location.reload()
                 // },3000)
             }
         })
         .catch(error =>{
-            props.alertFunction(error.message)
+            toast.error(`${error.message}`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
         })
     }
 
