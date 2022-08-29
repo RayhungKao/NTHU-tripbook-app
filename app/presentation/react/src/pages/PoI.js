@@ -556,11 +556,17 @@ function PoI(props) {
       {abbreviation: "CS", number: 30}, 
       {abbreviation: "L",  number: 1},  
       {abbreviation: "A",  number: 1}, 
+      {abbreviation: "B",  number: 8}, 
     ];
 
-    let index = Math.floor(Math.random() * 5)
+    let index
+    if(cardsAmount < 8){
+      index = 5
+    }
+    else{
+      index = Math.floor(Math.random() * 5)
+    }
     let card_number = Math.floor(Math.random() * table[index].number) + 1
-
     let new_card_code = "" + table[index].abbreviation + card_number
     
     cards.map((card, id) => {
@@ -613,7 +619,7 @@ function PoI(props) {
       setDrawCardFlag(true)
       return
     }
-    if (geoinfoAmount - cardsAmount <= 0 ) {
+    if ( (2 * geoinfoAmount) - cardsAmount <= 0 ) {
       toast.warn("Error! No quota for cards!", {
         position: "top-right",
         autoClose: 5000,
@@ -703,158 +709,193 @@ function PoI(props) {
         renderTabContent={() => <TabContent />}
       >
         <TabPane tab="清華八景" key="1">
-          <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height:"89.5vh", width:"100vw"}} >
-            <ReactLeafletGoogleLayer apiKey='AIzaSyCBDYUfX-oBo9YodWLV1WrEctOW2wBZpUU' minZoom={14} maxZoom={19} />
-            {
-              (userLocation.latitude)?
-                <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
-                  <Popup>用戶現在位置.</Popup>
-                </Marker>
-              :""
+          <div style={{position:"fixed", zIndex:2}} className="fixed-content">
+            { (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
+              <Container style={{ color:"white", textAlign:"center", height:"15vh", width:"30vw" }} >未走地點
+                <Row xs={1} md={1}> 
+                  {
+                    (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
+                  }
+                  {
+                    (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
+                  }
+                  {
+                    (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
+                  }
+                  {
+                    (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
+                  }
+                  {
+                    (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
+                  }
+                  {
+                    (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
+                  }
+                  {
+                    (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
+                  }
+                  {
+                    (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
+                  }
+                </Row>
+              </Container>
+              : ""
             }
-            <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi1State)?require('../images/pois/delta-building.png'):require('../images/pois/greyscale-delta-building.png')} />
-                  <Card.Body>
-                    <Card.Title>{target[1].name}</Card.Title>
-                    <Card.Text>
-                      {(poi1State)?`資工系館、教室、實驗室`:"?????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi1_timeState)?`抵達時間:${poi1_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={ poi2State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi2State)?require('../images/pois/library.jpg'):require('../images/pois/greyscale-library.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[2].name}</Card.Title>
-                    <Card.Text>
-                      {(poi2State)?`唸書開會好去處、夜讀區沒有24hr`:"???????????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi2_timeState)?`抵達時間:${poi2_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi3State)?require('../images/pois/general-buildingII.jpeg'):require('../images/pois/greyscale-general-buildingII.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[3].name}</Card.Title>
-                    <Card.Text>
-                      {(poi3State)?`前有貓底、後有鴿子廣場`:"?????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi3_timeState)?`抵達時間:${poi3_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi4State)?require('../images/pois/guest-house.jpg'):require('../images/pois/greyscale-guest-house.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[4].name}</Card.Title>
-                    <Card.Text>
-                      {(poi4State)?`外賓和教授住處、二招有咖哩`:"????????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi4_timeState)?`抵達時間:${poi4_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi5State)?require('../images/pois/plum-park.jpg'):require('../images/pois/greyscale-plum-park.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[5].name}</Card.Title>
-                    <Card.Text>
-                      {(poi5State)?`梅校長紀念亭座落於沒緣上方`:"????????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi5_timeState)?`抵達時間:${poi5_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi6State)?require('../images/pois/go-park.jpg'):require('../images/pois/greyscale-go-park.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[6].name}</Card.Title>
-                    <Card.Text>
-                      {(poi6State)?`奕庭座落於奕園下方深處`:"??????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi6_timeState)?`抵達時間:${poi6_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi7State)?require('../images/pois/chengkung-lake.jpg'):require('../images/pois/greyscale-chengkung-lake.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[7].name}</Card.Title>
-                    <Card.Text>
-                      {(poi7State)?`划船、慶生、腳踏車傳說之地`:"????????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi7_timeState)?`抵達時間:${poi7_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-            <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
-            <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
-              <Popup>
-                <Card>
-                  <Card.Img variant="top" className="photo" src={(poi8State)?require('../images/pois/nthu-nctu-route.jpg'):require('../images/pois/greyscale-nthu-nctu-route.jpg')} />
-                  <Card.Body>
-                    <Card.Title>{target[8].name}</Card.Title>
-                    <Card.Text>
-                    {(poi8State)?`住宿舍，去隔壁校的運動場更近`:"?????????????????????????"}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">{(poi8_timeState)?`抵達時間:${poi8_timeState}`:"尚未抵達，無法查看"}</small>
-                  </Card.Footer>
-                </Card>
-              </Popup>
-            </Marker>
-          </MapContainer>
+          </div>
+          <div style={{position:"relative", zIndex:1}} >
+            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height:"89.5vh", width:"100vw"}} >
+              <ReactLeafletGoogleLayer apiKey='AIzaSyCBDYUfX-oBo9YodWLV1WrEctOW2wBZpUU' minZoom={14} maxZoom={19} />
+              {
+                (userLocation.latitude)?
+                  <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
+                    <Popup>用戶現在位置.</Popup>
+                  </Marker>
+                :""
+              }
+              <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi1State)?require('../images/pois/delta-building.png'):require('../images/pois/greyscale-delta-building.png')} />
+                    <Card.Body>
+                      <Card.Title>{target[1].name}</Card.Title>
+                      <Card.Text>
+                        {(poi1State)?`資工系館、教室、實驗室`:"?????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi1_timeState)?`抵達時間:${poi1_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={ poi2State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi2State)?require('../images/pois/library.jpg'):require('../images/pois/greyscale-library.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[2].name}</Card.Title>
+                      <Card.Text>
+                        {(poi2State)?`唸書開會好去處、夜讀區沒有24hr`:"???????????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi2_timeState)?`抵達時間:${poi2_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi3State)?require('../images/pois/general-buildingII.jpeg'):require('../images/pois/greyscale-general-buildingII.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[3].name}</Card.Title>
+                      <Card.Text>
+                        {(poi3State)?`前有貓底、後有鴿子廣場`:"?????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi3_timeState)?`抵達時間:${poi3_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi4State)?require('../images/pois/guest-house.jpg'):require('../images/pois/greyscale-guest-house.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[4].name}</Card.Title>
+                      <Card.Text>
+                        {(poi4State)?`外賓和教授住處、二招有咖哩`:"????????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi4_timeState)?`抵達時間:${poi4_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi5State)?require('../images/pois/plum-park.jpg'):require('../images/pois/greyscale-plum-park.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[5].name}</Card.Title>
+                      <Card.Text>
+                        {(poi5State)?`梅校長紀念亭座落於沒緣上方`:"????????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi5_timeState)?`抵達時間:${poi5_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi6State)?require('../images/pois/go-park.jpg'):require('../images/pois/greyscale-go-park.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[6].name}</Card.Title>
+                      <Card.Text>
+                        {(poi6State)?`奕庭座落於奕園下方深處`:"??????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi6_timeState)?`抵達時間:${poi6_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi7State)?require('../images/pois/chengkung-lake.jpg'):require('../images/pois/greyscale-chengkung-lake.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[7].name}</Card.Title>
+                      <Card.Text>
+                        {(poi7State)?`划船、慶生、腳踏車傳說之地`:"????????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi7_timeState)?`抵達時間:${poi7_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+              <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
+              <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+                <Popup>
+                  <Card>
+                    <Card.Img variant="top" className="photo" src={(poi8State)?require('../images/pois/nthu-nctu-route.jpg'):require('../images/pois/greyscale-nthu-nctu-route.jpg')} />
+                    <Card.Body>
+                      <Card.Title>{target[8].name}</Card.Title>
+                      <Card.Text>
+                      {(poi8State)?`住宿舍，去隔壁校的運動場更近`:"?????????????????????????"}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">{(poi8_timeState)?`抵達時間:${poi8_timeState}`:"尚未抵達，無法查看"}</small>
+                    </Card.Footer>
+                  </Card>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
-          <>
+          <Container style={{ height:"87vh", width:"100vw"}} >
             <br></br>
             <h6 className="App">卡池有99張卡片，和朋友們分享自己的卡片吧！</h6>
-            <div className="App">可抽卡次數:{`${geoinfoAmount - cardsAmount} `}
+            <div className="App">可抽卡次數:{`${ (2 * geoinfoAmount) - cardsAmount} `}
               <Button variant="dark" onClick={handleShow} >
                 點擊抽卡
               </Button>
@@ -874,8 +915,6 @@ function PoI(props) {
               </Modal>
             </div>
             <br></br>
-          </>
-          <Container style={{ height:"100vh", width:"100vw"}} >
             {
               (cards) ?
                   <>
@@ -964,39 +1003,7 @@ function PoI(props) {
           </Carousel>
         </TabPane>
       </Tabs>
-      <div className="fixed-content">
-        { (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
-          <Container style={{ color:"white", textAlign:"center", height:"15vh", width:"30vw" }} >未走地點
-            <Row xs={1} md={1}> 
-              {
-                (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
-              }
-              {
-                (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
-              }
-              {
-                (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
-              }
-              {
-                (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
-              }
-              {
-                (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
-              }
-              {
-                (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
-              }
-              {
-                (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
-              }
-              {
-                (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
-              }
-            </Row>
-          </Container>
-          : ""
-        }
-      </div>
+      
     </>
   );
 }

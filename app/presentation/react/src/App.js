@@ -98,7 +98,7 @@ function App() {
         if (response.status == 200) {
           toast.success("Log out successfully", {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -113,7 +113,7 @@ function App() {
         else {
           toast.warn(`${result.message}`, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
