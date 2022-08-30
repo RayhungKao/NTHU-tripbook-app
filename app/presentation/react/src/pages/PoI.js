@@ -551,20 +551,19 @@ function PoI(props) {
 
   function card_code_random_generator(){
     var table = [
-      {abbreviation: "C",  number: 1},
-      {abbreviation: "G",  number: 1},
+      {abbreviation: "G",  number: 10},
       {abbreviation: "CS", number: 30}, 
-      {abbreviation: "L",  number: 1},  
-      {abbreviation: "A",  number: 1}, 
+      {abbreviation: "L",  number: 10},  
+      {abbreviation: "A",  number: 10}, 
       {abbreviation: "B",  number: 8}, 
     ];
 
     let index
     if(cardsAmount < 8){
-      index = 5
+      index = 4
     }
     else{
-      index = Math.floor(Math.random() * 5)
+      index = Math.floor(Math.random() * 4)
     }
     let card_number = Math.floor(Math.random() * table[index].number) + 1
     let new_card_code = "" + table[index].abbreviation + card_number
