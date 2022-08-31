@@ -968,38 +968,37 @@ function PoI(props) {
           </Container>
         </TabPane>
         <TabPane tab="幕後介紹" key="3">
-          <Carousel>
-            <Carousel.Item>
-              <Card className="card">
-                <Card.Body>
-                  <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
-                  <Row>
-                    <Col></Col>
-                    <Col>
-                      <Card.Img variant="top" src={require(`../images/others/nthu-mascot.png`)} />
-                    </Col>
-                    <Col></Col>
-                  </Row>
-                  <Card.Text>
-                    <br></br>
-                    report issue: <a href="https://forms.gle/eH6QpDkTKaGoxyS49">google form</a>
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 2022.08.16. All rights reserved. </small>
-                </Card.Footer>
-              </Card>
-            </Carousel.Item>
-            <Carousel.Item>
-              <br></br>
-              <Card.Text className="App" >Sponsorship</Card.Text>
-              <Card className="card">
-                <Card.Body>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
-                </Card.Body>
-              </Card>
-            </Carousel.Item>
-          </Carousel>
+          <Card className="card">
+            <Card.Body>
+              <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
+              <Row>
+                <Col>
+                  <br></br>
+                  <a href="https://forms.gle/kFFMLyLrDugha1Fr5">評分表單在此</a>
+                </Col>
+                <Col>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-mascot.png`)} />
+                </Col>
+                <Col>
+                  <br></br>
+                  <a href="https://forms.gle/eH6QpDkTKaGoxyS49">問題回報在此</a>
+                </Col>
+              </Row>
+              <Card.Text>
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 2022.08.31. All rights reserved.<br></br>contact us: rayhungkao@gmail.com</small>
+            </Card.Footer>
+          </Card>
+          <br></br>
+          <br></br>
+          <Card.Text className="App" >Sponsorship</Card.Text>
+          <Card className="card">
+            <Card.Body>
+              <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+            </Card.Body>
+          </Card>
         </TabPane>
       </Tabs>
       
