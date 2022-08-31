@@ -13,12 +13,12 @@ module Tripbook
 
     FONT_SRC = %w[https://cdn.jsdelivr.net https://fonts.googleapis.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net https://maps.googleapis.com/ ].freeze
-    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com https://maps.googleapis.com/].freeze
-    CONNECT_SRC = %w[https://maps.googleapis.com/maps].freeze
+    STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com https://maps.googleapis.com/ https://fonts.googleapis.com/].freeze
+    CONNECT_SRC = %w[https://maps.googleapis.com/maps https://maps.googleapis.com/maps/api/].freeze
     GOOGLE_SSO_SRC = %w[https://accounts.google.com/o/oauth2/v2/auth].freeze
     OPENSTRRETMAP_SRC = %w[https://a.tile.openstreetmap.org/ https://b.tile.openstreetmap.org/ https://c.tile.openstreetmap.org/].freeze
     LOCAL_IMAGE_SRC = %w[data:].freeze
-    GOOGLE_IMAGE_SRC = %w[https://maps.googleapis.com].freeze
+    GOOGLE_IMAGE_SRC = %w[https://maps.googleapis.com https://maps.gstatic.com/mapfiles/transparent.png].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
@@ -54,7 +54,7 @@ module Tripbook
         img_src: %w['self'] + OPENSTRRETMAP_SRC + LOCAL_IMAGE_SRC + GOOGLE_IMAGE_SRC,
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
-        style_src: %w['self'] + STYLE_SRC,
+        style_src: %w['self'] + STYLE_SRC + %W['unsafe-inline'],
         form_action: %w['self'] + GOOGLE_SSO_SRC,
         frame_ancestors: %w['none'],
         object_src: %w['none'],
