@@ -18,7 +18,7 @@ module Tripbook
     GOOGLE_SSO_SRC = %w[https://accounts.google.com/o/oauth2/v2/auth].freeze
     OPENSTRRETMAP_SRC = %w[https://a.tile.openstreetmap.org/ https://b.tile.openstreetmap.org/ https://c.tile.openstreetmap.org/].freeze
     LOCAL_IMAGE_SRC = %w[data:].freeze
-    GOOGLE_IMAGE_SRC = %w[https://maps.googleapis.com https://maps.gstatic.com/mapfiles/transparent.png https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png].freeze
+    GOOGLE_IMAGE_SRC = %w[https://maps.googleapis.com https://maps.gstatic.com/mapfiles/transparent.png https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png https://maps.gstatic.com/mapfiles/api-3/images/google_gray.svg].freeze
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
