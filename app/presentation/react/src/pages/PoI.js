@@ -742,7 +742,7 @@ function PoI(props) {
             }
           </div>
           <div style={{position:"relative", zIndex:1}} >
-            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} style={{ height:"89.5vh", width:"100vw"}} >
+            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} attributionControl={false} style={{ height:"89.5vh", width:"100vw"}} >
               <ReactLeafletGoogleLayer apiKey='AIzaSyARQf-Xiyg1M2BfigotDvZWzonv-zppJd0' minZoom={14} maxZoom={19} />
               {
                 (userLocation.latitude)?
