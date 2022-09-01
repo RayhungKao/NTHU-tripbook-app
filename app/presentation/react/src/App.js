@@ -31,7 +31,6 @@ function App() {
     if (!googleMapApiKey) get_google_map_api_key();
     return () => {
       console.log('fetch google map api key'); 
-      console.log(googleMapApiKey)
     }
   }, [googleMapApiKey])
   
@@ -54,8 +53,6 @@ function App() {
       .then(async response => {
         let result = await response.json()
         if (response.status == 200) {
-          console.log("get google map key")
-          console.log(result.message)
           setGoogleMapApiKey(result.message)
         }
       })
