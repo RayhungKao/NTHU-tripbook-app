@@ -748,7 +748,7 @@ function PoI(props) {
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
-                    <Popup>用戶現在位置.{google_map_key}{process.env.GOOGLE_MAP_KEY}</Popup>
+                    <Popup>用戶現在位置.</Popup>
                   </Marker>
                 :""
               }
