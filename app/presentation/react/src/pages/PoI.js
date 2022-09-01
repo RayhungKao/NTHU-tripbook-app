@@ -1003,6 +1003,7 @@ function PoI(props) {
             <small>REACT_APP_TEST_KEY in <b>{process.env.REACT_APP_TEST_KEY}</b> mode.</small>
             <br></br>
             <small>SECURE_SCHEME in <b>{process.env.SECURE_SCHEME}</b> mode.</small>
+            {console.log(process.env)}
           </div>
         </TabPane>
       </Tabs>
