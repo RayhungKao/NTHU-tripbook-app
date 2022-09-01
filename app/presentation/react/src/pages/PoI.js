@@ -999,6 +999,11 @@ function PoI(props) {
               <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
             </Card.Body>
           </Card>
+          <div>
+            <small>REACT_APP_TEST_KEY in <b>{process.env.REACT_APP_TEST_KEY}</b> mode.</small>
+            <br></br>
+            <small>SECURE_SCHEME in <b>{process.env.SECURE_SCHEME}</b> mode.</small>
+          </div>
         </TabPane>
       </Tabs>
       
