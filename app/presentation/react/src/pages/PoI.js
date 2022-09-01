@@ -20,6 +20,7 @@ import { toast } from 'react-toastify';
 
 function PoI(props) {
   var callback = function(key) {};
+  const [googleMapApiKey, setGoogleMapApiKey] = useState();
 
   const { user, setUser } = useContext(AuthContext);
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
@@ -30,7 +31,6 @@ function PoI(props) {
 
   const [cards, setCards] = useState();
   const [cardsAmount, setCardsAmount] = useState();
-  
   
   const [showCard, setShowCard] = useState(false);
   const [show, setShow] = useState(false);
@@ -74,6 +74,12 @@ function PoI(props) {
   const [poi7_timeState, setPoi7_timeState] = useState();
   const [poi8_timeState, setPoi8_timeState] = useState();
 
+  useEffect(() => {
+    get_google_map_api_key();
+    return () => {
+      console.log('fetch google map api key'); 
+    }
+  }, [])
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -120,6 +126,26 @@ function PoI(props) {
       // console.log("get cards"); 
     }
   }, [cards])
+
+  async function get_google_map_api_key() {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    };
+    fetch(`${baseUrl}/api/v1/google`, requestOptions)
+      .then(async response => {
+        let result = await response.json()
+        if (response.status == 200) {
+          setGoogleMapApiKey(result.message)
+        }
+      })
+      .catch(error => {
+        // props.alertFunction("unknown error")
+      })
+  }
 
   function getMap() {
     const requestOptions = {
@@ -743,7 +769,7 @@ function PoI(props) {
           </div>
           <div style={{position:"relative", zIndex:1}} >
             <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} attributionControl={false} style={{ height:"89.5vh", width:"100vw"}} >
-              <ReactLeafletGoogleLayer apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY} minZoom={14} maxZoom={19} />
+              <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
