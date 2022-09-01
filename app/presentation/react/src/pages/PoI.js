@@ -967,40 +967,52 @@ function PoI(props) {
           </Container>
         </TabPane>
         <TabPane tab="幕後介紹" key="3">
-          <Card className="card">
-            <Card.Body>
-              <Card.Text className="App" >This web app is designed non-profit and for education-purpose</Card.Text>
-              <Row>
-                <Col>
-                  <br></br>
-                  <a href="https://forms.gle/kFFMLyLrDugha1Fr5">評分表單在此</a>
-                </Col>
-                <Col>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-mascot.png`)} />
-                </Col>
-                <Col>
-                  <br></br>
-                  <a href="https://forms.gle/eH6QpDkTKaGoxyS49">問題回報在此</a>
-                </Col>
-              </Row>
-              <Card.Text>
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 2022.08.31. All rights reserved.<br></br>contact us: rayhungkao@gmail.com</small>
-            </Card.Footer>
-          </Card>
-          <br></br>
-          <br></br>
-          <Card.Text className="App" >Sponsorship</Card.Text>
-          <Card className="card">
-            <Card.Body>
-              <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
-            </Card.Body>
-          </Card>
+          <Carousel>
+            <Carousel.Item>
+              <br></br>
+              <Card.Text className="App" >Hi there!</Card.Text>
+              <Card className="card">
+                <Card.Body>
+                  <Row>
+                    <Col className="App">
+                      <br></br>
+                      <br></br>
+                      <a href="https://forms.gle/kFFMLyLrDugha1Fr5">評分表單在此</a>
+                    </Col>
+                    <Col>
+                      <Card.Img variant="top" src={require(`../images/others/nthu-mascot.png`)} />
+                    </Col>
+                    <Col className="App">
+                      <br></br>
+                      <br></br>
+                      <a href="https://forms.gle/eH6QpDkTKaGoxyS49">問題回報在此</a>
+                    </Col>
+                  </Row>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Disclaimer: This web app is designed non-profit and for education-purpose<br></br><br></br>
+                  All rights reserved. Last updated 2022.09.01.<br></br>contact us: rayhungkao@gmail.com</small>
+                </Card.Footer>
+              </Card> 
+            </Carousel.Item>
+            <Carousel.Item>
+              <br></br>
+              <Card.Text className="App" >Sponsorship</Card.Text>
+              <Card className="card">
+                <Card.Body>
+                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                </Card.Body>
+                <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
+                <Card.Footer>
+                  <small className="text-muted">歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。<br></br><br></br>
+                  系上自上個學期，開始進行企業導師計畫，由資工系、資應所多位在業界都非常有經驗的系友，來擔任業師，希望藉由業師豐富的社會實戰經驗讓本系(含資應所及資安所)學生得以宏觀的視野來進行職涯規劃與畢業後發展的參考，進而提升自我競爭力。<br></br><br></br>
+                  這個APP是由其中一位業師及其導生所開發出來的，希望同學們透過這個APP，可以多一個認識校園與本系的管道。當然，有任何課業學習上的問題，我們還是希望同學們能主動並直接與系上的老師們、系辦的同仁們詢問。希望同學們都能有個充實愉快且難忘的大學生活。</small>
+                </Card.Footer>
+              </Card>
+            </Carousel.Item>
+          </Carousel>
         </TabPane>
       </Tabs>
-      
     </>
   );
 }
