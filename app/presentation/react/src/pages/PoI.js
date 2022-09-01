@@ -20,9 +20,9 @@ import { toast } from 'react-toastify';
 
 function PoI(props) {
   var callback = function(key) {};
-  const [googleMapApiKey, setGoogleMapApiKey] = useState();
-
   const { user, setUser } = useContext(AuthContext);
+  const { googleMapApiKey, setGoogleMapApiKey } = useContext(AuthContext);
+
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
   const [map, setMap] = useState();
@@ -75,13 +75,6 @@ function PoI(props) {
   const [poi8_timeState, setPoi8_timeState] = useState();
 
   useEffect(() => {
-    get_google_map_api_key();
-    return () => {
-      console.log('fetch google map api key'); 
-    }
-  }, [])
-
-  useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
       setUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
     });  
@@ -126,26 +119,6 @@ function PoI(props) {
       // console.log("get cards"); 
     }
   }, [cards])
-
-  async function get_google_map_api_key() {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include'
-    };
-    fetch(`${baseUrl}/api/v1/google`, requestOptions)
-      .then(async response => {
-        let result = await response.json()
-        if (response.status == 200) {
-          setGoogleMapApiKey(result.message)
-        }
-      })
-      .catch(error => {
-        // props.alertFunction("unknown error")
-      })
-  }
 
   function getMap() {
     const requestOptions = {
@@ -1025,12 +998,6 @@ function PoI(props) {
               <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
             </Card.Body>
           </Card>
-          <div>
-            <small>REACT_APP_TEST_KEY in <b>{process.env.REACT_APP_TEST_KEY}</b> mode.</small>
-            <br></br>
-            <small>SECURE_SCHEME in <b>{process.env.SECURE_SCHEME}</b> mode.</small>
-            {console.log(process.env)}
-          </div>
         </TabPane>
       </Tabs>
       

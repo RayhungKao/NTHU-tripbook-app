@@ -25,13 +25,44 @@ function App() {
   const [successMessage, setSuccessMessage] = useState(false)
   const [user, setUser] = useState("");
   const [userInfo, setUserInfo] = useState("");
-  const notify = () => toast("Wow so easy !");
+  const [googleMapApiKey, setGoogleMapApiKey] = useState("");
 
+  useEffect(() => {
+    if (!googleMapApiKey) get_google_map_api_key();
+    return () => {
+      console.log('fetch google map api key'); 
+      console.log(googleMapApiKey)
+    }
+  }, [googleMapApiKey])
+  
   useEffect(() => {
     if (!user) account()
     if (!userInfo) accountInfo()
 
   }, [user, userInfo]);
+
+
+  async function get_google_map_api_key() {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    };
+    fetch(`${baseUrl}/api/v1/google`, requestOptions)
+      .then(async response => {
+        let result = await response.json()
+        if (response.status == 200) {
+          console.log("get google map key")
+          console.log(result.message)
+          setGoogleMapApiKey(result.message)
+        }
+      })
+      .catch(error => {
+        // props.alertFunction("unknown error")
+      })
+  }
 
   async function account() {
     if (user) {
@@ -141,7 +172,7 @@ function App() {
   return (
     <>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous" />
-      <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo }}>
+      <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo, googleMapApiKey, setGoogleMapApiKey}}>
         <div>
           <ToastContainer 
           position="top-center"
