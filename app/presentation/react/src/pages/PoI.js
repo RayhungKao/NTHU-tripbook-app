@@ -370,42 +370,42 @@ function PoI(props) {
                 case '1':
                   setPoi1State(true)
                   setPoi1_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 1 state true")
+                  // console.log("set poi 1 state true")
                   break;  
                 case '2':
                   setPoi2State(true)
                   setPoi2_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 2 state true")
+                  // console.log("set poi 2 state true")
                   break;
                 case '3':
                   setPoi3State(true)
                   setPoi3_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 3 state true")
+                  // console.log("set poi 3 state true")
                   break;
                 case '4':
                   setPoi4State(true)
                   setPoi4_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 4 state true")
+                  // console.log("set poi 4 state true")
                   break;
                 case '5':
                   setPoi5State(true)
                   setPoi5_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 5 state true")
+                  // console.log("set poi 5 state true")
                   break;
                 case '6':
                   setPoi6State(true)
                   setPoi6_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 6 state true")
+                  // console.log("set poi 6 state true")
                   break;
                 case '7':
                   setPoi7State(true)
                   setPoi7_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 7 state true")
+                  // console.log("set poi 7 state true")
                   break;
                 case '8':
                   setPoi8State(true)
                   setPoi8_timeState(geoinfo_list[i].attributes.entryTime)
-                  console.log("set poi 8 state true")
+                  // console.log("set poi 8 state true")
                   break;
                 default:
                   console.log("error poi color setting")

@@ -49,8 +49,7 @@ function Login(props) {
                         draggable: false,
                         progress: undefined,
                     });
-                    console.log(result.account.username)
-                    // const account = {username: result.account.username, email:result.account.email}
+                    // console.log(result.account.username)
                     setUser(result.account.username)
                     setTimeout(() => {
                         history.push('/poi')

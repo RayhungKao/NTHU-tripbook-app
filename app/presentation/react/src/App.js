@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     if (!googleMapApiKey) get_google_map_api_key();
     return () => {
-      console.log('fetch google map api key'); 
+      // console.log('fetch google map api key'); 
     }
   }, [googleMapApiKey])
   
@@ -88,7 +88,7 @@ function App() {
     if (user == "") {
       return
     }
-    console.log(user)
+    // console.log(user)
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -101,7 +101,7 @@ function App() {
         let result = await response.json()
         if (response.status === 200) {
           setUserInfo(result)
-          console.log("fetch account info")
+          // console.log("fetch account info")
         }
         else {
           console.log(`${result.message}`)
