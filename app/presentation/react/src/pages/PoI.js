@@ -579,7 +579,7 @@ function PoI(props) {
     cards.map((card, id) => {
       let c = card.data.attributes
       if (new_card_code === c.card_code){
-        return ""
+        new_card_code = ""
       }
     })
 
@@ -588,11 +588,9 @@ function PoI(props) {
 
   function card_code_generator(){
     let new_card_code = card_code_random_generator()
-
     while(new_card_code === ""){
       new_card_code = card_code_random_generator()
     }
-    
     return new_card_code
   }
 
@@ -626,7 +624,7 @@ function PoI(props) {
       setDrawCardFlag(true)
       return
     }
-    if ( (2 * geoinfoAmount) - cardsAmount <= 0 ) {
+    if ( (3 * geoinfoAmount) - cardsAmount <= 0 ) {
       toast.warn("Error! No quota for cards!", {
         position: "top-right",
         autoClose: 5000,
@@ -652,7 +650,7 @@ function PoI(props) {
     .then(async response =>{
         let result = await response.json()
         if (response.status === 200){
-          console.log(result)
+          // console.log(result)
           toast.success("Successfully draw a new card", {
             position: "top-center",
             autoClose: 5000,
@@ -671,8 +669,6 @@ function PoI(props) {
             draggable: false,
             progress: undefined,
           });
-          getCards()
-          handleClose()
         }
         else{
           toast.warn(`${result.message}`, {
@@ -684,8 +680,13 @@ function PoI(props) {
             draggable: false,
             progress: undefined,
           });
-          handleClose()
         }
+    })
+    .then(function(){
+      getCards();
+    })
+    .then(function(){
+      handleClose()
     })
     .catch(error =>{
         toast.warn("unknown error to draw card", {
@@ -703,7 +704,7 @@ function PoI(props) {
 
   const color_blue = { fillColor: '#0093FF', color: '#0093FF'}
   const color_red = { fillColor: '#F75E5E', color: '#F75E5E'}
-  const radius = 1500
+  const radius = 50
 
 
   return (
@@ -901,8 +902,8 @@ function PoI(props) {
         <TabPane tab="卡片倉庫" key="2">
           <Container style={{ height:"87vh", width:"100vw"}} >
             <br></br>
-            <h6 className="App">卡池有99張卡片，和朋友們分享自己的卡片吧！</h6>
-            <div className="App">可抽卡次數:{`${ (2 * geoinfoAmount) - cardsAmount} `}
+            <h6 className="App">卡池有84張卡片，和朋友們分享自己的卡片吧！</h6>
+            <div className="App">可抽卡次數:{`${ (3 * geoinfoAmount) - cardsAmount} `}
               <Button variant="dark" onClick={handleShow} >
                 點擊抽卡
               </Button>

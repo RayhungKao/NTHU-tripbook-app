@@ -105,7 +105,7 @@ function Login(props) {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password (e.g. 20010717)</Form.Label>
+                                <Form.Label>Password (e.g. 109062584)</Form.Label>
                                 <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter password" />
                             </Form.Group>
                             <div align="center">
