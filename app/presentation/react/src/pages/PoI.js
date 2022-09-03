@@ -549,23 +549,32 @@ function PoI(props) {
   }
 
   function card_code_random_generator(){
-    var table = [
-      {abbreviation: "B",  number: 8}, 
-      {abbreviation: "G",  number: 12},
-      {abbreviation: "CS", number: 30}, 
-      {abbreviation: "L",  number: 10},  
-      // {abbreviation: "A",  number: 10}, 
-    ];
+    let numberB = 8;  //perserved cards
+    let numberA = 2;
+    let numberCS = 43;
+    let numberG = 12;
+    let numberL = 19;
 
-    let index
-    if(cardsAmount < 8){
-      index = 0
+    let numberTotal = numberA + numberCS + numberG + numberL;
+    let id;
+    let new_card_code;
+
+    if(cardsAmount < numberB){
+      id = 1 + Math.floor(Math.random() * numberB)
+      new_card_code = "B" + id
     }
     else{
-      index = 1 + Math.floor(Math.random() * 3)
+      id = 1 + Math.floor(Math.random() * numberTotal)
+
+      if (id <= numberA)
+        new_card_code = "A" + id
+      else if (numberA < id && id <= (numberA + numberCS))
+        new_card_code = "CS" + (id - numberA)
+      else if ((numberA + numberCS) < id && id <= (numberA + numberCS + numberG))
+        new_card_code = "G" + (id - (numberA + numberCS))
+      else if ((numberA + numberCS + numberG) < id && id <= (numberA + numberCS + numberG + numberL))
+        new_card_code = "L" + (id - (numberA + numberCS + numberG))
     }
-    let card_number = 1 + Math.floor(Math.random() * table[index].number)
-    let new_card_code = "" + table[index].abbreviation + card_number
     
     cards.map((card, id) => {
       let c = card.data.attributes
@@ -694,7 +703,7 @@ function PoI(props) {
 
   const color_blue = { fillColor: '#0093FF', color: '#0093FF'}
   const color_red = { fillColor: '#F75E5E', color: '#F75E5E'}
-  const radius = 50
+  const radius = 1500
 
 
   return (
