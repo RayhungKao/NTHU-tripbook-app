@@ -1000,7 +1000,7 @@ function PoI(props) {
                   </Row>
                 </Card.Body>
                 <Card.Footer>
-                  <small className="text-muted">Disclaimer: This web app is designed non-profit and for education-purpose<br></br><br></br>
+                  <small className="text-muted">Disclaimer: This web app is designed non-profit and for education-purpose.<br></br><br></br>
                   All rights reserved. Last updated 2022.09.01.<br></br>contact us: rayhungkao@gmail.com</small>
                 </Card.Footer>
               </Card> 
@@ -1010,13 +1010,42 @@ function PoI(props) {
               <Card.Text className="App" >Sponsorship</Card.Text>
               <Card className="card">
                 <Card.Body>
-                  <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                  <Row>
+                    <Card.Img variant="top" src={require(`../images/others/nthu-cs.png`)} />
+                  </Row>
                 </Card.Body>
                 <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
                 <Card.Footer style={{ height:"55vh", width:"100vw", overflow:"scroll"}}>
                   <small className="text-muted">歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。<br></br><br></br>
                   系上自上個學期，開始進行企業導師計畫，由資工系、資應所多位在業界都非常有經驗的系友，來擔任業師，希望藉由業師豐富的社會實戰經驗讓本系(含資應所及資安所)學生得以宏觀的視野來進行職涯規劃與畢業後發展的參考，進而提升自我競爭力。<br></br><br></br>
                   這個APP是由其中一位業師及其導生所開發出來的，希望同學們透過這個APP，可以多一個認識校園與本系的管道。當然，有任何課業學習上的問題，我們還是希望同學們能主動並直接與系上的老師們、系辦的同仁們詢問。希望同學們都能有個充實愉快且難忘的大學生活。歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。</small>
+                </Card.Footer>
+              </Card>
+            </Carousel.Item>
+            <Carousel.Item>
+              <br></br>
+              <Card.Text className="App" >常見問題</Card.Text>
+              <Card className="card">
+                <Card.Body>
+                  <Row>
+                      <Col>
+                      </Col>
+                      <Col>
+                        <Card.Img variant="top" src={require(`../images/others/qa.png`)} />
+                      </Col>
+                      <Col>
+                      </Col>
+                  </Row>
+                </Card.Body>
+                <Card.Footer style={{ height:"55vh", width:"100vw", overflow:"scroll"}}>
+                  <small className="text-muted">
+                    Q1: 地圖出現 For development purposes only 的字樣怎麼辦？<br></br>
+                    A1: 請點擊畫面左上角 Tripbook 字樣，回到首頁，接著點擊 NEXT 重新載入清華八景，即可解決。<br></br><br></br>
+                    Q2: 無法正確進入圈住的景點怎麼辦？<br></br>
+                    A2: 請確認有開啟定位系統，若仍無法順利進入景點，請回到首頁，點擊 NEXT 重新載入清華八景。程式有時處於閒置狀態所以沒偵測到使用者位置，若有其他狀況，可通過問題回報表單聯繫我們！<br></br><br></br>
+                    Q3: 完成八個點的服學時數及小禮物如何領取？<br></br>
+                    A3: 請確認卡片倉庫第一張卡片是成功解鎖的紀念章圖樣，並且填寫完畢評分表單，即可到系辦登記與領取獎勵。<br></br><br></br>
+                    ＊小提醒：重整頁面會造成程式錯誤，若無法成功載入已獲得卡片、已抵達地點等等資訊，請回到首頁，點擊 NEXT 重新載入清華八景，即可解決。</small>
                 </Card.Footer>
               </Card>
             </Carousel.Item>
