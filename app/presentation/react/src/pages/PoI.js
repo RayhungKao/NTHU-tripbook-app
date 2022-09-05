@@ -752,7 +752,7 @@ function PoI(props) {
           </div>
           <div style={{position:"relative", zIndex:1}} >
             <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} attributionControl={false} style={{ height:"89.5vh", width:"100vw"}} >
-              <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
+              {googleMapApiKey && <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />}
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
