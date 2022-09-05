@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.9ecfe8d5.css",
-    "main.js": "/static/js/main.387e5c9b.js",
+    "main.js": "/static/js/main.e0c14fb9.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
     "static/media/general-buildingII.jpeg": "/static/media/general-buildingII.9c6eedc84b2bc3a6a206.jpeg",
     "static/media/CS39.png": "/static/media/CS39.a0a2817bab12448b4904.png",
@@ -110,13 +110,14 @@
     "static/media/greyscale-go-park.jpg": "/static/media/greyscale-go-park.4704609a161029561878.jpg",
     "static/media/nthu-mascot.png": "/static/media/nthu-mascot.24aca93974c7f8f76b43.png",
     "static/media/user.png": "/static/media/user.d54b5cea3dabfb92c990.png",
+    "static/media/qa.png": "/static/media/qa.486ac92e4970e0a373d7.png",
     "index.html": "/index.html",
     "main.9ecfe8d5.css.map": "/static/css/main.9ecfe8d5.css.map",
-    "main.387e5c9b.js.map": "/static/js/main.387e5c9b.js.map",
+    "main.e0c14fb9.js.map": "/static/js/main.e0c14fb9.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ecfe8d5.css",
-    "static/js/main.387e5c9b.js"
+    "static/js/main.e0c14fb9.js"
   ]
 }
