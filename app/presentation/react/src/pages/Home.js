@@ -67,9 +67,9 @@ function Home(props) {
                 <Card.Img variant="top" className="photo" src={require('../images/others/nthu-gate.jpg')} style={{ height:"100%", width:"100%"}} />
                 <Card.Body>
                     <Card.Text>
-                        Several historic sites @nthu campus ...<br></br>
-                        Navigate with map.<br></br>
-                        Open cards everytime you get to these spots.
+                        歡迎使用清華八景導覽程式！<br></br><br></br>
+                        總共有八個景點可以抵達，每到一個新的景點會獲得相應抽卡點數。<br></br><br></br>
+                        卡片內容為學長姐獨家的修課心得、系上活動及實驗室介紹，來跟同學聊聊你都抽了哪些卡吧～全部完成後還能獲得服學時數哦！
                     </Card.Text>
                 </Card.Body>
             </Card>

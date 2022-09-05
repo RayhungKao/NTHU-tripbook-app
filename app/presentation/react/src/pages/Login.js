@@ -100,12 +100,12 @@ function Login(props) {
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
                                 <Form.Label>Username (e.g. 109062584)</Form.Label>
-                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="Enter username" />
+                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="Enter your student Id" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password (e.g. 109062584)</Form.Label>
-                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter password" />
+                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter your student Id" />
                             </Form.Group>
                             <div align="center">
                                 <Button className="w-100" variant="dark" type="submit">

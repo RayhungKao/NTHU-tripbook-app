@@ -319,7 +319,7 @@ function PoI(props) {
     3: {latitude: 24.794339028676507, longitude: 120.99331733144486, name: "綜合二館"}, 
     4: {latitude: 24.79811232481267, longitude: 120.9910483527293, name: "清華會館"},  
     5: {latitude: 24.792459765107758, longitude: 120.99004427985564, name: "梅園"}, 
-    6: {latitude: 24.78792834315937, longitude: 120.99083261427393, name: "弈園"},  
+    6: {latitude: 24.78792834315937, longitude: 120.99083261427393, name: "奕園"},  
     7: {latitude: 24.793869810505374, longitude: 120.99511878432668, name: "成功湖"},
     8: {latitude: 24.79066534952453, longitude: 120.99570350574783, name: "清交小徑"}, 
   };
@@ -763,12 +763,12 @@ function PoI(props) {
               <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
               <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
-                  <Card>
+                  <Card >
                     <Card.Img variant="top" className="photo" src={(poi1State)?require('../images/pois/delta-building.png'):require('../images/pois/greyscale-delta-building.png')} />
                     <Card.Body>
                       <Card.Title>{target[1].name}</Card.Title>
-                      <Card.Text>
-                        {(poi1State)?`資工系館、教室、實驗室`:"?????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi1State)?`資工、電機、材料三個系所共同的系館。資工教室多在一樓。電機多在二樓，五樓出電梯右轉則有資工系辦，大學部的系辦負責姊姊是小靜姐呦～如果不知道進系辦時要找誰，可詢問坐在系辦入口的工讀生。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -784,8 +784,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi2State)?require('../images/pois/library.jpg'):require('../images/pois/greyscale-library.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[2].name}</Card.Title>
-                      <Card.Text>
-                        {(poi2State)?`唸書開會好去處、夜讀區沒有24hr`:"???????????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi2State)?`旺宏館是清大圖書館本館，除此之外，人社院也有自己的圖書館，那裡有非常多的文史資料，值得有空去晃晃。旺宏館有夜讀區跟討論室可申請，需上網預約，遲到或沒到會被記違規。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -801,8 +801,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi3State)?require('../images/pois/general-buildingII.jpeg'):require('../images/pois/greyscale-general-buildingII.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[3].name}</Card.Title>
-                      <Card.Text>
-                        {(poi3State)?`前有貓底、後有鴿子廣場`:"?????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi3State)?`前有校內巴士停靠站，後有鴿子廣場。鴿子廣場上有一些小方格，上頭有時會有塗鴉，那些方格真的是設計來給人畫畫的，下雨就會洗掉了。系上有些實驗室會在這棟樓。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -818,8 +818,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi4State)?require('../images/pois/guest-house.jpg'):require('../images/pois/greyscale-guest-house.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[4].name}</Card.Title>
-                      <Card.Text>
-                        {(poi4State)?`外賓和教授住處、二招有咖哩`:"????????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi4State)?`校內提供短期住宿的地方，有些貴賓會來住這，僅提供在校學生家長、校友或相關學者申請。門口有一個公共藝術裝置「候鳥歸巢」，意味提供各界學者一個溫暖親切的棲息地。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -835,8 +835,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi5State)?require('../images/pois/plum-park.jpg'):require('../images/pois/greyscale-plum-park.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[5].name}</Card.Title>
-                      <Card.Text>
-                        {(poi5State)?`梅校長紀念亭座落於沒緣上方`:"????????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi5State)?`每年開花時很漂亮，學校會把梅子摘下來釀。上頭有梅校長的墓，校長是真的葬在這，有什麼心事可以找校長談談心，說不定隔天他老人家能保佑你解決煩惱。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -852,8 +852,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi6State)?require('../images/pois/go-park.jpg'):require('../images/pois/greyscale-go-park.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[6].name}</Card.Title>
-                      <Card.Text>
-                        {(poi6State)?`奕庭座落於奕園下方深處`:"??????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi6State)?`鄰近清大土地公，附近有停車場。為沈君山校長因為愛棋所贈，裏頭有座奕亭，上頭奕亭兩字是沈校長手書，門口的奕園兩字則是金庸先生親手提寫的。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -869,8 +869,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi7State)?require('../images/pois/chengkung-lake.jpg'):require('../images/pois/greyscale-chengkung-lake.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[7].name}</Card.Title>
-                      <Card.Text>
-                        {(poi7State)?`划船、慶生、腳踏車傳說之地`:"????????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi7State)?`滿載清大各種傳奇故事的地方，但最近要清湖底淤泥，所以水被抽光了。聽說修整後的成功湖會有環湖步道，以前是沒辦法走完整圈的，期待一下吧？`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
@@ -886,8 +886,8 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi8State)?require('../images/pois/nthu-nctu-route.jpg'):require('../images/pois/greyscale-nthu-nctu-route.jpg')} />
                     <Card.Body>
                       <Card.Title>{target[8].name}</Card.Title>
-                      <Card.Text>
-                      {(poi8State)?`住宿舍，去隔壁校的運動場更近`:"?????????????????????????"}
+                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                        {(poi8State)?`連接清大和交大的一條小徑，以前還有出過小徑T-shirt。要去交大吃飯或是運動的話可以走這條，清大都稱清交小徑，交大都稱交清小徑。咦？那陽明呢？`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
