@@ -114,9 +114,11 @@ function PoI(props) {
   }, [geoinfo])
 
   useEffect(() => {
-    if(!cards) getCards();
+    if(!cards) {
+      getCards();
+    }
     return () => {
-      // console.log("get cards"); 
+      console.log("get cards"); 
     }
   }, [cards])
 
@@ -752,7 +754,7 @@ function PoI(props) {
           </div>
           <div style={{position:"relative", zIndex:1}} >
             <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} attributionControl={false} style={{ height:"89.5vh", width:"100vw"}} >
-              <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
+              {googleMapApiKey && <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />}
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
@@ -1039,13 +1041,13 @@ function PoI(props) {
                 </Card.Body>
                 <Card.Footer style={{ height:"55vh", width:"100vw", overflow:"scroll"}}>
                   <small className="text-muted">
-                    Q1: 地圖出現 For development purposes only 的字樣怎麼辦？<br></br>
+                    Q1: 無法成功載入已獲得卡片、已抵達地點等等資訊怎麼辦？<br></br>
                     A1: 請點擊畫面左上角 Tripbook 字樣，回到首頁，接著點擊 NEXT 重新載入清華八景，即可解決。<br></br><br></br>
                     Q2: 無法正確進入圈住的景點怎麼辦？<br></br>
                     A2: 請確認有開啟定位系統，若仍無法順利進入景點，請回到首頁，點擊 NEXT 重新載入清華八景。程式有時處於閒置狀態所以沒偵測到使用者位置，若有其他狀況，可通過問題回報表單聯繫我們！<br></br><br></br>
                     Q3: 完成八個點的服學時數及小禮物如何領取？<br></br>
                     A3: 請確認卡片倉庫第一張卡片是成功解鎖的紀念章圖樣，並且填寫完畢評分表單，即可到系辦登記與領取獎勵。<br></br><br></br>
-                    ＊小提醒：重整頁面會造成程式錯誤，若無法成功載入已獲得卡片、已抵達地點等等資訊，請回到首頁，點擊 NEXT 重新載入清華八景，即可解決。</small>
+                    ＊小提醒：重新整理頁面若發生程式載入錯誤，請參考Q1和A1</small>
                 </Card.Footer>
               </Card>
             </Carousel.Item>

@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     if (!googleMapApiKey) get_google_map_api_key();
     return () => {
-      // console.log('fetch google map api key'); 
+      // console.log('fetch google map api key');
     }
   }, [googleMapApiKey])
   
