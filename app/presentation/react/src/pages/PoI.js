@@ -55,7 +55,6 @@ function PoI(props) {
     drawCard();
   }
 
-
   const [poi1State, setPoi1State] = useState(false);
   const [poi2State, setPoi2State] = useState(false);
   const [poi3State, setPoi3State] = useState(false);
@@ -73,6 +72,10 @@ function PoI(props) {
   const [poi6_timeState, setPoi6_timeState] = useState();
   const [poi7_timeState, setPoi7_timeState] = useState();
   const [poi8_timeState, setPoi8_timeState] = useState();
+
+  useEffect(() => {
+    setUser(sessionStorage.getItem("user"))
+  }, [user])
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -93,18 +96,40 @@ function PoI(props) {
   }, [userLocation])
 
   useEffect(() => {
-    // postGeoinfo(userInsidePoI.inside, userInsidePoI.PoI)
+    setPoi1State(JSON.parse(sessionStorage.getItem("poi1State")))
+    setPoi2State(JSON.parse(sessionStorage.getItem("poi2State")))
+    setPoi3State(JSON.parse(sessionStorage.getItem("poi3State")))
+    setPoi4State(JSON.parse(sessionStorage.getItem("poi4State")))
+    setPoi5State(JSON.parse(sessionStorage.getItem("poi5State")))
+    setPoi6State(JSON.parse(sessionStorage.getItem("poi6State")))
+    setPoi7State(JSON.parse(sessionStorage.getItem("poi7State")))
+    setPoi8State(JSON.parse(sessionStorage.getItem("poi8State")))
+  }, [poi1State, poi2State, poi3State, poi4State, poi5State, poi6State, poi7State, poi8State])
+
+  useEffect(() => {
+    setPoi1_timeState(JSON.parse(sessionStorage.getItem("poi1_timeState")))
+    setPoi2_timeState(JSON.parse(sessionStorage.getItem("poi2_timeState")))
+    setPoi3_timeState(JSON.parse(sessionStorage.getItem("poi3_timeState")))
+    setPoi4_timeState(JSON.parse(sessionStorage.getItem("poi4_timeState")))
+    setPoi5_timeState(JSON.parse(sessionStorage.getItem("poi5_timeState")))
+    setPoi6_timeState(JSON.parse(sessionStorage.getItem("poi6_timeState")))
+    setPoi7_timeState(JSON.parse(sessionStorage.getItem("poi7_timeState")))
+    setPoi8_timeState(JSON.parse(sessionStorage.getItem("poi8_timeState")))
+  }, [poi1_timeState, poi2_timeState, poi3_timeState, poi4_timeState, poi5_timeState, poi6_timeState, poi7_timeState, poi8_timeState])
+
+  useEffect(() => {
+    setUserInsidePoI(JSON.parse(sessionStorage.getItem("userInsidePoI")))
     return () => {
       // console.log('userInsidePoI.inside?: ' + userInsidePoI.inside + ', userInsidePoI.PoI: ' + userInsidePoI.PoI); 
     }
-  }, [userInsidePoI])
+  }, [])
 
-  useEffect(() => {
-    if(!map) getMap();
-    return () => {
-      // console.log("get map"); 
-    }
-  }, [map])
+  // useEffect(() => {
+  //   if(!map) getMap();
+  //   return () => {
+  //     // console.log("get map"); 
+  //   }
+  // }, [map])
 
   useEffect(() => {
     if(!geoinfo) getGeoinfo();
@@ -116,54 +141,55 @@ function PoI(props) {
   useEffect(() => {
     if(!cards) {
       getCards();
+      // console.log("no cards")
     }
     return () => {
-      console.log("get cards"); 
+      // console.log("yes cards");
     }
   }, [cards])
 
-  function getMap() {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      credentials: 'include'
-    };
-    fetch(baseUrl + '/api/v1/maps/1/pois', requestOptions)
-    .then(async response => {
-        let result = await response.json()
-        if (response.status == 200) {
-            // props.alertSuccessFunction(`Welcome, ${result.account.username}`)
-            setMap(result.pois)
-        }
-        else {
-            toast.warn(`${result.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: false,
-              progress: undefined,
-            });
-            setTimeout(() => {
-                window.location.reload()
-            }, 3000)
-        }
-    })
-    .catch(error => {
-        toast.warn("unknown error", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          progress: undefined,
-        }); 
-    })
-  }
+  // function getMap() {
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     },
+  //     credentials: 'include'
+  //   };
+  //   fetch(baseUrl + '/api/v1/maps/1/pois', requestOptions)
+  //   .then(async response => {
+  //       let result = await response.json()
+  //       if (response.status == 200) {
+  //           // props.alertSuccessFunction(`Welcome, ${result.account.username}`)
+  //           setMap(result.pois)
+  //       }
+  //       else {
+  //           toast.warn(`${result.message}`, {
+  //             position: "top-right",
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: false,
+  //             draggable: false,
+  //             progress: undefined,
+  //           });
+  //           setTimeout(() => {
+  //               window.location.reload()
+  //           }, 3000)
+  //       }
+  //   })
+  //   .catch(error => {
+  //       toast.warn("unknown error", {
+  //         position: "top-right",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: false,
+  //         draggable: false,
+  //         progress: undefined,
+  //       }); 
+  //   })
+  // }
 
   function geofence() {
     var distance;
@@ -275,6 +301,7 @@ function PoI(props) {
             }
           console.log('進入i=' + i + ', ' + target[i].name )
           setUserInsidePoI( {inside: true, PoI: i} );
+          sessionStorage.setItem("userInsidePoI", JSON.stringify( {inside: true, PoI: i} ))
           postGeoinfo(true, i);
         }
       }
@@ -282,6 +309,7 @@ function PoI(props) {
         if (userInsidePoI.inside && userInsidePoI.PoI === i) {
           // props.alertSuccessFunction('you left: ' + target[i].name + '. Go explore other spots~');
           setUserInsidePoI( {inside: false, PoI: 0} );
+          sessionStorage.setItem("userInsidePoI", JSON.stringify( {inside: false, PoI: 0} ))
           postGeoinfo(false, i);
         }
         else {
@@ -348,7 +376,11 @@ function PoI(props) {
 
   //get location and timestamp info from backend db storage for user entering or exiting some PoI's geofence
   function getGeoinfo(){
-    if (!user) return
+    if (!user) {
+      setGeoinfo(JSON.parse(sessionStorage.getItem("geoinfo")))
+      setGeoinfoAmount(JSON.parse(sessionStorage.getItem("geoinfoAmount")))
+      return
+    }
 
     const requestOptions = {
         method: 'GET',
@@ -364,6 +396,9 @@ function PoI(props) {
           // console.log(result.geoinfo_list)
           setGeoinfo(result)
           setGeoinfoAmount(result.geoinfo_list.length)
+          sessionStorage.setItem("geoinfo", JSON.stringify(result))
+          sessionStorage.setItem("geoinfoAmount", JSON.stringify(result.geoinfo_list.length))
+
           let geoinfo_list = result.geoinfo_list
 
           for(var i=0; i < geoinfo_list.length; i++){
@@ -372,41 +407,57 @@ function PoI(props) {
                 case '1':
                   setPoi1State(true)
                   setPoi1_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi1State", JSON.stringify(true))
+                  sessionStorage.setItem("poi1_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 1 state true")
                   break;  
                 case '2':
                   setPoi2State(true)
                   setPoi2_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi2State", JSON.stringify(true))
+                  sessionStorage.setItem("poi2_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 2 state true")
                   break;
                 case '3':
                   setPoi3State(true)
                   setPoi3_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi3State", JSON.stringify(true))
+                  sessionStorage.setItem("poi3_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 3 state true")
                   break;
                 case '4':
                   setPoi4State(true)
                   setPoi4_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi4State", JSON.stringify(true))
+                  sessionStorage.setItem("poi4_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 4 state true")
                   break;
                 case '5':
                   setPoi5State(true)
                   setPoi5_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi5State", JSON.stringify(true))
+                  sessionStorage.setItem("poi5_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 5 state true")
                   break;
                 case '6':
                   setPoi6State(true)
                   setPoi6_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi6State", JSON.stringify(true))
+                  sessionStorage.setItem("poi6_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 6 state true")
                   break;
                 case '7':
                   setPoi7State(true)
                   setPoi7_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi7State", JSON.stringify(true))
+                  sessionStorage.setItem("poi7_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 7 state true")
                   break;
                 case '8':
                   setPoi8State(true)
                   setPoi8_timeState(geoinfo_list[i].attributes.entryTime)
+                  sessionStorage.setItem("poi8State", JSON.stringify(true))
+                  sessionStorage.setItem("poi8_timeState", JSON.stringify(geoinfo_list[i].attributes.entryTime))
                   // console.log("set poi 8 state true")
                   break;
                 default:
@@ -503,7 +554,11 @@ function PoI(props) {
 
   //get cards
   function getCards(){
-    if (!user) return
+    if (!user) {
+      setCards(JSON.parse(sessionStorage.getItem("cards")))
+      setCardsAmount(JSON.parse(sessionStorage.getItem("cardsAmount")))
+      return
+    }
 
     const requestOptions = {
         method: 'GET',
@@ -520,6 +575,10 @@ function PoI(props) {
           setCards(result.card_list)
           setCardsAmount(result.card_list.length)
           setDrawCardFlag(true)
+          // console.log(result.card_list.length); 
+          sessionStorage.setItem("cards", JSON.stringify(result.card_list))
+          sessionStorage.setItem("cardsAmount", JSON.stringify(result.card_list.length))
+
           // props.alertSuccessFunction(`${result.message}`)
         }
         else{

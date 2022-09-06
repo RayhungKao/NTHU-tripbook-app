@@ -77,6 +77,7 @@ function App() {
         let result = await response.json()
         if (response.status == 200) {
           setUser(result.username)
+          sessionStorage.setItem("user", result.username)
         }
       })
       .catch(error => {
