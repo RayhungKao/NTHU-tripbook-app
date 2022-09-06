@@ -1,9 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.9ecfe8d5.css",
-    "main.js": "/static/js/main.ea265b92.js",
+    "main.js": "/static/js/main.b76cbc5e.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
-    "static/media/general-buildingII.jpeg": "/static/media/general-buildingII.9c6eedc84b2bc3a6a206.jpeg",
     "static/media/CS39.png": "/static/media/CS39.a0a2817bab12448b4904.png",
     "static/media/CS35.png": "/static/media/CS35.7b9c1b39734df809f780.png",
     "static/media/CS37.png": "/static/media/CS37.7ab8ba548e432c8bc254.png",
@@ -47,7 +46,6 @@
     "static/media/CS15.png": "/static/media/CS15.a9acc443f8d7bf2d874a.png",
     "static/media/CS9.png": "/static/media/CS9.814d89c7568c3e7ea9b3.png",
     "static/media/CS14.png": "/static/media/CS14.b85359cd98836ee34c4c.png",
-    "static/media/greyscale-general-buildingII.jpg": "/static/media/greyscale-general-buildingII.af3da3b985b81c4d81c6.jpg",
     "static/media/L5.png": "/static/media/L5.6db65fdfefb1de383bae.png",
     "static/media/L13.png": "/static/media/L13.daefd6dc75efeea0b7c8.png",
     "static/media/L18.png": "/static/media/L18.2a7894446bfac731f854.png",
@@ -87,37 +85,23 @@
     "static/media/B6.png": "/static/media/B6.d39bd6b517fb5ec81839.png",
     "static/media/B7.png": "/static/media/B7.b6255faecb5459ade939.png",
     "static/media/G3.png": "/static/media/G3.221ef6cd760b1252b44b.png",
-    "static/media/delta-building.png": "/static/media/delta-building.d45856d4edb51ffb8175.png",
-    "static/media/chengkung-lake.jpg": "/static/media/chengkung-lake.897608cf561bd6d562d1.jpg",
-    "static/media/greyscale-nthu-nctu-route.jpg": "/static/media/greyscale-nthu-nctu-route.c672b64c9534eb3db3ce.jpg",
     "static/media/golden-card.png": "/static/media/golden-card.6073eb8cdf59870a9d1f.png",
     "static/media/B1.png": "/static/media/B1.b041da066048e91a0100.png",
     "static/media/G1.png": "/static/media/G1.de5d697919b86e9a98e9.png",
-    "static/media/nthu-nctu-route.jpg": "/static/media/nthu-nctu-route.0a6cbfb1536d00027593.jpg",
-    "static/media/greyscale-delta-building.png": "/static/media/greyscale-delta-building.7549363969bd07da0953.png",
     "static/media/graysacle-golden-card.png": "/static/media/graysacle-golden-card.5c28f2914b7018605081.png",
-    "static/media/greyscale-guest-house.jpg": "/static/media/greyscale-guest-house.b24f0e1cacb388732c89.jpg",
-    "static/media/go-park.jpg": "/static/media/go-park.5a08bd9fdec6bf51aeac.jpg",
-    "static/media/greyscale-chengkung-lake.jpg": "/static/media/greyscale-chengkung-lake.5f20fe18281a13c232fc.jpg",
-    "static/media/guest-house.jpg": "/static/media/guest-house.5639afa544becaabbf3e.jpg",
-    "static/media/library.jpg": "/static/media/library.78333d5e3e59c84ed013.jpg",
     "static/media/tripbook-logo.png": "/static/media/tripbook-logo.9d384d7bbd3ac053dbfb.png",
-    "static/media/greyscale-library.jpg": "/static/media/greyscale-library.1c1833e0603a98cfa4b0.jpg",
     "static/media/nthu-gate.jpg": "/static/media/nthu-gate.b725a71dc1f7e79a0c63.jpg",
-    "static/media/greyscale-plum-park.jpg": "/static/media/greyscale-plum-park.36e4d8970ef52630888b.jpg",
     "static/media/nthu-cs.png": "/static/media/nthu-cs.47c18e22efbe7c5deced.png",
-    "static/media/plum-park.jpg": "/static/media/plum-park.ec79b713f42db3407ca8.jpg",
-    "static/media/greyscale-go-park.jpg": "/static/media/greyscale-go-park.4704609a161029561878.jpg",
     "static/media/nthu-mascot.png": "/static/media/nthu-mascot.24aca93974c7f8f76b43.png",
     "static/media/user.png": "/static/media/user.d54b5cea3dabfb92c990.png",
     "static/media/qa.png": "/static/media/qa.486ac92e4970e0a373d7.png",
     "index.html": "/index.html",
     "main.9ecfe8d5.css.map": "/static/css/main.9ecfe8d5.css.map",
-    "main.ea265b92.js.map": "/static/js/main.ea265b92.js.map",
+    "main.b76cbc5e.js.map": "/static/js/main.b76cbc5e.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ecfe8d5.css",
-    "static/js/main.ea265b92.js"
+    "static/js/main.b76cbc5e.js"
   ]
 }
