@@ -118,11 +118,12 @@ function PoI(props) {
   }, [poi1_timeState, poi2_timeState, poi3_timeState, poi4_timeState, poi5_timeState, poi6_timeState, poi7_timeState, poi8_timeState])
 
   useEffect(() => {
-    setUserInsidePoI(JSON.parse(sessionStorage.getItem("userInsidePoI")))
+    if(!userInsidePoI)
+      setUserInsidePoI(JSON.parse(sessionStorage.getItem("userInsidePoI")))
     return () => {
       // console.log('userInsidePoI.inside?: ' + userInsidePoI.inside + ', userInsidePoI.PoI: ' + userInsidePoI.PoI); 
     }
-  }, [])
+  }, [userInsidePoI])
 
   // useEffect(() => {
   //   if(!map) getMap();
