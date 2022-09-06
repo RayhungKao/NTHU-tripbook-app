@@ -826,7 +826,7 @@ function PoI(props) {
               <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card >
-                    <Card.Img variant="top" className="photo" src={(poi1State)?require('../images/pois/delta-building.png'):require('../images/pois/greyscale-delta-building.png')} />
+                    <Card.Img variant="top" className="photo" src={(poi1State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/delta-building.png':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-delta-building.png'} />
                     <Card.Body>
                       <Card.Title>{target[1].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -843,7 +843,7 @@ function PoI(props) {
               <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi2State)?require('../images/pois/library.jpg'):require('../images/pois/greyscale-library.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi2State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/library.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-library.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[2].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -860,7 +860,7 @@ function PoI(props) {
               <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi3State)?require('../images/pois/general-buildingII.jpeg'):require('../images/pois/greyscale-general-buildingII.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi3State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/general-buildingII.jpeg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-general-buildingII.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[3].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -877,7 +877,7 @@ function PoI(props) {
               <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi4State)?require('../images/pois/guest-house.jpg'):require('../images/pois/greyscale-guest-house.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi4State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/guest-house.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-guest-house.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[4].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -894,7 +894,7 @@ function PoI(props) {
               <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi5State)?require('../images/pois/plum-park.jpg'):require('../images/pois/greyscale-plum-park.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi5State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/plum-park.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-plum-park.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[5].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -911,7 +911,7 @@ function PoI(props) {
               <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi6State)?require('../images/pois/go-park.jpg'):require('../images/pois/greyscale-go-park.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi6State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/go-park.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-go-park.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[6].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -928,7 +928,7 @@ function PoI(props) {
               <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi7State)?require('../images/pois/chengkung-lake.jpg'):require('../images/pois/greyscale-chengkung-lake.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi7State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/chengkung-lake.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-chengkung-lake.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[7].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -945,7 +945,7 @@ function PoI(props) {
               <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi8State)?require('../images/pois/nthu-nctu-route.jpg'):require('../images/pois/greyscale-nthu-nctu-route.jpg')} />
+                    <Card.Img variant="top" className="photo" src={(poi8State)?'https://nthu-tripbook-images.s3.amazonaws.com/pois/nthu-nctu-route.jpg':'https://nthu-tripbook-images.s3.amazonaws.com/pois/greyscale-nthu-nctu-route.jpg'} />
                     <Card.Body>
                       <Card.Title>{target[8].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
