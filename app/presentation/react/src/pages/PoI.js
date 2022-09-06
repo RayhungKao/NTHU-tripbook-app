@@ -25,7 +25,7 @@ function PoI(props) {
 
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
   const [userInsidePoI, setUserInsidePoI] = useState({inside: false, PoI: 0});
-  const [map, setMap] = useState();
+  // const [map, setMap] = useState();
   const [geoinfo, setGeoinfo] = useState();
   const [geoinfoAmount, setGeoinfoAmount] = useState();
 

@@ -125,6 +125,7 @@ function App() {
       .then(async response => {
         let result = await response.json()
         if (response.status == 200) {
+          sessionStorage.clear();
           toast.success("Log out successfully", {
             position: "top-center",
             autoClose: 3000,
