@@ -52,7 +52,7 @@ module Tripbook
         default_src: %w['self'],
         child_src: %w['self'],
         connect_src: %w['self'] + CONNECT_SRC,
-        img_src: %w['self'] + OPENSTRRETMAP_SRC + LOCAL_IMAGE_SRC + GOOGLE_IMAGE_SRC,
+        img_src: %w['self'] + OPENSTRRETMAP_SRC + LOCAL_IMAGE_SRC + GOOGLE_IMAGE_SRC + AWS_S3_IMAGE_SRC,
         font_src: %w['self'] + FONT_SRC,
         script_src: %w['self'] + SCRIPT_SRC,
         style_src: %w['self'] + STYLE_SRC + %W['unsafe-inline'],
