@@ -351,7 +351,7 @@ function PoI(props) {
     4: {latitude: 24.79811232481267, longitude: 120.9910483527293, name: "清華會館"},  
     5: {latitude: 24.792459765107758, longitude: 120.99004427985564, name: "梅園"}, 
     6: {latitude: 24.78792834315937, longitude: 120.99083261427393, name: "奕園"},  
-    7: {latitude: 24.793869810505374, longitude: 120.99511878432668, name: "成功湖"},
+    7: {latitude: 24.793498870652314, longitude: 120.99427512620677, name: "成功湖"},
     8: {latitude: 24.79066534952453, longitude: 120.99570350574783, name: "清交小徑"}, 
   };
 
