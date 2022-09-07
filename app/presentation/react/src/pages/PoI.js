@@ -300,7 +300,7 @@ function PoI(props) {
                 progress: undefined,
               });
             }
-          console.log('進入i=' + i + ', ' + target[i].name )
+          // console.log('進入i=' + i + ', ' + target[i].name )
           setUserInsidePoI( {inside: true, PoI: i} );
           sessionStorage.setItem("userInsidePoI", JSON.stringify( {inside: true, PoI: i} ))
           postGeoinfo(true, i);

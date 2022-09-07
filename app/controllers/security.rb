@@ -19,7 +19,7 @@ module Tripbook
     OPENSTRRETMAP_SRC = %w[https://a.tile.openstreetmap.org/ https://b.tile.openstreetmap.org/ https://c.tile.openstreetmap.org/].freeze
     LOCAL_IMAGE_SRC = %w[data:].freeze
     GOOGLE_IMAGE_SRC = %w[https://maps.googleapis.com https://maps.gstatic.com/mapfiles/transparent.png https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png https://maps.gstatic.com/mapfiles/api-3/images/google_gray.svg].freeze
-    AWS_S3_IMAGE_SRC = %w[https://nthu-tripbook-images.s3.amazonaws.com]
+    AWS_S3_IMAGE_SRC = %w[https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com]
 
     configure :production do
       use Rack::SslEnforcer, hsts: true
