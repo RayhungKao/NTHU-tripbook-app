@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.9ecfe8d5.css",
-    "main.js": "/static/js/main.b76cbc5e.js",
+    "main.js": "/static/js/main.5df8ce6e.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
     "static/media/CS39.png": "/static/media/CS39.a0a2817bab12448b4904.png",
     "static/media/CS35.png": "/static/media/CS35.7b9c1b39734df809f780.png",
@@ -50,11 +50,14 @@
     "static/media/L13.png": "/static/media/L13.daefd6dc75efeea0b7c8.png",
     "static/media/L18.png": "/static/media/L18.2a7894446bfac731f854.png",
     "static/media/L12.png": "/static/media/L12.0bddbe00c00d7bf65c09.png",
+    "static/media/L21.png": "/static/media/L21.ae9aaa2c6dc2ab7bd6f5.png",
     "static/media/L1.png": "/static/media/L1.e1ed14636dcaddfe7b5a.png",
     "static/media/L7.png": "/static/media/L7.8d4ba30d5a44f4fd64bc.png",
+    "static/media/L22.png": "/static/media/L22.2f88a7d1acbc8c2899e3.png",
     "static/media/L19.png": "/static/media/L19.4972d3de8e30c364a6cc.png",
     "static/media/L14.png": "/static/media/L14.fc090c46bfba1f97a38f.png",
     "static/media/L9.png": "/static/media/L9.48db19bfe4d3d44e22e3.png",
+    "static/media/L20.png": "/static/media/L20.caac16b8c6bfdcf9e4c8.png",
     "static/media/L16.png": "/static/media/L16.ad9a9c0087331fc5b98c.png",
     "static/media/L3.png": "/static/media/L3.506686cc2d758ad23c9f.png",
     "static/media/L2.png": "/static/media/L2.a0c3c735a4f846ffedba.png",
@@ -85,11 +88,11 @@
     "static/media/B6.png": "/static/media/B6.d39bd6b517fb5ec81839.png",
     "static/media/B7.png": "/static/media/B7.b6255faecb5459ade939.png",
     "static/media/G3.png": "/static/media/G3.221ef6cd760b1252b44b.png",
-    "static/media/golden-card.png": "/static/media/golden-card.6073eb8cdf59870a9d1f.png",
     "static/media/B1.png": "/static/media/B1.b041da066048e91a0100.png",
     "static/media/G1.png": "/static/media/G1.de5d697919b86e9a98e9.png",
-    "static/media/graysacle-golden-card.png": "/static/media/graysacle-golden-card.5c28f2914b7018605081.png",
+    "static/media/golden-card.png": "/static/media/golden-card.20f328a1f0f5d69faaaa.png",
     "static/media/tripbook-logo.png": "/static/media/tripbook-logo.9d384d7bbd3ac053dbfb.png",
+    "static/media/graysacle-golden-card.png": "/static/media/graysacle-golden-card.9806da2ac3c182eab7ae.png",
     "static/media/nthu-gate.jpg": "/static/media/nthu-gate.b725a71dc1f7e79a0c63.jpg",
     "static/media/nthu-cs.png": "/static/media/nthu-cs.47c18e22efbe7c5deced.png",
     "static/media/nthu-mascot.png": "/static/media/nthu-mascot.24aca93974c7f8f76b43.png",
@@ -97,11 +100,11 @@
     "static/media/qa.png": "/static/media/qa.486ac92e4970e0a373d7.png",
     "index.html": "/index.html",
     "main.9ecfe8d5.css.map": "/static/css/main.9ecfe8d5.css.map",
-    "main.b76cbc5e.js.map": "/static/js/main.b76cbc5e.js.map",
+    "main.5df8ce6e.js.map": "/static/js/main.5df8ce6e.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ecfe8d5.css",
-    "static/js/main.b76cbc5e.js"
+    "static/js/main.5df8ce6e.js"
   ]
 }
