@@ -96,14 +96,16 @@ function PoI(props) {
   }, [userLocation])
 
   useEffect(() => {
-    setPoi1State(JSON.parse(sessionStorage.getItem("poi1State")))
-    setPoi2State(JSON.parse(sessionStorage.getItem("poi2State")))
-    setPoi3State(JSON.parse(sessionStorage.getItem("poi3State")))
-    setPoi4State(JSON.parse(sessionStorage.getItem("poi4State")))
-    setPoi5State(JSON.parse(sessionStorage.getItem("poi5State")))
-    setPoi6State(JSON.parse(sessionStorage.getItem("poi6State")))
-    setPoi7State(JSON.parse(sessionStorage.getItem("poi7State")))
-    setPoi8State(JSON.parse(sessionStorage.getItem("poi8State")))
+    if(!user){
+      setPoi1State(JSON.parse(sessionStorage.getItem("poi1State")))
+      setPoi2State(JSON.parse(sessionStorage.getItem("poi2State")))
+      setPoi3State(JSON.parse(sessionStorage.getItem("poi3State")))
+      setPoi4State(JSON.parse(sessionStorage.getItem("poi4State")))
+      setPoi5State(JSON.parse(sessionStorage.getItem("poi5State")))
+      setPoi6State(JSON.parse(sessionStorage.getItem("poi6State")))
+      setPoi7State(JSON.parse(sessionStorage.getItem("poi7State")))
+      setPoi8State(JSON.parse(sessionStorage.getItem("poi8State")))
+    }
   }, [poi1State, poi2State, poi3State, poi4State, poi5State, poi6State, poi7State, poi8State])
 
   useEffect(() => {
