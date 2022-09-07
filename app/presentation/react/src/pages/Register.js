@@ -40,7 +40,7 @@ function RegisterAccount(props) {
         fetch(baseUrl+'/api/v1/auth/register', requestOptions)
         .then(async response =>{
             let result = await response.json()
-            console.log(result)
+            // console.log(result)
             if (response.status == 200){
                 toast.info(`${result.message}`, {
                     position: "top-center",
@@ -95,7 +95,7 @@ function RegisterAccount(props) {
         fetch(baseUrl+'/api/v1/account/'+urlparams.token, requestOptions)
         .then(async response =>{
             let result = await response.json()
-            console.log(result)
+            // console.log(result)
             if (response.status == 200){
                 toast.info(`${result.message}`, {
                     position: "top-center",

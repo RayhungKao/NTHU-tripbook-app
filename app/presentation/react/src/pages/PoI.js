@@ -502,9 +502,9 @@ function PoI(props) {
   function postGeoinfo(inside, PoI){
     if (inside === false) return
     if (!user) return
-    console.log(PoI)
+    // console.log(PoI)
     const timestamp = new Date().toLocaleString('en-US', {hour12:false});
-    console.log(timestamp);
+    // console.log(timestamp);
     // const latitude  = userLocation.latitude.toString()
     // const longitude = userLocation.longitude.toString()
     const targetID  = PoI.toString()
@@ -521,7 +521,7 @@ function PoI(props) {
     .then(async response =>{
         let result = await response.json()
         if (response.status === 200 || response.status === 201){
-          console.log(result)
+          // console.log(result)
           getGeoinfo()
           // props.alertSuccessFunction(`${result.message}`)
         }
@@ -993,14 +993,14 @@ function PoI(props) {
                     <Col>
                       <Button variant="outline-light" onClick={() => handleShowCard('golden-card')}>
                         <Card>
-                          <Card.Img variant="top" src={require(`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/golden-card.png`)} style={{ height:"100%", width:"100%"}}/>
+                          <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/golden-card.png`} style={{ height:"100%", width:"100%"}}/>
                         </Card>
                       </Button>
                     </Col>
                     :<Col>
                       <Button variant="outline-light" onClick={() => handleShowCard('graysacle-golden-card')}>
                         <Card>
-                        <Card.Img variant="top" src={require(`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/graysacle-golden-card.png`)} style={{ height:"100%", width:"100%"}}/>
+                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/graysacle-golden-card.png`} style={{ height:"100%", width:"100%"}}/>
                         </Card>
                       </Button>
                     </Col>
@@ -1011,7 +1011,7 @@ function PoI(props) {
                               <Col>
                                 <Button variant="outline-light" onClick={() => handleShowCard(c.card_code)}>
                                   <Card>
-                                    <Card.Img variant="top" src={require(`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${c.card_code}.png`)} style={{ height:"100%", width:"100%"}}/>
+                                    <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${c.card_code}.png`} style={{ height:"100%", width:"100%"}}/>
                                   </Card>
                                 </Button>
                               </Col>
@@ -1028,7 +1028,7 @@ function PoI(props) {
                       >
                         <Modal.Header closeButton> 點擊x或點擊外側關閉
                         </Modal.Header>
-                        <Card.Img variant="top" src={require(`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${cardCode}.png`)} style={{ height:"100%", width:"100%"}}/>
+                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${cardCode}.png`} style={{ height:"100%", width:"100%"}}/>
                       </Modal>
                       :""
                     }
@@ -1052,7 +1052,7 @@ function PoI(props) {
                       <a href="https://forms.gle/kFFMLyLrDugha1Fr5">評分表單在此</a>
                     </Col>
                     <Col>
-                      <Card.Img variant="top" src={require(`../https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-mascot.png`)} />
+                      <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-mascot.png`} />
                     </Col>
                     <Col className="App">
                       <br></br>
@@ -1073,7 +1073,7 @@ function PoI(props) {
               <Card className="card">
                 <Card.Body>
                   <Row>
-                    <Card.Img variant="top" src={require(`../https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-cs.png`)} />
+                    <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-cs.png`} />
                   </Row>
                 </Card.Body>
                 <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
@@ -1093,7 +1093,7 @@ function PoI(props) {
                       <Col>
                       </Col>
                       <Col>
-                        <Card.Img variant="top" src={require(`../https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/qa.png`)} />
+                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/qa.png`} />
                       </Col>
                       <Col>
                       </Col>

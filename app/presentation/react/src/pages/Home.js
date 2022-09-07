@@ -63,7 +63,7 @@ function Home(props) {
                 <br></br>
             </div>
             <Card  style={{ borderColor:"white", opacity:"0.9"}}>
-                <Card.Img variant="top" className="photo" src={require('https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-gate.jpg')} style={{ height:"100%", width:"100%"}} />
+                <Card.Img variant="top" className="photo" src={'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-gate.jpg'} style={{ height:"100%", width:"100%"}} />
                 <Card.Body>
                     <Card.Text>
                         歡迎使用清華八景導覽程式！<br></br><br></br>
