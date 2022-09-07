@@ -615,7 +615,7 @@ function PoI(props) {
     let numberA = 2;
     let numberCS = 43;
     let numberG = 12;
-    let numberL = 19;
+    let numberL = 22;
 
     let numberTotal = numberA + numberCS + numberG + numberL;
     let id;
@@ -964,7 +964,7 @@ function PoI(props) {
         <TabPane tab="卡片倉庫" key="2">
           <Container style={{ height:"87vh", width:"100vw"}} >
             <br></br>
-            <h6 className="App">卡池有84張卡片，和朋友們分享自己的卡片吧！</h6>
+            <h6 className="App">卡池有87張卡片，和朋友們分享自己的卡片吧！</h6>
             <div className="App">可抽卡次數:{`${ (3 * geoinfoAmount) - cardsAmount} `}
               <Button variant="dark" onClick={handleShow} >
                 點擊抽卡
@@ -1105,9 +1105,11 @@ function PoI(props) {
                     A1: 請點擊畫面左上角 Tripbook 字樣，回到首頁，接著點擊 NEXT 重新載入清華八景，即可解決。<br></br><br></br>
                     Q2: 無法正確進入圈住的景點怎麼辦？<br></br>
                     A2: 請確認有開啟定位系統，若仍無法順利進入景點，請回到首頁，點擊 NEXT 重新載入清華八景。程式有時處於閒置狀態所以沒偵測到使用者位置，若有其他狀況，可通過問題回報表單聯繫我們！<br></br><br></br>
-                    Q3: 完成八個點的服學時數及小禮物如何領取？<br></br>
-                    A3: 請確認卡片倉庫第一張卡片是成功解鎖的紀念章圖樣，並且填寫完畢評分表單，即可到系辦登記與領取獎勵。<br></br><br></br>
-                    ＊小提醒：重新整理頁面若發生程式載入錯誤，請參考Q1和A1</small>
+                    Q3: 服學時數及小禮物如何領取？<br></br>
+                    A3: 完成八個點後填寫評分表單，即可在下方的「清華八景服學時數查詢」中確認自己有無領取到服學時數，至於小禮物則可以憑紀念章至台達五樓系辦領取！<br></br><br></br>
+                    ＊小提醒：重新整理頁面若發生程式載入錯誤，請參考Q1和A1<br></br>
+                    ＊<a href="https://docs.google.com/spreadsheets/d/1ew-JqJpxrwO1eNV7wupWNXKdyuQHlv3a2dbjuodDfuU/edit?usp=sharing">清華八景服學時數查詢（每週日會更新）</a>
+                  </small>
                 </Card.Footer>
               </Card>
             </Carousel.Item>
