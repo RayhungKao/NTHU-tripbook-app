@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.9ecfe8d5.css",
-    "main.js": "/static/js/main.5f6d6bec.js",
+    "main.js": "/static/js/main.83107d80.js",
     "static/js/787.659e9be6.chunk.js": "/static/js/787.659e9be6.chunk.js",
-    "static/media/tripbook-logo.png": "/static/media/tripbook-logo.9d384d7bbd3ac053dbfb.png",
+    "static/media/nthu-logo.png": "/static/media/nthu-logo.9d384d7bbd3ac053dbfb.png",
     "static/media/user.png": "/static/media/user.d54b5cea3dabfb92c990.png",
     "index.html": "/index.html",
     "main.9ecfe8d5.css.map": "/static/css/main.9ecfe8d5.css.map",
-    "main.5f6d6bec.js.map": "/static/js/main.5f6d6bec.js.map",
+    "main.83107d80.js.map": "/static/js/main.83107d80.js.map",
     "787.659e9be6.chunk.js.map": "/static/js/787.659e9be6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9ecfe8d5.css",
-    "static/js/main.5f6d6bec.js"
+    "static/js/main.83107d80.js"
   ]
 }
