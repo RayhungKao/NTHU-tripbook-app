@@ -7,7 +7,7 @@ import {
   useHistory
 } from "react-router-dom";
 import { Alert, Navbar, Nav, NavDropdown, Image } from 'react-bootstrap'
-import logo from './images/others/tripbook-logo.png';
+import logo from './images/others/nthu-logo.png';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Account from './pages/Account'

@@ -57,7 +57,7 @@ function Home(props) {
             <br></br>
             <div className="App" style={{ height:"10%", width:"100%"}}>
                 {
-                    (user)?<h4>Welcome back! {user}</h4>:<h4>Welcome to Tripbook!</h4>
+                    (user)?<h4>Welcome back! {user}</h4>:<h4>Welcome to Tripbook@NTHU</h4>
                 }
                 <h6 className="App">ready to explore?</h6>
                 <br></br>
