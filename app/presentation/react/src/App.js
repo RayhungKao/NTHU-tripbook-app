@@ -203,7 +203,7 @@ function App() {
                 </NavDropdown>
                 <Nav.Item className="ml-auto">
                   {
-                    (user) ? <Nav.Link>Hi, {user}</Nav.Link> : <Nav.Link>please login</Nav.Link>
+                    (user) ? <Nav.Link>Hi, {user}</Nav.Link> : <Nav.Link href="/login">please login</Nav.Link>
                   }
                 </Nav.Item>
               </Nav>
