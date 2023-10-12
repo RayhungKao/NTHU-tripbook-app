@@ -14,7 +14,7 @@ module Tripbook
     FONT_SRC = %w[https://cdn.jsdelivr.net https://fonts.googleapis.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net https://maps.googleapis.com/ ].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com https://maps.googleapis.com/ https://fonts.googleapis.com/].freeze
-    CONNECT_SRC = %w[https://maps.googleapis.com/maps https://maps.googleapis.com/maps/api/].freeze
+    CONNECT_SRC = %w[https://maps.googleapis.com/ https://maps.googleapis.com/maps https://maps.googleapis.com/maps/api/]
     GOOGLE_SSO_SRC = %w[https://accounts.google.com/o/oauth2/v2/auth].freeze
     OPENSTRRETMAP_SRC = %w[https://a.tile.openstreetmap.org/ https://b.tile.openstreetmap.org/ https://c.tile.openstreetmap.org/].freeze
     LOCAL_IMAGE_SRC = %w[data:].freeze
