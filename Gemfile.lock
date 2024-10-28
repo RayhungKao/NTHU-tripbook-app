@@ -100,8 +100,7 @@ GEM
     regexp_parser (2.4.0)
     rerun (0.13.1)
       listen (~> 3.0)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.9)
     roda (3.55.0)
       rack
     rubocop (1.29.1)
@@ -126,7 +125,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    strscan (3.1.0)
     thor (1.2.1)
     unf (0.1.4)
       unf_ext
