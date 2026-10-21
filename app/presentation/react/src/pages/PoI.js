@@ -216,8 +216,8 @@ function PoI(props) {
   //       else {
   //           toast.warn(`${result.message}`, {
   //             position: "bottom-center",
-  //             autoClose: 5000,
-  //             hideProgressBar: false,
+  //             autoClose: 3500,
+  //             hideProgressBar: true,
   //             closeOnClick: true,
   //             pauseOnHover: false,
   //             draggable: false,
@@ -231,8 +231,8 @@ function PoI(props) {
   //   .catch(error => {
   //       toast.warn("unknown error", {
   //         position: "bottom-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
+  //         autoClose: 3500,
+  //         hideProgressBar: true,
   //         closeOnClick: true,
   //         pauseOnHover: false,
   //         draggable: false,
@@ -259,8 +259,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -271,8 +271,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -283,8 +283,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -295,8 +295,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -307,8 +307,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -319,8 +319,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -331,8 +331,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -343,8 +343,8 @@ function PoI(props) {
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
                 position: "bottom-center",
-                autoClose: 7000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -527,8 +527,8 @@ function PoI(props) {
         else{
             toast.warn(`${result.message}`, {
               position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
+              autoClose: 3500,
+              hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: false,
               draggable: false,
@@ -542,8 +542,8 @@ function PoI(props) {
     .catch(error =>{
       toast.warn("unknown error to get geoinfo", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -582,8 +582,8 @@ function PoI(props) {
         else{
             toast.warn(`${result.message}`, {
               position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
+              autoClose: 3500,
+              hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: false,
               draggable: false,
@@ -597,8 +597,8 @@ function PoI(props) {
     .catch(error =>{
       toast.warn("unknown error to post geoinfo", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -639,8 +639,8 @@ function PoI(props) {
         else{
             toast.warn(`${result.message}`, {
               position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
+              autoClose: 3500,
+              hideProgressBar: true,
               closeOnClick: true,
               pauseOnHover: false,
               draggable: false,
@@ -654,8 +654,8 @@ function PoI(props) {
     .catch(error =>{
       toast.warn("unknown error to get cards", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -715,8 +715,8 @@ function PoI(props) {
     if (drawCardFlag === false) {
       toast.warn("Error! Please wait for seconds!", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -729,8 +729,8 @@ function PoI(props) {
     if (!user) {
       toast.warn("Error! Please login!", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -743,8 +743,8 @@ function PoI(props) {
     if ( (3 * geoinfoAmount) - cardsAmount <= 0 ) {
       toast.warn("Error! No quota for cards!", {
         position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3500,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
@@ -769,17 +769,8 @@ function PoI(props) {
           // console.log(result)
           toast.success("Successfully draw a new card", {
             position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-          });
-          toast.info("Loading new card...", {
-            position: "bottom-center",
-            autoClose: 4000,
-            hideProgressBar: false,
+            autoClose: 3500,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
@@ -789,8 +780,8 @@ function PoI(props) {
         else{
           toast.warn(`${result.message}`, {
             position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
+            autoClose: 3500,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
@@ -807,8 +798,8 @@ function PoI(props) {
     .catch(error =>{
         toast.warn("unknown error to draw card", {
           position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
+          autoClose: 3500,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
           draggable: false,
@@ -818,8 +809,8 @@ function PoI(props) {
     })
   }
 
-  const color_blue = { fillColor: '#0093FF', color: '#0093FF'}
-  const color_red = { fillColor: '#F75E5E', color: '#F75E5E'}
+  const color_blue = { fillColor: '#6b2c91', color: '#6b2c91'}
+  const color_red = { fillColor: '#e0654f', color: '#e0654f'}
   const radius = 50
 
 
@@ -837,6 +828,7 @@ function PoI(props) {
           <div style={{zIndex:2}} className="fixed-content">
             { !popupOpen && (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
               <Container style={{ color:"white", textAlign:"center", padding:"0 4px", width:"auto" }} >未走地點
+                <span className="progress-count">已走 {[poi1State, poi2State, poi3State, poi4State, poi5State, poi6State, poi7State, poi8State].filter(Boolean).length} / 8</span>
                 <Row xs={1} md={1} className="mx-0 d-block">
                   {
                     (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[1].name}</Col> : ""
@@ -881,7 +873,7 @@ function PoI(props) {
                 :""
               }
               <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card >
                     <Card.Img variant="top" className="photo" src={(poi1State)?'/assets/pois/delta-building.webp':'/assets/pois/greyscale-delta-building.webp'} />
@@ -899,7 +891,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={ poi2State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi2State)?'/assets/pois/library.webp':'/assets/pois/greyscale-library.webp'} />
@@ -917,7 +909,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi3State)?'/assets/pois/general-buildingII.webp':'/assets/pois/greyscale-general-buildingII.webp'} />
@@ -935,7 +927,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi4State)?'/assets/pois/guest-house.webp':'/assets/pois/greyscale-guest-house.webp'} />
@@ -953,7 +945,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi5State)?'/assets/pois/plum-park.webp':'/assets/pois/greyscale-plum-park.webp'} />
@@ -971,7 +963,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi6State)?'/assets/pois/go-park.webp':'/assets/pois/greyscale-go-park.webp'} />
@@ -989,7 +981,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi7State)?'/assets/pois/chengkung-lake.webp':'/assets/pois/greyscale-chengkung-lake.webp'} />
@@ -1007,7 +999,7 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
+              <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
                 <Popup>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi8State)?'/assets/pois/nthu-nctu-route.webp':'/assets/pois/greyscale-nthu-nctu-route.webp'} />
@@ -1029,11 +1021,13 @@ function PoI(props) {
           </div>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
-          <Container>
-            <br></br>
-            <h6 className="App">卡池有87張卡片，和朋友們分享自己的卡片吧！</h6>
-            <div className="App">可抽卡次數:{`${ (3 * geoinfoAmount) - cardsAmount} `}
-              <Button variant="dark" onClick={handleShow} >
+          <Container className="page">
+            <div className="surface cards-header">
+              <div>
+                <div className="quota-num">{((3 * geoinfoAmount) - cardsAmount) || 0}</div>
+                <div className="quota-label">可抽卡次數</div>
+              </div>
+              <Button className="btn-tb" onClick={handleShow} >
                 點擊抽卡
               </Button>
               <Modal show={show} onHide={handleClose}>
@@ -1051,11 +1045,11 @@ function PoI(props) {
                 </Modal.Footer>
               </Modal>
             </div>
-            <br></br>
+            <p className="cards-hint">卡池有87張卡片，和朋友們分享自己的卡片吧！</p>
             {
               (cards) ?
                   <>
-                    <Row xs={3} md={3} className="g-4">
+                    <Row xs={3} md={3} className="card-grid mx-n1">
                     {(geoinfoAmount >= 8)?
                     <Col>
                       <Button variant="outline-light" onClick={() => handleShowCard('golden-card')}>
@@ -1109,7 +1103,7 @@ function PoI(props) {
           <Carousel>
             <Carousel.Item>
               <br></br>
-              <Card.Text className="App" >Hi there!</Card.Text>
+              <Card.Text className="carousel-title" >Hi there!</Card.Text>
               <Card className="card">
                 <Card.Body>
                   <Row>
@@ -1136,14 +1130,14 @@ function PoI(props) {
             </Carousel.Item>
             <Carousel.Item>
               <br></br>
-              <Card.Text className="App" >Sponsorship</Card.Text>
+              <Card.Text className="carousel-title" >Sponsorship</Card.Text>
               <Card className="card">
                 <Card.Body>
                   <Row>
                     <Card.Img variant="top" src={`/assets/others/nthu-cs.webp`} />
                   </Row>
                 </Card.Body>
-                <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
+                <Card.Text className="carousel-title" >{"系辦想跟大家說的話><"}</Card.Text>
                 <Card.Footer style={{ maxHeight:"55vh", width:"100%", overflow:"auto"}}>
                   <small className="text-muted">歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。<br></br><br></br>
                   系上自上個學期，開始進行企業導師計畫，由資工系、資應所多位在業界都非常有經驗的系友，來擔任業師，希望藉由業師豐富的社會實戰經驗讓本系(含資應所及資安所)學生得以宏觀的視野來進行職涯規劃與畢業後發展的參考，進而提升自我競爭力。<br></br><br></br>
@@ -1153,7 +1147,7 @@ function PoI(props) {
             </Carousel.Item>
             <Carousel.Item>
               <br></br>
-              <Card.Text className="App" >常見問題</Card.Text>
+              <Card.Text className="carousel-title" >常見問題</Card.Text>
               <Card className="card">
                 <Card.Body>
                   <Row>

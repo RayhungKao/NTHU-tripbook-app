@@ -42,8 +42,8 @@ function Login(props) {
                 if (response.status == 200) {
                     toast.success(`Log in successfully. Welcome, ${result.account.username}`, {
                         position: "bottom-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
+                        autoClose: 3500,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: false,
                         draggable: false,
@@ -59,8 +59,8 @@ function Login(props) {
                 else {
                     toast.warn(`${result.message}`, {
                         position: "bottom-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
+                        autoClose: 3500,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: false,
                         draggable: false,
@@ -74,8 +74,8 @@ function Login(props) {
             .catch(error => {
                 toast.error("unknown error", {
                     position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 3500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
@@ -89,15 +89,12 @@ function Login(props) {
     }
     
     return (
-        <>
-            <br></br>
-            <div className="App">
-                <h4>Login</h4>
-                {demoMode && <p className="text-muted">Demo 帳號：<code>demo</code>　密碼：<code>tripbook-demo</code></p>}
-            </div>
-            <br />
-            <Container>
-                <Row className="pb-2">
+        <div className="page">
+            <h1 className="page-title">Login</h1>
+            <p className="page-subtitle">ready to explore?</p>
+            {demoMode && <div className="demo-hint">Demo 帳號：<code>demo</code>　密碼：<code>tripbook-demo</code></div>}
+            <Container className="surface">
+                <Row>
                     <Col>
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
@@ -110,7 +107,7 @@ function Login(props) {
                                 <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter your student Id" />
                             </Form.Group>
                             <div align="center">
-                                <Button className="w-100" variant="dark" type="submit">
+                                <Button className="btn-tb w-100" type="submit">
                                     Submit
                                 </Button>
                             </div>
@@ -118,8 +115,7 @@ function Login(props) {
                     </Col>
                 </Row>
             </Container>
-
-        </>
+        </div>
     );
 }
 
