@@ -8,7 +8,7 @@ import {
     useHistory
 } from "react-router-dom";
 import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
-import { baseUrl } from '../config'
+import { baseUrl, demoMode } from '../config'
 import { AuthContext } from "../contexts";
 import { toast } from 'react-toastify';
 
@@ -51,6 +51,7 @@ function Login(props) {
                     });
                     // console.log(result.account.username)
                     setUser(result.account.username)
+                    sessionStorage.setItem("user", result.account.username)
                     setTimeout(() => {
                         history.push('/poi')
                     }, 3000)
@@ -92,6 +93,7 @@ function Login(props) {
             <br></br>
             <div className="App">
                 <h4>Login</h4>
+                {demoMode && <p className="text-muted">Demo 帳號：<code>demo</code>　密碼：<code>tripbook-demo</code></p>}
             </div>
             <br />
             <Container>

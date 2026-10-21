@@ -7,8 +7,8 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
-import { baseUrl } from '../config'
+import { Alert, Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
+import { baseUrl, demoMode } from '../config'
 import { AuthContext } from "../contexts";
 import { toast } from 'react-toastify';
 
@@ -146,6 +146,11 @@ function RegisterAccount(props) {
             </div>
             <br />
             <Container>
+                {demoMode &&
+                    <Alert variant="secondary">
+                        Demo 版未開放註冊（需寄送驗證信），請使用 <Alert.Link href="/login">demo 帳號登入</Alert.Link>。
+                    </Alert>
+                }
                 <Row>
                     <Col>
                     {
@@ -183,7 +188,7 @@ function RegisterAccount(props) {
                             </Form.Group>
 
                             <div align="center">
-                                <Button variant="dark" type="submit">
+                                <Button variant="dark" type="submit" disabled={demoMode}>
                                     Create Account
                                 </Button>
                             </div>

@@ -14,18 +14,23 @@ body {
 }  
 
 .fixed-content {
-  /* top: 0; */
-  bottom: 0%;
-  opacity: 0.6;
-  position:fixed;
-  /* overflow-y:scroll; */
-  overflow-x:hidden;
+  /* overlay in the map's top-right corner, which has no spots */
+  top: 10px;
+  right: 10px;
+  max-height: calc(100% - 20px);
+  opacity: 0.85;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color:#1f1f37;
   /* background-color:#b3b3b3; */
-  padding:1%;
-  left: 0%;
-  border-radius: 10%;
-  /* right: 0%; */
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.fixed-content:empty {
+  display: none;
 }
 
 .bg-image {
@@ -45,4 +50,37 @@ body {
 .card {
   max-width: 100%;
   height: auto;
+}
+
+/* the map runs to the bottom edge, so drop the border rc-tabs draws under the whole component */
+.rc-tabs-top {
+  border-bottom: 0;
+}
+
+/* fit all three tabs on phones instead of switching to a scrolling tab bar */
+@media (max-width: 576px) {
+  .rc-tabs-top .rc-tabs-tab {
+    margin-right: 8px;
+    padding: 8px 14px;
+  }
+}
+
+/* carousel controls are white by default and invisible on the white background */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+.carousel .carousel-indicators li {
+  background-color: #343a40;
+}
+
+/* keep slide content (e.g. the form links) clear of the prev/next hit areas and the indicators */
+.carousel .carousel-inner {
+  padding: 0 36px 28px;
+}
+
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+  width: 36px;
 }

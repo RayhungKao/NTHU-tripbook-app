@@ -1,0 +1,52 @@
+# Render Blueprint for the Tripbook demo: deploys this web app and the API (separate repo) on the free plan.
+# Secrets are marked `sync: false`, so Render asks for them when the Blueprint is first applied.
+services:
+  - type: web
+    name: tripbook-api
+    runtime: docker
+    repo: https://github.com/RayhungKao/NTHU-tripbook-api
+    branch: master
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: RACK_ENV
+        value: production
+      - key: SECURE_SCHEME
+        value: HTTPS
+      # SQLite on the free instance's ephemeral disk: demo data resets whenever the service restarts
+      - key: DATABASE_URL
+        value: sqlite://app/db/store/production.db
+      - key: DB_KEY # API repo: rake newkey:db
+        sync: false
+      - key: MSG_KEY # API repo: rake newkey:msg
+        sync: false
+      - key: SIGNING_KEY # API repo: rake newkey:signing (same value as the web app's SIGNING_KEY)
+        sync: false
+      - key: VERIFY_KEY # API repo: rake newkey:signing
+        sync: false
+
+  - type: web
+    name: tripbook-app
+    runtime: docker
+    repo: https://github.com/RayhungKao/NTHU-tripbook-app
+    branch: master
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: RACK_ENV
+        value: production
+      - key: API_URL # e.g. https://tripbook-api.onrender.com/api/v1
+        sync: false
+      - key: APP_URL # e.g. https://tripbook-app.onrender.com
+        sync: false
+      - key: SESSION_SECRET # rake generate:session_secret
+        sync: false
+      - key: MSG_KEY # rake generate:msg_key
+        sync: false
+      - key: SIGNING_KEY # same value as the API's SIGNING_KEY
+        sync: false
+      # Optional: leave empty to use OpenStreetMap tiles instead of Google Maps
+      - key: REACT_APP_GOOGLE_MAP_KEY
+        value: ""

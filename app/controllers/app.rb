@@ -17,6 +17,7 @@ module Tripbook
         end
       end
     end
+    Rack::Mime::MIME_TYPES['.webp'] = 'image/webp'
     plugin :public, root: 'app/presentation/built', gzip: true
     plugin :halt
     plugin :multi_route

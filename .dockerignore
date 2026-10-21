@@ -1,0 +1,4 @@
+.git
+config/secrets.yml
+coverage
+app/presentation/react
