@@ -26,7 +26,7 @@ function Home(props) {
             toast("🦄 let's login!", {
                 position: "bottom-center",
                 autoClose: 3000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -40,7 +40,7 @@ function Home(props) {
             toast("🦄 enjoy your tripbook!", {
                 position: "bottom-center",
                 autoClose: 3000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -53,41 +53,42 @@ function Home(props) {
     }
 
     return (
-        <>
-            <br></br>
-            <div className="App" style={{ height:"10%", width:"100%"}}>
-                {
-                    (user)?<h4>Welcome back! {user}</h4>:<h4>Welcome to Tripbook@NTHU</h4>
-                }
-                <h6 className="App">ready to explore?</h6>
-                <br></br>
+        <div className="page">
+            <div className="home-hero">
+                <img src={'/assets/others/nthu-gate.webp'} alt="國立清華大學校門" />
+                <div className="home-hero-text">
+                    <span className="eyebrow">Tripbook@NTHU</span>
+                    <h1>{(user) ? `Welcome back! ${user}` : '歡迎使用清華八景導覽程式！'}</h1>
+                    <p>ready to explore?</p>
+                </div>
             </div>
-            <Card  style={{ borderColor:"white", opacity:"0.9"}}>
-                <Card.Img variant="top" className="photo" src={'/assets/others/nthu-gate.webp'} style={{ height:"100%", width:"100%"}} />
-                <Card.Body>
-                    <Card.Text>
-                        歡迎使用清華八景導覽程式！<br></br><br></br>
-                        總共有八個景點可以抵達，每到一個新的景點會獲得相應抽卡點數。<br></br><br></br>
-                        卡片內容為學長姐獨家的修課心得、系上活動及實驗室介紹，來跟同學聊聊你都抽了哪些卡吧～全部完成後還能獲得服學時數哦！
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Container>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Button className="w-100" 
-                            style={{backgroundColor:'transparent', borderColor:'transparent'}}
-                            onClick={() => toLoginPage()}
-                        >
-                            <Image variant="top" src={require(`../images/uis/main_button.png`)} style={{ height:"100%", width:"100%"}}/>
-                        </Button>
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Container>
-
-        </>
+            <ol className="home-steps">
+                <li>
+                    <span className="step-num">1</span>
+                    <div>
+                        <strong>走訪清華八景</strong>
+                        <span>總共有八個景點可以抵達，每到一個新的景點會獲得相應抽卡點數。</span>
+                    </div>
+                </li>
+                <li>
+                    <span className="step-num">2</span>
+                    <div>
+                        <strong>抽卡收藏</strong>
+                        <span>卡片內容為學長姐獨家的修課心得、系上活動及實驗室介紹，來跟同學聊聊你都抽了哪些卡吧～</span>
+                    </div>
+                </li>
+                <li>
+                    <span className="step-num">3</span>
+                    <div>
+                        <strong>完成拿服學時數</strong>
+                        <span>全部完成後還能獲得服學時數哦！</span>
+                    </div>
+                </li>
+            </ol>
+            <Button className="btn-tb w-100 home-cta" onClick={() => toLoginPage()}>
+                NEXT →
+            </Button>
+        </div>
     );
 }
 

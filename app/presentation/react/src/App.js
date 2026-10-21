@@ -129,7 +129,7 @@ function App() {
           toast.success("Log out successfully", {
             position: "bottom-center",
             autoClose: 3000,
-            hideProgressBar: false,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
@@ -144,7 +144,7 @@ function App() {
           toast.warn(`${result.message}`, {
             position: "bottom-center",
             autoClose: 3000,
-            hideProgressBar: false,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
@@ -158,8 +158,8 @@ function App() {
       .catch(error => {
         toast.error("unknown error", {
           position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
+          autoClose: 3500,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
           draggable: false,
@@ -175,8 +175,9 @@ function App() {
         <div>
           <ToastContainer 
           position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
+          autoClose={3500}
+          hideProgressBar={true}
+          limit={3}
           newestOnTop={false}
           closeOnClick
           rtl={false}

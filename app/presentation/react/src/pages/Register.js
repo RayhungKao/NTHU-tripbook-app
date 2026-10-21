@@ -7,7 +7,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-import { Alert, Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
+import { Button, Form, Col, InputGroup, Row, FormControl, Container, Table } from 'react-bootstrap'
 import { baseUrl, demoMode } from '../config'
 import { AuthContext } from "../contexts";
 import { toast } from 'react-toastify';
@@ -44,8 +44,8 @@ function RegisterAccount(props) {
             if (response.status == 200){
                 toast.info(`${result.message}`, {
                     position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 3500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
@@ -58,8 +58,8 @@ function RegisterAccount(props) {
             else{
                 toast.warn(`${result.message}`, {
                     position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 3500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
@@ -73,8 +73,8 @@ function RegisterAccount(props) {
         .catch(error =>{
             toast.error(`${error.message}`, {
                 position: "bottom-center",
-                autoClose: 5000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -99,8 +99,8 @@ function RegisterAccount(props) {
             if (response.status == 200){
                 toast.info(`${result.message}`, {
                     position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 3500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
@@ -113,8 +113,8 @@ function RegisterAccount(props) {
             else{
                 toast.warn(`${result.message}`, {
                     position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 3500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
@@ -128,8 +128,8 @@ function RegisterAccount(props) {
         .catch(error =>{
             toast.error(`${error.message}`, {
                 position: "bottom-center",
-                autoClose: 5000,
-                hideProgressBar: false,
+                autoClose: 3500,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
@@ -139,18 +139,15 @@ function RegisterAccount(props) {
     }
 
     return (
-        <>
-            <br></br>
-            <div className="App">
-                { (urlparams.token)?<h4>Almost complete</h4>:<h4>Create Account</h4>}
-            </div>
-            <br />
-            <Container>
-                {demoMode &&
-                    <Alert variant="secondary">
-                        Demo 版未開放註冊（需寄送驗證信），請使用 <Alert.Link href="/login">demo 帳號登入</Alert.Link>。
-                    </Alert>
-                }
+        <div className="page">
+            <h1 className="page-title">{ (urlparams.token)?"Almost complete":"Create Account"}</h1>
+            <p className="page-subtitle">ready to explore?</p>
+            {demoMode &&
+                <div className="demo-hint">
+                    Demo 版未開放註冊（需寄送驗證信），請使用 <a href="/login">demo 帳號登入</a>。
+                </div>
+            }
+            <Container className="surface">
                 <Row>
                     <Col>
                     {
@@ -167,7 +164,7 @@ function RegisterAccount(props) {
                             </Form.Group>
                             
                             <div align="center">
-                                <Button variant="dark" type="submit">
+                                <Button className="btn-tb w-100" type="submit">
                                     Set Password
                                 </Button>
                             </div>
@@ -188,7 +185,7 @@ function RegisterAccount(props) {
                             </Form.Group>
 
                             <div align="center">
-                                <Button variant="dark" type="submit" disabled={demoMode}>
+                                <Button className="btn-tb w-100" type="submit" disabled={demoMode}>
                                     Create Account
                                 </Button>
                             </div>
@@ -197,8 +194,7 @@ function RegisterAccount(props) {
                     </Col>
                 </Row>
             </Container>
-
-        </>
+        </div>
     );
 }
 

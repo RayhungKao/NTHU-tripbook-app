@@ -1,0 +1,524 @@
+/*
+ * Tripbook visual theme: NTHU purple with a gold accent.
+ * Rules are scoped under #root (or body for portals) because the Bootstrap stylesheet loads after this bundle.
+ */
+:root {
+  --tb-primary: #6b2c91;
+  --tb-primary-dark: #4e1f6b;
+  --tb-primary-soft: #f3ecf8;
+  --tb-gold: #c9a227;
+  --tb-ink: #1f1b24;
+  --tb-muted: #6b6575;
+  --tb-line: #e7e2ee;
+  --tb-bg: #f6f4f9;
+  --tb-surface: #ffffff;
+  --tb-radius: 14px;
+  --tb-shadow: 0 6px 20px rgba(40, 20, 60, 0.08);
+  --tb-font: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", Roboto, sans-serif;
+}
+
+html body {
+  background-color: #ece8f1;
+  font-family: var(--tb-font);
+  color: var(--tb-ink);
+}
+
+#root {
+  background-color: var(--tb-bg);
+}
+
+/* ---------- navbar ---------- */
+#root .navbar {
+  background: linear-gradient(135deg, var(--tb-primary-dark), var(--tb-primary)) !important;
+  padding: 10px 16px;
+}
+
+#root .navbar .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#root .navbar .navbar-brand img {
+  background: #fff;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+#root .navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+#root .navbar .nav-link:hover,
+#root .navbar .nav-link:focus {
+  color: #fff;
+}
+
+#root .navbar .dropdown-menu {
+  border: 0;
+  border-radius: 12px;
+  box-shadow: var(--tb-shadow);
+  padding: 6px;
+}
+
+#root .navbar .dropdown-item {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+#root .navbar .dropdown-item:active {
+  background-color: var(--tb-primary);
+}
+
+/* ---------- shared page pieces ---------- */
+#root .page {
+  padding: 20px 16px 32px;
+}
+
+#root .page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 4px 0 4px;
+  text-align: center;
+}
+
+#root .page-subtitle {
+  color: var(--tb-muted);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#root .surface {
+  background: var(--tb-surface);
+  border-radius: var(--tb-radius);
+  box-shadow: var(--tb-shadow);
+  padding: 20px;
+}
+
+#root .btn-tb {
+  background: var(--tb-primary);
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 16px;
+  box-shadow: 0 6px 16px rgba(107, 44, 145, 0.3);
+}
+
+#root .btn-tb:hover,
+#root .btn-tb:focus {
+  background: var(--tb-primary-dark);
+  color: #fff;
+}
+
+#root .btn-tb:disabled {
+  background: #b9b2c2;
+  box-shadow: none;
+}
+
+#root .form-control {
+  border-radius: 10px;
+  border-color: var(--tb-line);
+  padding: 10px 12px;
+  height: auto;
+}
+
+#root .form-control:focus {
+  border-color: var(--tb-primary);
+  box-shadow: 0 0 0 3px rgba(107, 44, 145, 0.15);
+}
+
+#root .form-group label,
+#root .form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--tb-muted);
+}
+
+#root .demo-hint {
+  background: var(--tb-primary-soft);
+  border-radius: 12px;
+  color: var(--tb-primary-dark);
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+#root .demo-hint code {
+  background: #fff;
+  border-radius: 6px;
+  color: var(--tb-primary);
+  font-weight: 600;
+  padding: 1px 6px;
+}
+
+#root .alert {
+  border: 0;
+  border-radius: 12px;
+}
+
+/* ---------- home ---------- */
+#root .home-hero {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--tb-shadow);
+}
+
+#root .home-hero img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+#root .home-hero-text {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 48px 18px 16px;
+  background: linear-gradient(transparent, rgba(30, 10, 45, 0.78));
+  color: #fff;
+}
+
+#root .home-hero-text .eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #f1dc8f;
+}
+
+#root .home-hero-text h1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 2px 0 0;
+}
+
+#root .home-hero-text p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+#root .home-steps {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+
+#root .home-steps li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--tb-surface);
+  border-radius: var(--tb-radius);
+  box-shadow: var(--tb-shadow);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+#root .home-steps .step-num {
+  flex: 0 0 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--tb-primary-soft);
+  color: var(--tb-primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#root .home-steps strong {
+  display: block;
+  font-size: 1rem;
+}
+
+#root .home-steps span {
+  color: var(--tb-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- tabs ---------- */
+#root .rc-tabs-bar {
+  background: var(--tb-surface);
+  border-bottom: 1px solid var(--tb-line);
+}
+
+#root .rc-tabs-top .rc-tabs-tab {
+  color: var(--tb-muted);
+  font-weight: 600;
+}
+
+#root .rc-tabs-top .rc-tabs-tab-active,
+#root .rc-tabs-top .rc-tabs-tab:hover {
+  color: var(--tb-primary);
+}
+
+#root .rc-tabs-ink-bar {
+  background-color: var(--tb-primary);
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+
+/* ---------- map ---------- */
+#root .fixed-content {
+  background-color: rgba(255, 255, 255, 0.94);
+  opacity: 1;
+  border-radius: 14px;
+  box-shadow: var(--tb-shadow);
+  padding: 8px;
+}
+
+#root .fixed-content .container {
+  color: var(--tb-ink) !important;
+  font-weight: 700;
+}
+
+#root .fixed-content .progress-count {
+  display: block;
+  color: var(--tb-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+#root .fixed-content .col {
+  background: var(--tb-primary-soft) !important;
+  color: var(--tb-primary-dark) !important;
+  font-weight: 500;
+  border-radius: 999px !important;
+}
+
+#root .leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root .leaflet-popup-content {
+  margin: 0;
+}
+
+#root .leaflet-popup-content .card {
+  border: 0;
+  border-radius: 0;
+}
+
+#root .leaflet-popup-content .card-img-top {
+  border-radius: 0;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  height: auto;
+}
+
+#root .leaflet-popup-content .card-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+#root .leaflet-popup-content .card-text {
+  color: var(--tb-muted);
+  line-height: 1.6;
+}
+
+#root .leaflet-popup-content .card-footer {
+  background: var(--tb-surface);
+  border-top: 1px solid var(--tb-line);
+}
+
+#root .leaflet-popup-content .card-footer .btn {
+  background: var(--tb-primary);
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px;
+}
+
+#root .leaflet-container a.leaflet-popup-close-button {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: var(--tb-ink);
+  width: 28px;
+  height: 28px;
+  font: 20px/26px var(--tb-font);
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+}
+
+/* ---------- cards tab ---------- */
+#root .cards-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#root .quota-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--tb-primary);
+  line-height: 1;
+}
+
+#root .quota-label {
+  color: var(--tb-muted);
+  font-size: 0.85rem;
+}
+
+#root .cards-hint {
+  color: var(--tb-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 16px 0 12px;
+}
+
+#root .card-grid > .col {
+  padding: 6px;
+}
+
+#root .card-grid .btn {
+  padding: 0;
+  border: 0;
+  width: 100%;
+  background: transparent;
+}
+
+#root .card-grid .card {
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(40, 20, 60, 0.12);
+  transition: transform 0.15s ease;
+}
+
+#root .card-grid .btn:hover .card,
+#root .card-grid .btn:focus .card {
+  transform: translateY(-2px);
+}
+
+#root .card-grid .card-img-top {
+  aspect-ratio: 994 / 1613;
+  object-fit: contain;
+  background: #fff;
+}
+
+/* ---------- about ---------- */
+#root .rc-tabs-tabpane .carousel .card {
+  border: 0;
+  border-radius: var(--tb-radius);
+  box-shadow: var(--tb-shadow);
+  overflow: hidden;
+}
+
+#root .rc-tabs-tabpane .carousel .card-footer {
+  background: var(--tb-surface);
+  border-top: 1px solid var(--tb-line);
+  line-height: 1.7;
+}
+
+#root .rc-tabs-tabpane .carousel a {
+  color: var(--tb-primary);
+  font-weight: 600;
+}
+
+#root .carousel-title {
+  font-weight: 700;
+  margin: 16px 0 12px;
+  text-align: center;
+}
+
+/* ---------- modals (rendered outside #root) ---------- */
+body .modal-content {
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(30, 10, 45, 0.25);
+  overflow: hidden;
+}
+
+body .modal-header,
+body .modal-footer {
+  border-color: var(--tb-line);
+}
+
+body .modal-title {
+  font-weight: 700;
+}
+
+body .modal-footer .btn-dark {
+  background: var(--tb-primary);
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px 20px;
+}
+
+body .modal-footer .btn-secondary {
+  background: transparent;
+  border: 1px solid var(--tb-line);
+  border-radius: 10px;
+  color: var(--tb-muted);
+}
+
+/* ---------- toasts: compact rounded pills above the bottom edge ---------- */
+#root .Toastify__toast-container {
+  padding: 0 12px;
+}
+
+#root .Toastify__toast-container--bottom-center {
+  bottom: 16px;
+}
+
+#root .Toastify__toast {
+  border-radius: 14px;
+  min-height: 0;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 10px 30px rgba(30, 10, 45, 0.18);
+  font-family: var(--tb-font);
+  font-size: 0.92rem;
+  color: var(--tb-ink);
+}
+
+#root .Toastify__close-button {
+  align-self: center;
+}
+
+@media (max-width: 480px) {
+  #root .Toastify__toast-container {
+    width: 100%;
+    left: 0;
+    transform: none;
+  }
+
+  #root .Toastify__toast-container--bottom-center {
+    bottom: 12px;
+  }
+}
+
+/* the narrowest phones (320px) need tighter navbar spacing to fit "please login" */
+@media (max-width: 360px) {
+  #root .navbar {
+    padding: 10px 12px;
+  }
+
+  #root .navbar .navbar-brand {
+    gap: 6px;
+  }
+}
+
+/* keep the home call-to-action on screen instead of below the fold */
+#root .home-cta {
+  position: sticky;
+  bottom: 16px;
+}
+
+/* tint Leaflet's default blue pins to the theme purple */
+#root .poi-marker {
+  filter: hue-rotate(65deg) saturate(0.9);
+}
