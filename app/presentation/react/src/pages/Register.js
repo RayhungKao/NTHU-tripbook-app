@@ -43,7 +43,7 @@ function RegisterAccount(props) {
             // console.log(result)
             if (response.status == 200){
                 toast.info(`${result.message}`, {
-                    position: "top-center",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -57,7 +57,7 @@ function RegisterAccount(props) {
             }
             else{
                 toast.warn(`${result.message}`, {
-                    position: "top-center",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -72,7 +72,7 @@ function RegisterAccount(props) {
         })
         .catch(error =>{
             toast.error(`${error.message}`, {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -98,7 +98,7 @@ function RegisterAccount(props) {
             // console.log(result)
             if (response.status == 200){
                 toast.info(`${result.message}`, {
-                    position: "top-center",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -112,7 +112,7 @@ function RegisterAccount(props) {
             }
             else{
                 toast.warn(`${result.message}`, {
-                    position: "top-center",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -127,7 +127,7 @@ function RegisterAccount(props) {
         })
         .catch(error =>{
             toast.error(`${error.message}`, {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,

@@ -41,7 +41,7 @@ function Login(props) {
                 let result = await response.json()
                 if (response.status == 200) {
                     toast.success(`Log in successfully. Welcome, ${result.account.username}`, {
-                        position: "top-center",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -58,7 +58,7 @@ function Login(props) {
                 }
                 else {
                     toast.warn(`${result.message}`, {
-                        position: "top-right",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -73,7 +73,7 @@ function Login(props) {
             })
             .catch(error => {
                 toast.error("unknown error", {
-                    position: "top-right",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,

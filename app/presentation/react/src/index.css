@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Tripbook is built for phones: on wider screens show it as a centered phone-width column */
+html body {
+  background-color: #e9ecef;
+}
+
+#root {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.12);
+}
+
+/* make room for the navbar items on the narrowest phones (320px) */
+@media (max-width: 360px) {
+  .navbar .navbar-brand {
+    font-size: 1.05rem;
+  }
+}

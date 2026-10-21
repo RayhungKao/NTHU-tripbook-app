@@ -215,7 +215,7 @@ function PoI(props) {
   //       }
   //       else {
   //           toast.warn(`${result.message}`, {
-  //             position: "top-right",
+  //             position: "bottom-center",
   //             autoClose: 5000,
   //             hideProgressBar: false,
   //             closeOnClick: true,
@@ -230,7 +230,7 @@ function PoI(props) {
   //   })
   //   .catch(error => {
   //       toast.warn("unknown error", {
-  //         position: "top-right",
+  //         position: "bottom-center",
   //         autoClose: 5000,
   //         hideProgressBar: false,
   //         closeOnClick: true,
@@ -258,7 +258,7 @@ function PoI(props) {
           if (i === 1 && !poi1State) 
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -270,7 +270,7 @@ function PoI(props) {
           if (i === 2 && !poi2State) 
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -282,7 +282,7 @@ function PoI(props) {
           if (i === 3 && !poi3State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -294,7 +294,7 @@ function PoI(props) {
           if (i === 4 && !poi4State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -306,7 +306,7 @@ function PoI(props) {
           if (i === 5 && !poi5State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -318,7 +318,7 @@ function PoI(props) {
           if (i === 6 && !poi6State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -330,7 +330,7 @@ function PoI(props) {
           if (i === 7 && !poi7State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -342,7 +342,7 @@ function PoI(props) {
           if (i === 8 && !poi8State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 7000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -526,7 +526,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "top-right",
+              position: "bottom-center",
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -541,7 +541,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to get geoinfo", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -581,7 +581,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "top-right",
+              position: "bottom-center",
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -596,7 +596,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to post geoinfo", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -638,7 +638,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "top-right",
+              position: "bottom-center",
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -653,7 +653,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to get cards", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -714,7 +714,7 @@ function PoI(props) {
   function drawCard(){
     if (drawCardFlag === false) {
       toast.warn("Error! Please wait for seconds!", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -728,7 +728,7 @@ function PoI(props) {
     }
     if (!user) {
       toast.warn("Error! Please login!", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -742,7 +742,7 @@ function PoI(props) {
     }
     if ( (3 * geoinfoAmount) - cardsAmount <= 0 ) {
       toast.warn("Error! No quota for cards!", {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -768,7 +768,7 @@ function PoI(props) {
         if (response.status === 200){
           // console.log(result)
           toast.success("Successfully draw a new card", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -777,7 +777,7 @@ function PoI(props) {
             progress: undefined,
           });
           toast.info("Loading new card...", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -788,7 +788,7 @@ function PoI(props) {
         }
         else{
           toast.warn(`${result.message}`, {
-            position: "top-right",
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -806,7 +806,7 @@ function PoI(props) {
     })
     .catch(error =>{
         toast.warn("unknown error to draw card", {
-          position: "top-right",
+          position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -833,7 +833,7 @@ function PoI(props) {
         renderTabContent={() => <TabContent />}
       >
         <TabPane tab="清華八景" key="1">
-          <div ref={mapWrapper} style={{position:"relative", height: mapHeight || "calc(100dvh - 96px)"}}>
+          <div ref={mapWrapper} className={popupOpen ? "popup-open" : ""} style={{position:"relative", height: mapHeight || "calc(100dvh - 96px)"}}>
           <div style={{zIndex:2}} className="fixed-content">
             { !popupOpen && (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
               <Container style={{ color:"white", textAlign:"center", padding:"0 4px", width:"auto" }} >未走地點
