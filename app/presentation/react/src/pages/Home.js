@@ -11,7 +11,6 @@ import {
 import { Button, Alert, Nav, Form, Col, InputGroup, Row, FormControl, Container, Table, Image, Card } from 'react-bootstrap'
 import { baseUrl } from '../config'
 import { AuthContext } from "../contexts";
-import { toast } from 'react-toastify';
 
 function Home(props) {
     const { search } = useLocation()
@@ -22,34 +21,8 @@ function Home(props) {
     const { user, setUser } = useContext(AuthContext);
 
     function toLoginPage(){
-        if(user === ""){
-            toast("🦄 let's login!", {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                history.push('/login')
-            }, 3000)
-        }
-        else{
-            toast("🦄 enjoy your tripbook!", {
-                position: "bottom-center",
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                history.push('/poi')
-            }, 3000)
-        }
+        // navigate right away: the next page is the feedback ("user" is "" before login and null after logout)
+        history.push(user ? '/poi' : '/login')
     }
 
     return (

@@ -15,7 +15,7 @@ import Popover from 'react-bootstrap/Popover';
 import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker, Rectangle } from 'react-leaflet'
 import ReactLeafletGoogleLayer from "react-leaflet-google-layer";
 import {Icon} from 'leaflet'
-import markerIconPng from "leaflet/dist/images/marker-icon.png"
+import poiPin from "../images/markers/pin.svg"
 import { toast } from 'react-toastify';
 
 function PoI(props) {
@@ -215,7 +215,7 @@ function PoI(props) {
   //       }
   //       else {
   //           toast.warn(`${result.message}`, {
-  //             position: "bottom-center",
+  //             position: "top-center",
   //             autoClose: 3500,
   //             hideProgressBar: true,
   //             closeOnClick: true,
@@ -230,7 +230,7 @@ function PoI(props) {
   //   })
   //   .catch(error => {
   //       toast.warn("unknown error", {
-  //         position: "bottom-center",
+  //         position: "top-center",
   //         autoClose: 3500,
   //         hideProgressBar: true,
   //         closeOnClick: true,
@@ -258,7 +258,7 @@ function PoI(props) {
           if (i === 1 && !poi1State) 
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -270,7 +270,7 @@ function PoI(props) {
           if (i === 2 && !poi2State) 
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -282,7 +282,7 @@ function PoI(props) {
           if (i === 3 && !poi3State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -294,7 +294,7 @@ function PoI(props) {
           if (i === 4 && !poi4State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -306,7 +306,7 @@ function PoI(props) {
           if (i === 5 && !poi5State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -318,7 +318,7 @@ function PoI(props) {
           if (i === 6 && !poi6State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -330,7 +330,7 @@ function PoI(props) {
           if (i === 7 && !poi7State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -342,7 +342,7 @@ function PoI(props) {
           if (i === 8 && !poi8State)
             {
               toast.info('Congratulations, you reached: ' + target[i].name + '. Check your NEW QUOTA for cards!', {
-                position: "bottom-center",
+                position: "top-center",
                 autoClose: 3500,
                 hideProgressBar: true,
                 closeOnClick: true,
@@ -526,7 +526,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "bottom-center",
+              position: "top-center",
               autoClose: 3500,
               hideProgressBar: true,
               closeOnClick: true,
@@ -541,7 +541,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to get geoinfo", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -581,7 +581,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "bottom-center",
+              position: "top-center",
               autoClose: 3500,
               hideProgressBar: true,
               closeOnClick: true,
@@ -596,7 +596,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to post geoinfo", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -638,7 +638,7 @@ function PoI(props) {
         }
         else{
             toast.warn(`${result.message}`, {
-              position: "bottom-center",
+              position: "top-center",
               autoClose: 3500,
               hideProgressBar: true,
               closeOnClick: true,
@@ -653,7 +653,7 @@ function PoI(props) {
     })
     .catch(error =>{
       toast.warn("unknown error to get cards", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -714,7 +714,7 @@ function PoI(props) {
   function drawCard(){
     if (drawCardFlag === false) {
       toast.warn("Error! Please wait for seconds!", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -728,7 +728,7 @@ function PoI(props) {
     }
     if (!user) {
       toast.warn("Error! Please login!", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -742,7 +742,7 @@ function PoI(props) {
     }
     if ( (3 * geoinfoAmount) - cardsAmount <= 0 ) {
       toast.warn("Error! No quota for cards!", {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 3500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -768,7 +768,7 @@ function PoI(props) {
         if (response.status === 200){
           // console.log(result)
           toast.success("Successfully draw a new card", {
-            position: "bottom-center",
+            position: "top-center",
             autoClose: 3500,
             hideProgressBar: true,
             closeOnClick: true,
@@ -779,7 +779,7 @@ function PoI(props) {
         }
         else{
           toast.warn(`${result.message}`, {
-            position: "bottom-center",
+            position: "top-center",
             autoClose: 3500,
             hideProgressBar: true,
             closeOnClick: true,
@@ -797,7 +797,7 @@ function PoI(props) {
     })
     .catch(error =>{
         toast.warn("unknown error to draw card", {
-          position: "bottom-center",
+          position: "top-center",
           autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
@@ -861,20 +861,20 @@ function PoI(props) {
           </div>
           <div style={{position:"relative", zIndex:1, height:"100%"}} >
             {mapHeight &&
-            <MapContainer ref={setMap} class="map" selected="selected" bounds={Object.values(target).map(t => [t.latitude, t.longitude])} boundsOptions={{padding: [30, 30]}} style={{ height:"100%", width:"100%"}} >
+            <MapContainer ref={setMap} class="map" selected="selected" bounds={Object.values(target).map(t => [t.latitude, t.longitude])} boundsOptions={{paddingTopLeft: [30, 30], paddingBottomRight: [110, 30]}} style={{ height:"100%", width:"100%"}} >
               {googleMapApiKey
                 ? <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
                 : <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />}
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
-                    <Popup>用戶現在位置.</Popup>
+                    <Popup autoPanPaddingTopLeft={[10, 90]}>用戶現在位置.</Popup>
                   </Marker>
                 :""
               }
               <Circle center={[target[1].latitude, target[1].longitude]} pathOptions={ poi1State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card >
                     <Card.Img variant="top" className="photo" src={(poi1State)?'/assets/pois/delta-building.webp':'/assets/pois/greyscale-delta-building.webp'} />
                     <Card.Body>
@@ -891,8 +891,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[2].latitude, target[2].longitude]} pathOptions={ poi2State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi2State)?'/assets/pois/library.webp':'/assets/pois/greyscale-library.webp'} />
                     <Card.Body>
@@ -909,8 +909,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[3].latitude, target[3].longitude]} pathOptions={ poi3State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi3State)?'/assets/pois/general-buildingII.webp':'/assets/pois/greyscale-general-buildingII.webp'} />
                     <Card.Body>
@@ -927,8 +927,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[4].latitude, target[4].longitude]} pathOptions={ poi4State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi4State)?'/assets/pois/guest-house.webp':'/assets/pois/greyscale-guest-house.webp'} />
                     <Card.Body>
@@ -945,8 +945,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[5].latitude, target[5].longitude]} pathOptions={ poi5State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi5State)?'/assets/pois/plum-park.webp':'/assets/pois/greyscale-plum-park.webp'} />
                     <Card.Body>
@@ -963,8 +963,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[6].latitude, target[6].longitude]} pathOptions={ poi6State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi6State)?'/assets/pois/go-park.webp':'/assets/pois/greyscale-go-park.webp'} />
                     <Card.Body>
@@ -981,8 +981,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[7].latitude, target[7].longitude]} pathOptions={ poi7State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi7State)?'/assets/pois/chengkung-lake.webp':'/assets/pois/greyscale-chengkung-lake.webp'} />
                     <Card.Body>
@@ -999,8 +999,8 @@ function PoI(props) {
                 </Popup>
               </Marker>
               <Circle center={[target[8].latitude, target[8].longitude]} pathOptions={ poi8State === true ? color_blue : color_red} radius={radius} />
-              <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
-                <Popup>
+              <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: poiPin, iconSize: [25, 41], iconAnchor: [12, 41], className: 'poi-marker'})}>
+                <Popup autoPanPaddingTopLeft={[10, 90]}>
                   <Card>
                     <Card.Img variant="top" className="photo" src={(poi8State)?'/assets/pois/nthu-nctu-route.webp':'/assets/pois/greyscale-nthu-nctu-route.webp'} />
                     <Card.Body>
