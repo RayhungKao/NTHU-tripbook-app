@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from "react";
+import React, {useState, useEffect, useLayoutEffect, useContext, useRef} from "react";
 import "rc-tabs/assets/index.css";
 import "leaflet/dist/leaflet.css";
 import "../styles.css";
@@ -79,6 +79,45 @@ function PoI(props) {
   const [poi6_timeState, setPoi6_timeState] = useState();
   const [poi7_timeState, setPoi7_timeState] = useState();
   const [poi8_timeState, setPoi8_timeState] = useState();
+
+  // size the map to exactly fill the visible viewport below the navbar and tab bar (vh overshoots on mobile)
+  const mapWrapper = useRef(null);
+  const [mapHeight, setMapHeight] = useState(null);
+  const [map, setMap] = useState(null);
+
+  useLayoutEffect(() => {
+    function fitMapToViewport() {
+      if (mapWrapper.current)
+        setMapHeight(window.innerHeight - mapWrapper.current.getBoundingClientRect().top);
+    }
+    fitMapToViewport();
+    window.addEventListener('resize', fitMapToViewport);
+    // the navbar's height changes once the Bootstrap stylesheet (loaded at runtime) arrives
+    const observer = new ResizeObserver(fitMapToViewport);
+    observer.observe(document.body);
+    return () => {
+      window.removeEventListener('resize', fitMapToViewport);
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (map) map.invalidateSize();
+  }, [map, mapHeight]);
+
+  // hide the unvisited-spots overlay while a popup is open, so it never covers the popup or its close button
+  const [popupOpen, setPopupOpen] = useState(false);
+  useEffect(() => {
+    if (!map) return;
+    const onOpen = () => setPopupOpen(true);
+    const onClose = () => setPopupOpen(false);
+    map.on('popupopen', onOpen);
+    map.on('popupclose', onClose);
+    return () => {
+      map.off('popupopen', onOpen);
+      map.off('popupclose', onClose);
+    };
+  }, [map]);
 
   useEffect(() => {
     setUser(sessionStorage.getItem("user"))
@@ -787,48 +826,50 @@ function PoI(props) {
   return (
     <>
       <Tabs
-        style={{ height:"94vh", width:"100vw", backgroundColor: "white"}}
+        style={{ width:"100%", backgroundColor: "white"}}
         defaultActiveKey="1"
         onChange={callback}
         renderTabBar={() => <ScrollableInkTabBar />}
         renderTabContent={() => <TabContent />}
       >
         <TabPane tab="清華八景" key="1">
-          <div style={{position:"fixed", zIndex:2}} className="fixed-content">
-            { (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
-              <Container style={{ color:"white", textAlign:"center", height:"15vh", width:"30vw" }} >未走地點
-                <Row xs={1} md={1}> 
+          <div ref={mapWrapper} style={{position:"relative", height: mapHeight || "calc(100dvh - 96px)"}}>
+          <div style={{zIndex:2}} className="fixed-content">
+            { !popupOpen && (!poi1State || !poi2State || !poi3State || !poi4State || !poi5State || !poi6State || !poi7State || !poi8State)?
+              <Container style={{ color:"white", textAlign:"center", padding:"0 4px", width:"auto" }} >未走地點
+                <Row xs={1} md={1} className="mx-0 d-block">
                   {
-                    (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[1].name}</Col> : ""
+                    (!poi1State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[1].name}</Col> : ""
                   }
                   {
-                    (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[2].name}</Col> : ""
+                    (!poi2State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[2].name}</Col> : ""
                   }
                   {
-                    (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[3].name}</Col> : ""
+                    (!poi3State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[3].name}</Col> : ""
                   }
                   {
-                    (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[4].name}</Col> : ""
+                    (!poi4State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[4].name}</Col> : ""
                   }
                   {
-                    (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[5].name}</Col> : ""
+                    (!poi5State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[5].name}</Col> : ""
                   }
                   {
-                    (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[6].name}</Col> : ""
+                    (!poi6State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[6].name}</Col> : ""
                   }
                   {
-                    (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[7].name}</Col> : ""
+                    (!poi7State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[7].name}</Col> : ""
                   }
                   {
-                    (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1%", borderRadius:"10%"}}>{ target[8].name}</Col> : ""
+                    (!poi8State)?<Col style={{color:"black", backgroundColor:"#b3b3b3", textAlign:"center", padding:"1px 8px", margin:"2px 0", borderRadius:"6px"}}>{ target[8].name}</Col> : ""
                   }
                 </Row>
               </Container>
               : ""
             }
           </div>
-          <div style={{position:"relative", zIndex:1}} >
-            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={16} style={{ height:"89.5vh", width:"100vw"}} >
+          <div style={{position:"relative", zIndex:1, height:"100%"}} >
+            {mapHeight &&
+            <MapContainer ref={setMap} class="map" selected="selected" bounds={Object.values(target).map(t => [t.latitude, t.longitude])} boundsOptions={{padding: [30, 30]}} style={{ height:"100%", width:"100%"}} >
               {googleMapApiKey
                 ? <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
                 : <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />}
@@ -846,7 +887,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi1State)?'/assets/pois/delta-building.webp':'/assets/pois/greyscale-delta-building.webp'} />
                     <Card.Body>
                       <Card.Title>{target[1].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi1State)?`資工、電機、材料三個系所共同的系館。資工教室多在一樓。電機多在二樓，五樓出電梯右轉則有資工系辦，大學部的系辦負責姊姊是小靜姐呦～如果不知道進系辦時要找誰，可詢問坐在系辦入口的工讀生。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -864,7 +905,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi2State)?'/assets/pois/library.webp':'/assets/pois/greyscale-library.webp'} />
                     <Card.Body>
                       <Card.Title>{target[2].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi2State)?`旺宏館是清大圖書館本館，除此之外，人社院也有自己的圖書館，那裡有非常多的文史資料，值得有空去晃晃。旺宏館有夜讀區跟討論室可申請，需上網預約，遲到或沒到會被記違規。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -882,7 +923,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi3State)?'/assets/pois/general-buildingII.webp':'/assets/pois/greyscale-general-buildingII.webp'} />
                     <Card.Body>
                       <Card.Title>{target[3].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi3State)?`前有校內巴士停靠站，後有鴿子廣場。鴿子廣場上有一些小方格，上頭有時會有塗鴉，那些方格真的是設計來給人畫畫的，下雨就會洗掉了。系上有些實驗室會在這棟樓。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -900,7 +941,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi4State)?'/assets/pois/guest-house.webp':'/assets/pois/greyscale-guest-house.webp'} />
                     <Card.Body>
                       <Card.Title>{target[4].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi4State)?`校內提供短期住宿的地方，有些貴賓會來住這，僅提供在校學生家長、校友或相關學者申請。門口有一個公共藝術裝置「候鳥歸巢」，意味提供各界學者一個溫暖親切的棲息地。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -918,7 +959,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi5State)?'/assets/pois/plum-park.webp':'/assets/pois/greyscale-plum-park.webp'} />
                     <Card.Body>
                       <Card.Title>{target[5].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi5State)?`每年開花時很漂亮，學校會把梅子摘下來釀。上頭有梅校長的墓，校長是真的葬在這，有什麼心事可以找校長談談心，說不定隔天他老人家能保佑你解決煩惱。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -936,7 +977,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi6State)?'/assets/pois/go-park.webp':'/assets/pois/greyscale-go-park.webp'} />
                     <Card.Body>
                       <Card.Title>{target[6].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi6State)?`鄰近清大土地公，附近有停車場。為沈君山校長因為愛棋所贈，裏頭有座奕亭，上頭奕亭兩字是沈校長手書，門口的奕園兩字則是金庸先生親手提寫的。`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -954,7 +995,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi7State)?'/assets/pois/chengkung-lake.webp':'/assets/pois/greyscale-chengkung-lake.webp'} />
                     <Card.Body>
                       <Card.Title>{target[7].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi7State)?`滿載清大各種傳奇故事的地方，但最近要清湖底淤泥，所以水被抽光了。聽說修整後的成功湖會有環湖步道，以前是沒辦法走完整圈的，期待一下吧？`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -972,7 +1013,7 @@ function PoI(props) {
                     <Card.Img variant="top" className="photo" src={(poi8State)?'/assets/pois/nthu-nctu-route.webp':'/assets/pois/greyscale-nthu-nctu-route.webp'} />
                     <Card.Body>
                       <Card.Title>{target[8].name}</Card.Title>
-                      <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
+                      <Card.Text style={{ height:"8vh", width:"100%", overflow:"auto"}}>
                         {(poi8State)?`連接清大和交大的一條小徑，以前還有出過小徑T-shirt。要去交大吃飯或是運動的話可以走這條，清大都稱清交小徑，交大都稱交清小徑。咦？那陽明呢？`:"？？？？？？"}
                       </Card.Text>
                     </Card.Body>
@@ -983,11 +1024,12 @@ function PoI(props) {
                   </Card>
                 </Popup>
               </Marker>
-            </MapContainer>
+            </MapContainer>}
+          </div>
           </div>
         </TabPane>
         <TabPane tab="卡片倉庫" key="2">
-          <Container style={{ height:"87vh", width:"100vw"}} >
+          <Container>
             <br></br>
             <h6 className="App">卡池有87張卡片，和朋友們分享自己的卡片吧！</h6>
             <div className="App">可抽卡次數:{`${ (3 * geoinfoAmount) - cardsAmount} `}
@@ -1102,7 +1144,7 @@ function PoI(props) {
                   </Row>
                 </Card.Body>
                 <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
-                <Card.Footer style={{ height:"55vh", width:"100vw", overflow:"scroll"}}>
+                <Card.Footer style={{ maxHeight:"55vh", width:"100%", overflow:"auto"}}>
                   <small className="text-muted">歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。<br></br><br></br>
                   系上自上個學期，開始進行企業導師計畫，由資工系、資應所多位在業界都非常有經驗的系友，來擔任業師，希望藉由業師豐富的社會實戰經驗讓本系(含資應所及資安所)學生得以宏觀的視野來進行職涯規劃與畢業後發展的參考，進而提升自我競爭力。<br></br><br></br>
                   這個APP是由其中一位業師及其導生所開發出來的，希望同學們透過這個APP，可以多一個認識校園與本系的管道。當然，有任何課業學習上的問題，我們還是希望同學們能主動並直接與系上的老師們、系辦的同仁們詢問。希望同學們都能有個充實愉快且難忘的大學生活。歡迎各位大一新鮮人加入清華大學資工系這個大家庭，大學生涯四年說長不長，說短也不短，期許各位同學好好把握當下並學習運用與規劃自己的時間，盡情體驗與豐富你的大學生活。</small>
@@ -1124,7 +1166,7 @@ function PoI(props) {
                       </Col>
                   </Row>
                 </Card.Body>
-                <Card.Footer style={{ height:"55vh", width:"100vw", overflow:"scroll"}}>
+                <Card.Footer style={{ maxHeight:"55vh", width:"100%", overflow:"auto"}}>
                   <small className="text-muted">
                     Q1: 無法成功載入已獲得卡片、已抵達地點等等資訊怎麼辦？<br></br>
                     A1: 請點擊畫面左上角 Tripbook 字樣，回到首頁，接著點擊 NEXT 重新載入清華八景，即可解決。<br></br><br></br>

@@ -191,7 +191,7 @@ function App() {
                 <Image alt="" variant="top" src={logo} style={{ height:"30px", width:"30px"}}/>{' '}
                 Tripbook
               </Navbar.Brand>
-              <Nav className="container-fluid">
+              <Nav className="container-fluid pr-0">
                 <NavDropdown title="Account" id="basic-nav-dropdown">
                   {
                     (user) ? <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> : <NavDropdown.Item href="/login">Login</NavDropdown.Item>
@@ -203,7 +203,7 @@ function App() {
                 </NavDropdown>
                 <Nav.Item className="ml-auto">
                   {
-                    (user) ? <Nav.Link>Hi, {user}</Nav.Link> : <Nav.Link href="/login">please login</Nav.Link>
+                    (user) ? <Nav.Link className="text-nowrap">Hi, {user}</Nav.Link> : <Nav.Link className="text-nowrap" href="/login">please login</Nav.Link>
                   }
                 </Nav.Item>
               </Nav>
