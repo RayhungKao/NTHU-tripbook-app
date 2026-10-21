@@ -127,7 +127,7 @@ function App() {
         if (response.status == 200) {
           sessionStorage.clear();
           toast.success("Log out successfully", {
-            position: "bottom-center",
+            position: "top-center",
             autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
@@ -142,7 +142,7 @@ function App() {
         }
         else {
           toast.warn(`${result.message}`, {
-            position: "bottom-center",
+            position: "top-center",
             autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
@@ -157,7 +157,7 @@ function App() {
       })
       .catch(error => {
         toast.error("unknown error", {
-          position: "bottom-center",
+          position: "top-center",
           autoClose: 3500,
           hideProgressBar: true,
           closeOnClick: true,
@@ -174,9 +174,10 @@ function App() {
       <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo, googleMapApiKey, setGoogleMapApiKey}}>
         <div>
           <ToastContainer 
-          position="bottom-center"
+          position="top-center"
           autoClose={3500}
           hideProgressBar={true}
+          closeButton={false}
           limit={3}
           newestOnTop={false}
           closeOnClick

@@ -25,9 +25,14 @@ function Login(props) {
 
     }, []);
 
+    const [submitting, setSubmitting] = useState(false)
+    const [loginError, setLoginError] = useState("")
+
     function login(event) {
         // todo:  call login api
         event.preventDefault()
+        setSubmitting(true)
+        setLoginError("")
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -41,7 +46,7 @@ function Login(props) {
                 let result = await response.json()
                 if (response.status == 200) {
                     toast.success(`Log in successfully. Welcome, ${result.account.username}`, {
-                        position: "bottom-center",
+                        position: "top-center",
                         autoClose: 3500,
                         hideProgressBar: true,
                         closeOnClick: true,
@@ -52,35 +57,18 @@ function Login(props) {
                     // console.log(result.account.username)
                     setUser(result.account.username)
                     sessionStorage.setItem("user", result.account.username)
-                    setTimeout(() => {
-                        history.push('/poi')
-                    }, 3000)
+                    // go straight to the map; the welcome toast shows there
+                    history.push('/poi')
                 }
                 else {
-                    toast.warn(`${result.message}`, {
-                        position: "bottom-center",
-                        autoClose: 3500,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                        draggable: false,
-                        progress: undefined,
-                    });
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 3000)
+                    // show the error next to the form and keep what was typed
+                    setLoginError(`${result.message}`)
+                    setSubmitting(false)
                 }
             })
             .catch(error => {
-                toast.error("unknown error", {
-                    position: "bottom-center",
-                    autoClose: 3500,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: false,
-                    progress: undefined,
-                });
+                setLoginError("unknown error")
+                setSubmitting(false)
             })
     }
 
@@ -99,16 +87,17 @@ function Login(props) {
                         <Form onSubmit={(e) => { login(e) }}>
                             <Form.Group className="mb-3">
                                 <Form.Label>Username (e.g. 109062584)</Form.Label>
-                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value) }} placeholder="Enter your student Id" />
+                                <Form.Control type="text" value={account} onChange={(e) => { setAccount(e.target.value); setLoginError("") }} placeholder="Enter your student Id" />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password (e.g. 109062584)</Form.Label>
-                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter your student Id" />
+                                <Form.Control type="password" value={password} onChange={(e) => { setPassword(e.target.value); setLoginError("") }} placeholder="Enter your student Id" />
                             </Form.Group>
                             <div align="center">
-                                <Button className="btn-tb w-100" type="submit">
-                                    Submit
+                                {loginError && <div className="form-error" role="alert">{loginError}</div>}
+                                <Button className="btn-tb w-100" type="submit" disabled={submitting}>
+                                    {submitting ? "Logging in…" : "Submit"}
                                 </Button>
                             </div>
                         </Form>
