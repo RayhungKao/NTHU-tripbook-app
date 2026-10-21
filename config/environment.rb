@@ -37,14 +37,24 @@ module Tripbook
 
     configure :production do
       # use Rack::SslEnforcer, hsts: true
-      use Rack::Session::Redis,
-          expire_after: ONE_MONTH,
-          httponly: true,
-          same_site: :strict,
-          redis_server: {
-            url: ENV.delete('REDIS_TLS_URL'),
-            ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
-          }
+      if ENV['REDIS_TLS_URL']
+        use Rack::Session::Redis,
+            expire_after: ONE_MONTH,
+            httponly: true,
+            same_site: :strict,
+            redis_server: {
+              url: ENV.delete('REDIS_TLS_URL'),
+              ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+            }
+      else
+        # No Redis provisioned (e.g. free-tier demo): keep the encrypted session in a signed cookie
+        use Rack::Session::Cookie,
+            expire_after: ONE_MONTH,
+            httponly: true,
+            secure: true,
+            same_site: :strict,
+            secret: config.SESSION_SECRET
+      end
     end
 
     configure :development, :test do

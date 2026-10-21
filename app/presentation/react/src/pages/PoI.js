@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect, useContext, useRef} from "react";
 import "rc-tabs/assets/index.css";
 import "leaflet/dist/leaflet.css";
 import "../styles.css";
 
-import { baseUrl } from '../config'
+import { baseUrl, demoMode } from '../config'
 import { AuthContext } from "../contexts";
 
 import Tabs, { TabPane } from "rc-tabs";
@@ -37,6 +37,13 @@ function PoI(props) {
   const [cardCode, setCardCode] = useState();
 
   const [drawCardFlag, setDrawCardFlag] = useState(true);
+
+  // once a demo arrival is simulated, ignore real GPS updates so the simulated location sticks
+  const simulatedLocation = useRef(false);
+  function simulateArrival(i) {
+    simulatedLocation.current = true;
+    setUserLocation({latitude: target[i].latitude, longitude: target[i].longitude});
+  }
 
   const handleCloseCard = () => setShowCard(false);
   function handleShowCard (card_code){
@@ -79,8 +86,9 @@ function PoI(props) {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
+      if (simulatedLocation.current) return;
       setUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
-    });  
+    });
     let id = navigator.geolocation.watchPosition(success, error, options);
     // console.log("======================" + id + "=========================");
     
@@ -137,9 +145,9 @@ function PoI(props) {
   useEffect(() => {
     if(!geoinfo) getGeoinfo();
     return () => {
-      // console.log("get geoinfo"); 
+      // console.log("get geoinfo");
     }
-  }, [geoinfo])
+  }, [geoinfo, user])
 
   useEffect(() => {
     if(!cards) {
@@ -149,7 +157,7 @@ function PoI(props) {
     return () => {
       // console.log("yes cards");
     }
-  }, [cards])
+  }, [cards, user])
 
   // function getMap() {
   //   const requestOptions = {
@@ -196,12 +204,14 @@ function PoI(props) {
 
   function geofence() {
     var distance;
+    // track the latest inside/outside status locally, since state updates are not visible until the next render
+    var current = userInsidePoI || {inside: false, PoI: 0};
     for (var i=1; i<=8; i++){
       distance = getDistance([userLocation.latitude, userLocation.longitude], [target[i].latitude, target[i].longitude])
       // console.log('i=' + i + ': distance: ' + distance);
 
       if (distance < radius) {
-        if (userInsidePoI.inside) {
+        if (current.inside && current.PoI === i) {
           // console.log("++++++++inside+++++++");
           continue;
         }
@@ -303,14 +313,16 @@ function PoI(props) {
               });
             }
           // console.log('進入i=' + i + ', ' + target[i].name )
+          current = {inside: true, PoI: i};
           setUserInsidePoI( {inside: true, PoI: i} );
           sessionStorage.setItem("userInsidePoI", JSON.stringify( {inside: true, PoI: i} ))
           postGeoinfo(true, i);
         }
       }
       else {
-        if (userInsidePoI.inside && userInsidePoI.PoI === i) {
+        if (current.inside && current.PoI === i) {
           // props.alertSuccessFunction('you left: ' + target[i].name + '. Go explore other spots~');
+          current = {inside: false, PoI: 0};
           setUserInsidePoI( {inside: false, PoI: 0} );
           sessionStorage.setItem("userInsidePoI", JSON.stringify( {inside: false, PoI: 0} ))
           postGeoinfo(false, i);
@@ -358,6 +370,7 @@ function PoI(props) {
   };
 
   function success(pos) {
+    if (simulatedLocation.current) return;
     var crd = pos.coords;
 
     // console.log(crd);
@@ -815,8 +828,10 @@ function PoI(props) {
             }
           </div>
           <div style={{position:"relative", zIndex:1}} >
-            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={11} attributionControl={false} style={{ height:"89.5vh", width:"100vw"}} >
-              {googleMapApiKey && <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />}
+            <MapContainer class="map" selected="selected" center={[24.794543367966625, 120.99341255578466]} zoom={16} style={{ height:"89.5vh", width:"100vw"}} >
+              {googleMapApiKey
+                ? <ReactLeafletGoogleLayer apiKey={googleMapApiKey} minZoom={14} maxZoom={19} />
+                : <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />}
               {
                 (userLocation.latitude)?
                   <Marker id="user" position={[userLocation.latitude, userLocation.longitude]} icon={new Icon({iconUrl: require('../images/markers/user.png'), iconSize: [30, 30], iconAnchor: [12, 41]})}>
@@ -828,7 +843,7 @@ function PoI(props) {
               <Marker id="1" position={[target[1].latitude, target[1].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card >
-                    <Card.Img variant="top" className="photo" src={(poi1State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/delta-building.png':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-delta-building.png'} />
+                    <Card.Img variant="top" className="photo" src={(poi1State)?'/assets/pois/delta-building.webp':'/assets/pois/greyscale-delta-building.webp'} />
                     <Card.Body>
                       <Card.Title>{target[1].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -837,6 +852,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi1_timeState)?`抵達時間:${poi1_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(1)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -845,7 +861,7 @@ function PoI(props) {
               <Marker id="2" position={[target[2].latitude, target[2].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi2State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/library.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-library.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi2State)?'/assets/pois/library.webp':'/assets/pois/greyscale-library.webp'} />
                     <Card.Body>
                       <Card.Title>{target[2].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -854,6 +870,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi2_timeState)?`抵達時間:${poi2_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(2)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -862,7 +879,7 @@ function PoI(props) {
               <Marker id="3" position={[target[3].latitude, target[3].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi3State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/general-buildingII.jpeg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-general-buildingII.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi3State)?'/assets/pois/general-buildingII.webp':'/assets/pois/greyscale-general-buildingII.webp'} />
                     <Card.Body>
                       <Card.Title>{target[3].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -871,6 +888,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi3_timeState)?`抵達時間:${poi3_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(3)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -879,7 +897,7 @@ function PoI(props) {
               <Marker id="4" position={[target[4].latitude, target[4].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi4State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/guest-house.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-guest-house.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi4State)?'/assets/pois/guest-house.webp':'/assets/pois/greyscale-guest-house.webp'} />
                     <Card.Body>
                       <Card.Title>{target[4].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -888,6 +906,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi4_timeState)?`抵達時間:${poi4_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(4)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -896,7 +915,7 @@ function PoI(props) {
               <Marker id="5" position={[target[5].latitude, target[5].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi5State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/plum-park.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-plum-park.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi5State)?'/assets/pois/plum-park.webp':'/assets/pois/greyscale-plum-park.webp'} />
                     <Card.Body>
                       <Card.Title>{target[5].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -905,6 +924,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi5_timeState)?`抵達時間:${poi5_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(5)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -913,7 +933,7 @@ function PoI(props) {
               <Marker id="6" position={[target[6].latitude, target[6].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi6State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/go-park.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-go-park.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi6State)?'/assets/pois/go-park.webp':'/assets/pois/greyscale-go-park.webp'} />
                     <Card.Body>
                       <Card.Title>{target[6].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -922,6 +942,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi6_timeState)?`抵達時間:${poi6_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(6)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -930,7 +951,7 @@ function PoI(props) {
               <Marker id="7" position={[target[7].latitude, target[7].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi7State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/chengkung-lake.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-chengkung-lake.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi7State)?'/assets/pois/chengkung-lake.webp':'/assets/pois/greyscale-chengkung-lake.webp'} />
                     <Card.Body>
                       <Card.Title>{target[7].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -939,6 +960,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi7_timeState)?`抵達時間:${poi7_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(7)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -947,7 +969,7 @@ function PoI(props) {
               <Marker id="8" position={[target[8].latitude, target[8].longitude]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
                 <Popup>
                   <Card>
-                    <Card.Img variant="top" className="photo" src={(poi8State)?'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/nthu-nctu-route.jpg':'https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/pois/greyscale-nthu-nctu-route.jpg'} />
+                    <Card.Img variant="top" className="photo" src={(poi8State)?'/assets/pois/nthu-nctu-route.webp':'/assets/pois/greyscale-nthu-nctu-route.webp'} />
                     <Card.Body>
                       <Card.Title>{target[8].name}</Card.Title>
                       <Card.Text style={{ height:"8vh", width:"45vw", overflow:"scroll"}}>
@@ -956,6 +978,7 @@ function PoI(props) {
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">{(poi8_timeState)?`抵達時間:${poi8_timeState}`:"尚未抵達，無法查看"}</small>
+                      {demoMode && <Button size="sm" variant="dark" className="w-100 mt-2" onClick={() => simulateArrival(8)}>Demo：模擬抵達此處</Button>}
                     </Card.Footer>
                   </Card>
                 </Popup>
@@ -995,14 +1018,14 @@ function PoI(props) {
                     <Col>
                       <Button variant="outline-light" onClick={() => handleShowCard('golden-card')}>
                         <Card>
-                          <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/golden-card.png`} style={{ height:"100%", width:"100%"}}/>
+                          <Card.Img variant="top" src={`/assets/cards/golden-card.webp`} style={{ height:"100%", width:"100%"}}/>
                         </Card>
                       </Button>
                     </Col>
                     :<Col>
                       <Button variant="outline-light" onClick={() => handleShowCard('graysacle-golden-card')}>
                         <Card>
-                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/graysacle-golden-card.png`} style={{ height:"100%", width:"100%"}}/>
+                        <Card.Img variant="top" src={`/assets/cards/graysacle-golden-card.webp`} style={{ height:"100%", width:"100%"}}/>
                         </Card>
                       </Button>
                     </Col>
@@ -1013,7 +1036,7 @@ function PoI(props) {
                               <Col>
                                 <Button variant="outline-light" onClick={() => handleShowCard(c.card_code)}>
                                   <Card>
-                                    <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${c.card_code}.png`} style={{ height:"100%", width:"100%"}}/>
+                                    <Card.Img variant="top" src={`/assets/cards/${c.card_code}.webp`} style={{ height:"100%", width:"100%"}}/>
                                   </Card>
                                 </Button>
                               </Col>
@@ -1030,7 +1053,7 @@ function PoI(props) {
                       >
                         <Modal.Header closeButton> 點擊x或點擊外側關閉
                         </Modal.Header>
-                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/cards/${cardCode}.png`} style={{ height:"100%", width:"100%"}}/>
+                        <Card.Img variant="top" src={`/assets/cards/${cardCode}.webp`} style={{ height:"100%", width:"100%"}}/>
                       </Modal>
                       :""
                     }
@@ -1054,7 +1077,7 @@ function PoI(props) {
                       <a href="https://forms.gle/kFFMLyLrDugha1Fr5">評分表單在此</a>
                     </Col>
                     <Col>
-                      <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-mascot.png`} />
+                      <Card.Img variant="top" src={`/assets/others/nthu-mascot.webp`} />
                     </Col>
                     <Col className="App">
                       <br></br>
@@ -1075,7 +1098,7 @@ function PoI(props) {
               <Card className="card">
                 <Card.Body>
                   <Row>
-                    <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/nthu-cs.png`} />
+                    <Card.Img variant="top" src={`/assets/others/nthu-cs.webp`} />
                   </Row>
                 </Card.Body>
                 <Card.Text className="App" >{"系辦想跟大家說的話><"}</Card.Text>
@@ -1095,7 +1118,7 @@ function PoI(props) {
                       <Col>
                       </Col>
                       <Col>
-                        <Card.Img variant="top" src={`https://nthu-tripbook-assets.s3.ap-northeast-1.amazonaws.com/others/qa.png`} />
+                        <Card.Img variant="top" src={`/assets/others/qa.webp`} />
                       </Col>
                       <Col>
                       </Col>
