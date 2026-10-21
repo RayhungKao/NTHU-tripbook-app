@@ -84,3 +84,13 @@ body {
 .carousel .carousel-control-next {
   width: 36px;
 }
+
+/* the zoom control sits above popups in Leaflet's stacking order, so hide it while a popup is open */
+.popup-open .leaflet-control-zoom {
+  display: none;
+}
+
+/* keep popups (and their close button) within narrow screens; Leaflet sizes them up to 300px */
+.leaflet-popup-content {
+  max-width: calc(100vw - 80px);
+}

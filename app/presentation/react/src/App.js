@@ -127,7 +127,7 @@ function App() {
         if (response.status == 200) {
           sessionStorage.clear();
           toast.success("Log out successfully", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -142,7 +142,7 @@ function App() {
         }
         else {
           toast.warn(`${result.message}`, {
-            position: "top-right",
+            position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -157,7 +157,7 @@ function App() {
       })
       .catch(error => {
         toast.error("unknown error", {
-          position: "top-right",
+          position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -174,7 +174,7 @@ function App() {
       <AuthContext.Provider value={{ user, setUser, userInfo, setUserInfo, googleMapApiKey, setGoogleMapApiKey}}>
         <div>
           <ToastContainer 
-          position="top-center"
+          position="bottom-center"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -187,11 +187,11 @@ function App() {
         <Router>
           <div style={{ height: "100vh" }}>
             <Navbar bg="dark" variant="dark">
-              <Navbar.Brand href="/">
+              <Navbar.Brand href="/" className="mr-2">
                 <Image alt="" variant="top" src={logo} style={{ height:"30px", width:"30px"}}/>{' '}
                 Tripbook
               </Navbar.Brand>
-              <Nav className="container-fluid pr-0">
+              <Nav className="container-fluid px-0">
                 <NavDropdown title="Account" id="basic-nav-dropdown">
                   {
                     (user) ? <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item> : <NavDropdown.Item href="/login">Login</NavDropdown.Item>

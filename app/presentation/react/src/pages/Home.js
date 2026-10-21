@@ -24,7 +24,7 @@ function Home(props) {
     function toLoginPage(){
         if(user === ""){
             toast("🦄 let's login!", {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -38,7 +38,7 @@ function Home(props) {
         }
         else{
             toast("🦄 enjoy your tripbook!", {
-                position: "top-center",
+                position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
