@@ -1,6 +1,8 @@
 FROM ruby:3.1.1-slim-bullseye
 
-RUN apt-get update \
+# Debian 11 (bullseye) is end of life and its packages moved to archive.debian.org
+RUN sed -i -e 's|deb.debian.org|archive.debian.org|g' -e 's|security.debian.org|archive.debian.org|g' /etc/apt/sources.list \
+ && apt-get update \
  && apt-get install -y --no-install-recommends build-essential libsodium23 \
  && rm -rf /var/lib/apt/lists/*
 
