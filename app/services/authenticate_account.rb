@@ -24,7 +24,8 @@ module Tripbook
 
       { account: account_info['account']['data']['attributes'],
         auth_token: account_info['auth_token'] }
-    rescue HTTP::ConnectionError
+    rescue HTTP::ConnectionError, JSON::ParserError, NoMethodError
+      # unreachable API, or a response that isn't the API's (e.g. a misconfigured API_URL)
       raise ApiServerError
     end
   end

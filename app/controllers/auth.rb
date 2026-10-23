@@ -45,9 +45,9 @@ module Tripbook
           return { message: 'Username and password did not match our records' }.to_json
         rescue AuthenticateAccount::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
-          flash[:error] = 'Our servers are not responding -- please try later'
           response.status = 500
           # routing.redirect @login_route
+          return { message: 'Our servers are not responding -- please try later' }.to_json
         end
       end
 
