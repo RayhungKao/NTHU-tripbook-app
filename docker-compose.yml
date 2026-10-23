@@ -1,0 +1,55 @@
+# Runs Tripbook the way the Render Blueprint does: the API, this web app, and an HTTPS proxy in front.
+#   docker compose up --build      then open https://localhost:9443 (accept the self-signed certificate)
+#   docker compose down            to stop and remove everything
+#
+# Expects the API repo checked out next to this one (../NTHU-tripbook-api); override with API_REPO.
+# Images are built for linux/amd64 like Render's servers (emulated on Apple Silicon); override with PLATFORM.
+# The keys default to the public development keys from the repos' example secrets; never use them in production.
+
+services:
+  api:
+    build:
+      context: ${API_REPO:-../NTHU-tripbook-api}
+    platform: ${PLATFORM:-linux/amd64}
+    environment:
+      RACK_ENV: production
+      SECURE_SCHEME: HTTP # the web app reaches the API over the internal network
+      DATABASE_URL: sqlite://app/db/store/production.db
+      DB_KEY: ${DB_KEY:-pFrP9v4qQNRvpEeLl4RL0s8C3pmMyOKTYrjHhb2rq4g=}
+      MSG_KEY: ${API_MSG_KEY:-QwsjC6WdxnNYjiWn5qOFp4xBRFcWY+wjrARjV0Vz3cA=}
+      SIGNING_KEY: ${SIGNING_KEY:-nNuYJVHnMTPfArqFo3Rb81xvXoPDuqcdoUhjWVfGooE=}
+      VERIFY_KEY: ${VERIFY_KEY:-j50XXfk5tXJ9oWomovLVOFlbgKKY/YSDPHAy4s1fA6U=}
+    ports:
+      - "3100:9292"
+    healthcheck:
+      # the slim image has no curl, so probe with Ruby; migrating and seeding on boot takes a while under emulation
+      test: ["CMD", "ruby", "-rnet/http", "-e", "exit Net::HTTP.get_response(URI('http://localhost:9292/')).is_a?(Net::HTTPSuccess)"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  app:
+    build:
+      context: .
+    platform: ${PLATFORM:-linux/amd64}
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      RACK_ENV: production
+      API_URL: http://api:9292/api/v1
+      APP_URL: https://localhost:9443
+      SESSION_SECRET: ${SESSION_SECRET:-UWfkF6tb9b57ckKWPIJQaMHWYGr1j+e92nyVJkjfGs8uGzNhpgF2FbcbMSQ/IbsKiNXJ9lt9g/gqQdKWi2yvgQ==}
+      MSG_KEY: ${APP_MSG_KEY:-a0N3MdTNiK4ufxlbXHD1V8cfQqKt5ZRyz+LTerPdGWo=}
+      SIGNING_KEY: ${SIGNING_KEY:-nNuYJVHnMTPfArqFo3Rb81xvXoPDuqcdoUhjWVfGooE=}
+      REACT_APP_GOOGLE_MAP_KEY: ""
+
+  # terminates TLS like Render does, so the secure session cookie works in every browser (WebKit rejects it over http)
+  https:
+    image: caddy:2.8.4
+    command: caddy reverse-proxy --from https://localhost:9443 --to app:9292 --internal-certs
+    depends_on:
+      - app
+    ports:
+      - "9443:9443"
