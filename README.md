@@ -39,6 +39,21 @@ cd app/presentation/react && npm ci && npm run build
 Build with `REACT_APP_DEMO_MODE=false` to hide the simulated-arrival buttons. Images are served from
 `public/assets` as compressed WebP files.
 
+## Run with Docker (production-like)
+
+`docker-compose.yml` runs the API, this web app, and an HTTPS proxy together, the way the Render Blueprint does.
+It expects the API repo checked out next to this one (`../NTHU-tripbook-api`):
+
+```shell
+docker compose up --build
+```
+
+Then open https://localhost:9443, accept the self-signed certificate, and log in with `demo` / `tripbook-demo`.
+Stop and remove everything with `docker compose down`; the demo data resets each time.
+Images are built for `linux/amd64` like Render's servers, which runs emulated on Apple Silicon;
+run with `PLATFORM=linux/arm64` to run natively instead. The first build can take 5-20 minutes, mostly
+downloading Debian 11 packages from archive.debian.org; later builds reuse the cached layers.
+
 ## Deploy (Render free plan)
 
 `render.yaml` is a Render Blueprint that deploys this app and [the API](https://github.com/RayhungKao/NTHU-tripbook-api)
